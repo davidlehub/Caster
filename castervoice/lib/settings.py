@@ -361,7 +361,7 @@ def _get_defaults():
 
         # Default enabled hooks: Use hook class name
         "hooks": {
-            "default_hooks": ['PrinterHook'],
+            "default_hooks": ['PrinterHook', 'RulePrinterHook'],
         },
 
         # miscellaneous section

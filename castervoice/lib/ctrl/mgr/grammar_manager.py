@@ -10,6 +10,7 @@ from castervoice.lib.ctrl.mgr.managed_rule import ManagedRule
 from castervoice.lib.ctrl.mgr.rule_formatter import _set_rdescripts
 from castervoice.lib.ctrl.mgr.rules_enabled_diff import RulesEnabledDiff
 from castervoice.lib.merge.ccrmerging2.hooks.events.activation_event import RuleActivationEvent
+from castervoice.lib.merge.ccrmerging2.hooks.events.rules_loaded_event import RulesLoadedEvent
 from castervoice.lib.merge.ccrmerging2.hooks.events.on_error_event import OnErrorEvent
 from castervoice.lib.merge.ccrmerging2.sorting.config_ruleset_sorter import ConfigBasedRuleSetSorter
 from castervoice.lib.util.ordered_set import OrderedSet
@@ -239,6 +240,7 @@ class GrammarManager(object):
         active_rule_class_names = [rcn for rcn in enabled_rcns if rcn in loaded_enabled_rcns]
         active_mrs = [self._managed_rules[rcn] for rcn in active_rule_class_names]
         active_ccr_mrs = [mr for mr in active_mrs if mr.get_details().declared_ccrtype is not None]
+        self._hooks_runner.execute(RulesLoadedEvent(active_mrs=active_mrs))
 
         '''
         The merge may result in 1 to n+1 rules where n is the number of ccr app rules
@@ -271,6 +273,7 @@ class GrammarManager(object):
         rcn = managed_rule.get_rule_class_name()
         if enabled:
             grammar = self._mapping_rule_maker.create_non_ccr_grammar(managed_rule)
+            self._hooks_runner.execute(RulesLoadedEvent(managed_rule=managed_rule))
             self._grammars_container.set_non_ccr(rcn, grammar)
             grammar.load()
             return RulesEnabledDiff([rcn], frozenset())
