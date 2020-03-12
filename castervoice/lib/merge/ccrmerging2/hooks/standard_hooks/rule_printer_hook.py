@@ -16,6 +16,7 @@ def RulePrinter(merge_rules=None, mapping_rule=None):
             #    break
     
     elif mapping_rule: # Not a list
+
         #  On start hook runs for all Rule one at a time.
         #  On update: hook runs for on updated rule only.
         print("mapping_rule:   ", str(mapping_rule.get_rule_class_name()))

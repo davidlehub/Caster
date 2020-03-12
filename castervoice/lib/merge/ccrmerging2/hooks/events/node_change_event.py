@@ -8,3 +8,4 @@ class NodeChangeEvent(BaseHookEvent):
         self.tree_name = tree_name
         self.active_path = active_path
         self.new_specs = new_specs
+

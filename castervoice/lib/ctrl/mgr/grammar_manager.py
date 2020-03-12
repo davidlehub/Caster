@@ -244,6 +244,14 @@ class GrammarManager(object):
         self._hooks_runner.execute(RulesLoadedEvent(active_mrs=active_mrs))
 
         '''
+        The hook that you wrote and explained to me is extremely useful. 
+        Thank you. There are some interesting nuances though. 
+        ManagedRule objects are wrappers around rule class objects, 
+        not rule class instances. Instances of rule classes are dynamic entities,
+         which state depends on the context, 
+         and it's important to not display rules that are active only in specific context.
+          On the other hand rule class objects are somewhat static, i.e. unless the specific class is disabled by grammar manager, it's impossible to know whether the rule is active in a specific context or not. Anyway, this hook provides useful information that can correlate the information obtained from an engine at runtime and provide better visualization of active rules.
+        
         The merge may result in 1 to n+1 rules where n is the number of ccr app rules
         which are in the active rules list.
         For instance, if you have 1 app rule, you'll end up with two ccr rules. This is because
