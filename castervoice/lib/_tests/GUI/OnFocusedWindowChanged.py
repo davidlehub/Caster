@@ -1,57 +1,57 @@
 def OnFocusedWindowChanged():
 	pass
 
-	#region--- Quick test: set esclusive = 1, for: 
-	# "NavigationNon" and "Alphabet"
+	# #region--- Quick test: set esclusive = 1, for: 
+	# # "NavigationNon" and "Alphabet"
 
-	RweWantToBeExclusive = ["Alphabet",  "NavigationNon"]
-	RcasterAlwayNeed = ['GrammarActivatorRule','HooksActivationRule','TransformersActivationRule']
-	RtoBeExclusive = RcasterAlwayNeed + RweWantToBeExclusive
+	# RweWantToBeExclusive = ["Alphabet",  "NavigationNon"]
+	# RcasterAlwayNeed = ['GrammarActivatorRule','HooksActivationRule','TransformersActivationRule']
+	# RtoBeExclusive = RcasterAlwayNeed + RweWantToBeExclusive
 
-	#--- Diable all Rules, except those we want to be exclusive.
-	# disableR(_NEXUS._grammar_manager._config.get_enabled_rcns_ordered(),RtoBeExclusive)
-	# def disableR(aRclassName,aExceptR=[]):
-		# for iRclassName in aRclassName:
-		# 	if iRclassName in aExceptR:
-		# 		Storage.RbeenExclusive.add(iRclassName)
-		# 		continue
-		# 	_NEXUS._grammar_manager._change_rule_enabled(iRclassName, False)
-		# 	Storage.RbeenExclusive.discard(iRclassName)
+	# #--- Diable all Rules, except those we want to be exclusive.
+	# # disableR(_NEXUS._grammar_manager._config.get_enabled_rcns_ordered(),RtoBeExclusive)
+	# # def disableR(aRclassName,aExceptR=[]):
+	# 	# for iRclassName in aRclassName:
+	# 	# 	if iRclassName in aExceptR:
+	# 	# 		Storage.RbeenExclusive.add(iRclassName)
+	# 	# 		continue
+	# 	# 	_NEXUS._grammar_manager._change_rule_enabled(iRclassName, False)
+	# 	# 	Storage.RbeenExclusive.discard(iRclassName)
 
-	for iRclassName in _NEXUS._grammar_manager._config.get_enabled_rcns_ordered():
-		if iRclassName in RtoBeExclusive:
-			continue
-		_NEXUS._grammar_manager._change_rule_enabled(iRclassName, False)
+	# for iRclassName in _NEXUS._grammar_manager._config.get_enabled_rcns_ordered():
+	# 	if iRclassName in RtoBeExclusive:
+	# 		continue
+	# 	_NEXUS._grammar_manager._change_rule_enabled(iRclassName, False)
 
-	#--- Enable rule we want to be exclusive.
-	# enableR(RtoBeExclusive)
-	# def enableR(aRclassName):
-		# """ Enables Rules so they gonna be part of exclusiveness """
+	# #--- Enable rule we want to be exclusive.
+	# # enableR(RtoBeExclusive)
+	# # def enableR(aRclassName):
+	# 	# """ Enables Rules so they gonna be part of exclusiveness """
 
-		# for iRclassName in aRclassName:
-		# 	if iRclassName in Storage.RbeenExclusive:
-		# 		continue
-		# 	# try:
-		# 	_NEXUS._grammar_manager._change_rule_enabled(iRclassName, True)
-	for iRclassName in RtoBeExclusive:
-		# if iRclassName in Storage.RbeenExclusive:
-		# 	continue
-		_NEXUS._grammar_manager._change_rule_enabled(iRclassName, True)
-
-
-	#--- Remember
-	# data.store_enablebRules_associatedWithApp(data.currWindHndl)
+	# 	# for iRclassName in aRclassName:
+	# 	# 	if iRclassName in Storage.RbeenExclusive:
+	# 	# 		continue
+	# 	# 	# try:
+	# 	# 	_NEXUS._grammar_manager._change_rule_enabled(iRclassName, True)
+	# for iRclassName in RtoBeExclusive:
+	# 	# if iRclassName in Storage.RbeenExclusive:
+	# 	# 	continue
+	# 	_NEXUS._grammar_manager._change_rule_enabled(iRclassName, True)
 
 
-	#--- Set Exclusiveness of all grammar in the system (_default_engine). (_default_engine.grammars)
-	# setGramToBeExclusive(_default_engine.grammars)		
-	# def setGramToBeExclusive(aGramObj):
-		# for iG in aGramObj:
-		# 	# makeSureGramIsLoadedEnabled([iG])
+	# #--- Remember
+	# # data.store_enablebRules_associatedWithApp(data.currWindHndl)
+
+
+	# #--- Set Exclusiveness of all grammar in the system (_default_engine). (_default_engine.grammars)
+	# # setGramToBeExclusive(_default_engine.grammars)		
+	# # def setGramToBeExclusive(aGramObj):
+	# 	# for iG in aGramObj:
+	# 	# 	# makeSureGramIsLoadedEnabled([iG])
 		
-		# 	iG.set_exclusiveness(1)
-	for iG in _default_engine.grammars:
-		iG.set_exclusiveness(1)		
+	# 	# 	iG.set_exclusiveness(1)
+	# for iG in _default_engine.grammars:
+	# 	iG.set_exclusiveness(1)		
 
 
-	#endregion  
+	# #endregion  

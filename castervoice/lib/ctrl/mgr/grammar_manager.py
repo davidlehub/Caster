@@ -16,6 +16,10 @@ from castervoice.lib.merge.ccrmerging2.hooks.events.post_grammers_loaded_event i
 from castervoice.lib.merge.ccrmerging2.sorting.config_ruleset_sorter import ConfigBasedRuleSetSorter
 from castervoice.lib.util.ordered_set import OrderedSet
 
+#region--- (david)
+from castervoice.lib.merge.ccrmerging2.hooks.events.rules_loaded_excl_event import RulesLoadedExclEvent
+
+#endregion 
 
 class GrammarManager(object):
 
@@ -242,6 +246,9 @@ class GrammarManager(object):
         active_mrs = [self._managed_rules[rcn] for rcn in active_rule_class_names]
         active_ccr_mrs = [mr for mr in active_mrs if mr.get_details().declared_ccrtype is not None]
         self._hooks_runner.execute(RulesLoadedEvent(active_mrs=active_mrs))
+        #region--- (david)
+        self._hooks_runner.execute(RulesLoadedExclEvent(active_mrs=active_mrs))
+        #endregion 
 
         '''
         The hook that you wrote and explained to me is extremely useful. 
@@ -280,15 +287,19 @@ class GrammarManager(object):
         :param enabled:
         :return: RulesEnabledDiff
         """
+        self._hooks_runner.execute(RulesLoadedExclEvent(managed_rule=managed_rule,mappingRule_anabled=enabled)) #david
+        
         rcn = managed_rule.get_rule_class_name()
         if enabled:
             grammar = self._mapping_rule_maker.create_non_ccr_grammar(managed_rule)
             self._hooks_runner.execute(RulesLoadedEvent(managed_rule=managed_rule))
+            # self._hooks_runner.execute(RulesLoadedExclEvent(managed_rule=managed_rule,mappingRule_anabled=enabled)) #david
             self._grammars_container.set_non_ccr(rcn, grammar)
             grammar.load()
             self._hooks_runner.execute(PostGrammersLoadedEvent(grammar))
             return RulesEnabledDiff([rcn], frozenset())
         else:
+            # self._hooks_runner.execute(RulesLoadedExclEvent(managed_rule=managed_rule,mappingRule_anabled=enabled)) #david
             self._grammars_container.set_non_ccr(rcn, None)
             return RulesEnabledDiff(frozenset(), [rcn])
 
