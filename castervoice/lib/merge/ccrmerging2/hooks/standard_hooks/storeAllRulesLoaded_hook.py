@@ -10,15 +10,19 @@ from castervoice.lib._tests.GlabalStorage.allGrammars import all_MappingRule_cla
 def storeAllRulesLoaded(merge_rules=None, mapping_rule=None, mappingRule_anabled=None):
 
     if merge_rules:
-        #region--- (david)
-        all_MergeRules_className = []
-        #endregion 
+        # all_MergeRules_className = []
 
         for rule in merge_rules: # list
             # print "", "20200312151237| ",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
             #--- save those info globaly. Gonna needed for exclusiveness syst.
-            all_MergeRules_className.append(rule.get_rule_class_name())
+            if rule not in all_MergeRules_className:
+                all_MergeRules_className.append(rule.get_rule_class_name())
+	    # print "\n", "20200312212545| all_MergeRules_className:", all_MergeRules_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
+    elif mapping_rule: # Not a list
+        if mappingRule_anabled:
+            all_MappingRule_className.append(mapping_rule.get_rule_class_name())
+        elif not mappingRule_anabled:
             try:
                 all_MappingRule_className.remove(mapping_rule.get_rule_class_name())
             except:
