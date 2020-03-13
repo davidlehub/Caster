@@ -53,9 +53,10 @@ class Mywin(wx.Frame):
 		panel = wx.Panel(self) 
 		vbox = wx.BoxSizer(wx.VERTICAL) 
 			
-		self.btn = wx.Button(panel,-1,"New App") 
+		self.btn = wx.Button(panel,-1,"Simulate NewAppDetected") 
 		vbox.Add(self.btn,0,wx.ALIGN_CENTER) 
 		self.btn.Bind(wx.EVT_BUTTON,self.NewAppDetected) 
+		# self.btn.Bind(wx.EVT_BUTTON,self.SimulateFocusedWIndowsChanged) 
 			
 		self.tbtn = wx.ToggleButton(panel , -1, "click to on") 
 		vbox.Add(self.tbtn,0,wx.EXPAND|wx.ALIGN_CENTER) 
@@ -67,25 +68,25 @@ class Mywin(wx.Frame):
 		self.bmpbtn = wx.BitmapButton(panel, id = wx.ID_ANY, bitmap = bmp,
 		 	size = (bmp.GetWidth()+10, bmp.GetHeight()+10)) 
 			
-		hbox.Add(self.bmpbtn,0,wx.ALIGN_CENTER) 
-		self.bmpbtn.Bind(wx.EVT_BUTTON,self.NewAppDetected) 
-		self.bmpbtn.SetLabel("NEW") 
+		# hbox.Add(self.bmpbtn,0,wx.ALIGN_CENTER) 
+		# self.bmpbtn.Bind(wx.EVT_BUTTON,self.NewAppDetected) 
+		# self.bmpbtn.SetLabel("NEW") 
 			
 		bmp1 = wx.Bitmap("OPEN.BMP", wx.BITMAP_TYPE_BMP) 
 		self.bmpbtn1 = wx.BitmapButton(panel, id = wx.ID_ANY, bitmap = bmp1,
 		 	size = (bmp.GetWidth()+10, bmp.GetHeight()+10)) 
 			
-		hbox.Add(self.bmpbtn1,0,wx.ALIGN_CENTER) 
-		self.bmpbtn1.Bind(wx.EVT_BUTTON,self.NewAppDetected) 
-		self.bmpbtn1.SetLabel("OPEN") 
+		# hbox.Add(self.bmpbtn1,0,wx.ALIGN_CENTER) 
+		# self.bmpbtn1.Bind(wx.EVT_BUTTON,self.NewAppDetected) 
+		# self.bmpbtn1.SetLabel("OPEN") 
 			
 		bmp2 = wx.Bitmap("SAVE.BMP", wx.BITMAP_TYPE_BMP) 
 		self.bmpbtn2 = wx.BitmapButton(panel, id = wx.ID_ANY, bitmap = bmp2,
 		 	size = (bmp.GetWidth()+10, bmp.GetHeight()+10))
 			
-		hbox.Add(self.bmpbtn2,0,wx.ALIGN_CENTER) 
-		self.bmpbtn2.Bind(wx.EVT_BUTTON,self.NewAppDetected)
-		self.bmpbtn2.SetLabel("SAVE") 
+		# hbox.Add(self.bmpbtn2,0,wx.ALIGN_CENTER) 
+		# self.bmpbtn2.Bind(wx.EVT_BUTTON,self.NewAppDetected)
+		# self.bmpbtn2.SetLabel("SAVE") 
 			
 		vbox.Add(hbox,1,wx.ALIGN_CENTER) 
 		panel.SetSizer(vbox) 
@@ -94,7 +95,9 @@ class Mywin(wx.Frame):
 		self.Show() 
 		self.Fit()  
 		
-	def NewAppDetected(self, event): #id20200108135454
+	# def SimulateFocusedWIndowsChanged(self, event): #id20200108135455
+	def NewAppDetected(self, event_data): #id20200108135454
+		print "\n", "Gui button 'Simulate NewAppDetected' pressed.",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 		pass
 		#region--- (old)
 		# #--- (not True) !! carefull: when, for example, the Dictaion Box is been forground, the button will NOT respond.
