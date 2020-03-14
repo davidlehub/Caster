@@ -92,7 +92,8 @@ def Notify_enter_context(aGram,aContext):
 		RuleClassNames = [i.__class__.__name__ for i in aGram.rules if i.__class__.__name__ != 'Rule'] #skeep those with 'Rule(_IntegerRefST_xx)'. TODO: Better way to check?
 		print "\n(Exclusiveness) Detected Window has AppContext.",aContext, ". The following Rule gonna be exclusive:", RuleClassNames, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 		SetRuleToBeExclusive(RuleClassNames)
-		# ShoInf_thingzBnExclusiv()
+		
+		#--- TODO: ShoInf_thingzBnExclusiv()
   
 		
 	

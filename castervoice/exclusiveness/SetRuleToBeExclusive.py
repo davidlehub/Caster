@@ -24,11 +24,12 @@ def SetRuleToBeExclusive(aRuleClassNames):
     #--- Enable rule we want to be exclusive.
     enableR(RtoBeExclusive)
     #--- Remember
-    data.store_enablebRules_associatedWithApp(data.currWindHndl)
+    data.store_enablebRules_associatedWithApp(data.currWindHndl) #TODO: not sure if is correct.
 
     #--- Set Exclusiveness of all grammar in the system (_default_engine). (_default_engine.grammars)
     setGramToBeExclusive(_default_engine.grammars)		
 
+    print "\n", "(exclusiveness) All Rules been Exclusive :", gl.RbeenExclusive, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 #region--- (old)
 # def SetRuleToBeExclusive(aRuleClassNames):
 #     #--- aRuleClassNames = list
