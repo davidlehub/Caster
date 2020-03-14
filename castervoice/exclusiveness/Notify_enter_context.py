@@ -24,8 +24,9 @@ from castervoice.exclusiveness.SetRuleToBeExclusive import SetRuleToBeExclusive
 def Notify_enter_context(aGram,aContext):
     #--- aGram = , exemple, 'g25' || aContext = , exemple, 'AppContext(['code'], ['visual studio code'], False)'
 
-	# print "\n|~ 20191211131932| in if type(aContext) is AppContext and not isMergedGram(aAppGram)| aGram,aContext: ", aGram, aContext," || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-
+	# print "\n|~ 20191211131932| aGram,aContext: ", aGram, aContext," || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+	# print "\n|~ 20191211131932| aContext,aGram.rules: ", aContext, aGram.rules," || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+	# return
 	
 	# Data_Manager.data.currWindHndl =  Window.get_foreground().handle
 	data.currWindHndl =  Window.get_foreground().handle
@@ -83,15 +84,17 @@ def Notify_enter_context(aGram,aContext):
 	#--- Detecte if Window has a grammar associated with (App Content). IF yes: set exclusive it exclusive. 
 	# if type(aContext) is AppContext and not isMergedGram(aGram) and not isInUniqModeForCurrApp(): #(no more valide with new Caster)
 	if type(aContext) is AppContext and not isInUniqModeForCurrApp():
-
+		#--- TODO: Check why, for example with visual studio code, only 'VSCodeNonCcrRule' and no 'VSCodeCcrRule'??
 		# for iR in aGram.rules:
 		# 	# if type(iR) is not str:
 		# 	iR = iR.__class__.__name__
 		# 	if iR	== "Rule": 
 		# 		continue
 		RuleClassNames = [i.__class__.__name__ for i in aGram.rules if i.__class__.__name__ != 'Rule'] #skeep those with 'Rule(_IntegerRefST_xx)'. TODO: Better way to check?
-		print "\n(Exclusiveness) Detected Window has AppContext.",aContext, ". The following Rule gonna be exclusive:", RuleClassNames, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-		SetRuleToBeExclusive(RuleClassNames)
+		print "\n(Exclusiveness) Detected Window has AppContext: ",aContext, ". The following Rule gonna be exclusive:", RuleClassNames, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+		print "aGram: ",aGram, 
+		print "aGram.rules: ",aGram.rules, 
+		# SetRuleToBeExclusive(RuleClassNames)
 		
 		#--- TODO: ShoInf_thingzBnExclusiv()
   
