@@ -9,10 +9,13 @@ from castervoice.exclusiveness.processExclusivForNewApp import processExclusivFo
 from castervoice.exclusiveness.isMergedGram import isMergedGram
 from castervoice.exclusiveness.isInUniqModeForCurrApp import isInUniqModeForCurrApp
 from castervoice.exclusiveness.setExclusivForGram_andMemorise import setExclusivForGram_andMemorise
+from castervoice.exclusiveness.globalVariable.Data_Manager import data
+from castervoice.exclusiveness.SetRuleToBeExclusive import SetRuleToBeExclusive
+
+
 # from castervoice.exclusiveness.globalVariable.Data_Manager import data_manager as data
 # from castervoice.exclusiveness.globalVariable import Data_Manager
 # from castervoice.exclusiveness.globalVariable.Data_Manager import data as data
-from castervoice.exclusiveness.globalVariable.Data_Manager import data
 
 
 #endregion (import)
@@ -80,10 +83,17 @@ def Notify_enter_context(aGram,aContext):
 	#--- Detecte if Window has a grammar associated with (App Content). IF yes: set exclusive it exclusive. 
 	# if type(aContext) is AppContext and not isMergedGram(aGram) and not isInUniqModeForCurrApp(): #(no more valide with new Caster)
 	if type(aContext) is AppContext and not isInUniqModeForCurrApp():
-		print "\n(Exclusiveness) Detected Window has AppContext.",aContext, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
-		setExclusivForGram_andMemorise(aGram.rules)		
+		# for iR in aGram.rules:
+		# 	# if type(iR) is not str:
+		# 	iR = iR.__class__.__name__
+		# 	if iR	== "Rule": 
+		# 		continue
+		RuleClassNames = [i.__class__.__name__ for i in aGram.rules if i.__class__.__name__ != 'Rule'] #skeep those with 'Rule(_IntegerRefST_xx)'. TODO: Better way to check?
+		print "\n(Exclusiveness) Detected Window has AppContext.",aContext, ". The following Rule gonna be exclusive:", RuleClassNames, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+		SetRuleToBeExclusive(RuleClassNames)
 		# ShoInf_thingzBnExclusiv()
+  
 		
 	
 	# #--== RainBow

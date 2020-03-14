@@ -4,4 +4,4 @@ RcasterAlwayNeed = ['GrammarActivatorRule','HooksActivationRule','TransformersAc
 
 
 prevWindHndl_onlyUseToDectectNewApp = None
-RbeenExclusive = []
+RbeenExclusive = set()
