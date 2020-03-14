@@ -2,8 +2,9 @@ from castervoice.exclusiveness.globalVariable.Data_Manager import data
 from castervoice.exclusiveness.enableR import enableR
 
 
-def setExclusivForGram_andMemorise(aGram):
-	"""	aGram: LIST of not merged gramar object	
+# def setExclusivForGram_andMemorise(aGram):
+def setExclusivForGram_andMemorise(aRules):
+	"""	aRules: LIST 
 		"""
-	enableR(aGram)
-	data.memoriseAppExclusiveness(aGram)
+	enableR(aRules)
+	# data.memoriseAppExclusiveness(aRules) #replaced by 'gl.RbeenExclusive.append()'

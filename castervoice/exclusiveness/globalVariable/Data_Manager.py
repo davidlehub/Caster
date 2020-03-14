@@ -11,6 +11,10 @@ from dragonfly.engines import (_default_engine)
 
 # from rules import GlobalV as gl
 
+def init():
+	global data
+	data = data_manager()
+
 class data_manager(object):
 	# currWindHndl = None
 	# prevWindHndl = None
@@ -414,7 +418,7 @@ class data_manager(object):
 
 	#endregion (No more needed with new Caster)
 
-data = data_manager()
+
 
 class GramAndRules():
 

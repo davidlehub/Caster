@@ -42,12 +42,19 @@ if settings.SETTINGS["sikuli"]["enabled"]:
 
 print("\n*- Starting " + settings.SOFTWARE_NAME + " -*")
 
-#region---=== David. Tests
-from inspect import getframeinfo, stack, getframeinfo, currentframe
-from castervoice.lib._tests.GUI.OnFocusedWindowChanged import OnFocusedWindowChanged
 
-#--- test OnFocusedWindowChanged
-OnFocusedWindowChanged()
+#region---=== David
+from castervoice.exclusiveness.globalVariable import Data_Manager
+
+#--- init
+Data_Manager.init()
+
+
+#region--- test OnFocusedWindowChanged
+# from inspect import getframeinfo, stack, getframeinfo, currentframe
+# from castervoice.lib._tests.GUI.OnFocusedWindowChanged import OnFocusedWindowChanged
+# OnFocusedWindowChanged()
+#endregion test OnFocusedWindowChanged
 
 #region--- GUI
 # print "\n", "20200311205425| show GUI for test simulation.",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)

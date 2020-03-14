@@ -48,19 +48,18 @@ def createAndSetExclusiv_forCurrApp(aAppGram, aContext):
 	
 	#region--- Case: other apps is the forgrounde window.
 	else:
-
+		SetRuleToBeExclusive(aRuleClassNames)
+    	#--- aRuleClassNames = list
+  
 		#region--- Begin Exclusive Mode
 		#--- list of rule we want to be exclusive
-		# RtoBeExclusive = ["Numbers", "Alphabet"]
-		RweWantToBeExclusive = ["Numbers", "Alphabet", "VSCodeCcrRule", "VSCodeNonCcrRule"]
-		RcasterAlwayNeed = ['GrammarActivatorRule','HooksActivationRule','TransformersActivationRule']
-		# RcasterAlwayNeed = ['GrammarActivatorRule','HooksActivationRule','TransformersActivationRule','ManualGrammarReloadRule']
-		RtoBeExclusive = RcasterAlwayNeed + RweWantToBeExclusive
-		# RtoBeExclusive = []
+		RtoBeExclusive = aRuleClassNames + gl.RcasterAlwayNeed
   
-		print "\n", "20200112220615| New caster: exclusiveness for| RtoBeExclusive:", RtoBeExclusive, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+		# print "\n", "20200112220615| New caster: exclusiveness for| RtoBeExclusive:", RtoBeExclusive, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 		#--- Diable all Rules, except those we want to be exclusive.
-		disableR(_NEXUS._grammar_manager._config.get_enabled_rcns_ordered(),RtoBeExclusive)
+		AllRules = all_MappingRule_className +  all_MergeRules_className
+		disableR(AllRules, RtoBeExclusive)
+		# disableR(_NEXUS._grammar_manager._config.get_enabled_rcns_ordered(),RtoBeExclusive)
 	
 		#--- Enable rule we want to be exclusive.
 		enableR(RtoBeExclusive)
