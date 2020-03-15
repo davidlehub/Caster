@@ -16,7 +16,7 @@ def SetRuleToBeExclusive(aRuleClassNames):
 
     # print "\n", "20200112220615| New caster: exclusiveness for| RtoBeExclusive:", RtoBeExclusive, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
     #--- Diable all Rules, except those we want to be exclusive.
-    AllRules = gl.all_MappingRule_className +  gl.all_MergeRules_className
+    AllRules = gl.all_MappingRule +  gl.all_MergeRules_className
     disableR(AllRules, RtoBeExclusive)
     # disableR(_NEXUS._grammar_manager._config.get_enabled_rcns_ordered(),RtoBeExclusive)
 
@@ -47,7 +47,7 @@ def SetRuleToBeExclusive(aRuleClassNames):
 # 		# 	_NEXUS._grammar_manager._change_rule_enabled(iRclassName, False)
 # 		# 	Storage.RbeenExclusive.discard(iRclassName)
 
-# 	AllRules = all_MappingRule_className +  all_MergeRules_className #!? all_MergeRules_className is empty!?
+# 	AllRules = all_MappingRule +  all_MergeRules_className #!? all_MergeRules_className is empty!?
 	
 # 	for iRclassName in AllRules:
 # 		if iRclassName in RtoBeExclusive:

@@ -4,7 +4,7 @@ RcasterAlwayNeed = ['GrammarActivatorRule','HooksActivationRule','TransformersAc
 
 
 all_MergeRules_className = set()
-all_MappingRule_className = set()
+all_MappingRule = set()
 
 """ 
     - To have a rule details use '.get_details()', ex: Rdetail = rule.get_details()

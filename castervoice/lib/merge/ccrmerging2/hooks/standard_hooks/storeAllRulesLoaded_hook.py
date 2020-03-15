@@ -5,7 +5,7 @@ from castervoice.lib import printer
 from castervoice.lib.merge.ccrmerging2.hooks.base_hook import BaseHook
 from castervoice.lib.merge.ccrmerging2.hooks.events.event_types import EventType
 
-# from castervoice.lib._tests.GlabalStorage.allGrammars import all_MappingRule_className, all_MergeRules_className
+# from castervoice.lib._tests.GlabalStorage.allGrammars import all_MappingRule, all_MergeRules_className
 from castervoice.exclusiveness.globalVariable import GlobalV as gl
 # from castervoice.lib.ctrl.mgr.rule_details.RuleDetails
 
@@ -69,9 +69,9 @@ def storeAllRulesLoaded(merge_rules=None, mapping_rule=None, mappingRule_anabled
 
 		Rdetail = mapping_rule.get_details()
 		if mappingRule_anabled:
-			# gl.all_MappingRule_className.add(mapping_rule.get_rule_class_name())
-			gl.all_MappingRule_className.add(mapping_rule)
-			print "\n", "20200315130230| a Mapping Rule is add to gl.all_MappingRule_className. Rdetail._filepath:", Rdetail._filepath, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+			# gl.all_MappingRule.add(mapping_rule.get_rule_class_name())
+			gl.all_MappingRule.add(mapping_rule)
+			print "\n", "20200315130230| a Mapping Rule is add to gl.all_MappingRule. Rdetail._filepath:", Rdetail._filepath, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 			
    
 			#--- store Those having AppContext:
@@ -80,9 +80,9 @@ def storeAllRulesLoaded(merge_rules=None, mapping_rule=None, mappingRule_anabled
 				print "\n", "20200315125340| add a Mapping Rule to set: gl.all_RuleHavingAppContext. Rdetail._filepath:", Rdetail._filepath, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 		elif not mappingRule_anabled:
 			try:
-				# gl.all_MappingRule_className.discard(mapping_rule.get_rule_class_name())
-				gl.all_MappingRule_className.discard(mapping_rule)
-				print "\n", "20200315130356| a Mapping Rule is REMOVED to gl.all_MappingRule_className. Rdetail._filepath:", Rdetail._filepath, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+				# gl.all_MappingRule.discard(mapping_rule.get_rule_class_name())
+				gl.all_MappingRule.discard(mapping_rule)
+				print "\n", "20200315130356| a Mapping Rule is REMOVED to gl.all_MappingRule. Rdetail._filepath:", Rdetail._filepath, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 				#--- remove from the set: for Those having AppContext:
 				if (Rdetail.executable != None) or (Rdetail.title != None):
@@ -90,7 +90,7 @@ def storeAllRulesLoaded(merge_rules=None, mapping_rule=None, mappingRule_anabled
 					print "\n", "20200315125346| remove a Mapping Rule from set: gl.all_RuleHavingAppContext. Rdetail._filepath:", Rdetail._filepath, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 			except:
 				pass
-		# print "\n", "20200312212546| gl.all_MappingRule_className:", gl.all_MappingRule_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+		# print "\n", "20200312212546| gl.all_MappingRule:", gl.all_MappingRule, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 			
 
 class storeAllRulesLoadedHook(BaseHook):
