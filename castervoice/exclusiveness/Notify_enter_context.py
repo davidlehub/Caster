@@ -1,3 +1,4 @@
+#--- TODO: delete file
 #region--- (import)
 from dragonfly.grammar.grammar_base import Grammar
 
@@ -23,6 +24,7 @@ from castervoice.exclusiveness.Set_Exclusiveness_ForRules import Set_Exclusivene
 
 def Notify_enter_context(aGram,aContext):
     #--- aGram = , exemple, 'g25' || aContext = , exemple, 'AppContext(['code'], ['visual studio code'], False)'
+	return
 
 	# print "\n|~ 20191211131932| aGram,aContext: ", aGram, aContext," || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 	# print "\n|~ 20191211131932| aContext,aGram.rules: ", aContext, aGram.rules," || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
