@@ -1,6 +1,5 @@
 # from castervoice.lib.control import _NEXUS
 from inspect import getframeinfo, stack, getframeinfo, currentframe
-from castervoice.lib._tests.GlabalStorage.allGrammars import all_MappingRule_className, all_MergeRules_className
 from dragonfly.engines import (_default_engine)
 from castervoice.exclusiveness.globalVariable import GlobalV as gl
 from castervoice.exclusiveness.globalVariable.Data_Manager import data, Exclusiveness,GramAndRules
@@ -17,7 +16,7 @@ def SetRuleToBeExclusive(aRuleClassNames):
 
     # print "\n", "20200112220615| New caster: exclusiveness for| RtoBeExclusive:", RtoBeExclusive, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
     #--- Diable all Rules, except those we want to be exclusive.
-    AllRules = all_MappingRule_className +  all_MergeRules_className
+    AllRules = gl.all_MappingRule_className +  gl.all_MergeRules_className
     disableR(AllRules, RtoBeExclusive)
     # disableR(_NEXUS._grammar_manager._config.get_enabled_rcns_ordered(),RtoBeExclusive)
 

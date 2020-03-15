@@ -1,7 +1,9 @@
 #--- TODO: Delete this file and all references. bcz no more needed.
 
 from inspect import getframeinfo, stack, getframeinfo, currentframe
-from castervoice.lib._tests.GlabalStorage.allGrammars import all_MappingRule_className, all_MergeRules_className
+# from castervoice.lib._tests.GlabalStorage.allGrammars import all_MappingRule_className, all_MergeRules_className
+from castervoice.exclusiveness.globalVariable import GlobalV as gl
+
 from castervoice.lib.control import _NEXUS
 from dragonfly.engines import (_default_engine)
 
