@@ -1,9 +1,10 @@
 from inspect import getframeinfo, stack, getframeinfo, currentframe
 
-RcasterAlwayNeed = ['GrammarActivatorRule','HooksActivationRule','TransformersActivationRule']
+# RulesCasterAlwayNeed_className = ['GrammarActivatorRule','HooksActivationRule','TransformersActivationRule']
+RulesCasterAlwayNeed_className = {'GrammarActivatorRule','HooksActivationRule','TransformersActivationRule'}
 
 
-all_MergeRules_className = set()
+all_MergeRule = set()
 all_MappingRule = set()
 
 """ 

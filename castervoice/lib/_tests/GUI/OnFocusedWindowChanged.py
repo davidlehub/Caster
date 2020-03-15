@@ -1,7 +1,7 @@
 #--- TODO: Delete this file and all references. bcz no more needed.
 
 from inspect import getframeinfo, stack, getframeinfo, currentframe
-# from castervoice.lib._tests.GlabalStorage.allGrammars import all_MappingRule, all_MergeRules_className
+# from castervoice.lib._tests.GlabalStorage.allGrammars import all_MappingRule, all_MergeRule
 from castervoice.exclusiveness.globalVariable import GlobalV as gl
 
 from castervoice.lib.control import _NEXUS
@@ -16,12 +16,12 @@ def OnFocusedWindowChanged():
 
 	# RweWantToBeExclusive = ["Alphabet",  "NavigationNon"]
 	# # _internal = ["GrammarActivatorRule", "HooksActivationRule", "TransformersActivationRule", "ManualGrammarReloadRule"]
-	# RcasterAlwayNeed = ['GrammarActivatorRule','HooksActivationRule','TransformersActivationRule']
-	# # RcasterAlwayNeed = ['GrammarActivatorRule','HooksActivationRule','TransformersActivationRule', 'ManualGrammarReloadRule'] #err: KeyError: 'ManualGrammarReloadRule
-	# RtoBeExclusive = RcasterAlwayNeed + RweWantToBeExclusive
+	# RulesCasterAlwayNeed_className = ['GrammarActivatorRule','HooksActivationRule','TransformersActivationRule']
+	# # RulesCasterAlwayNeed_className = ['GrammarActivatorRule','HooksActivationRule','TransformersActivationRule', 'ManualGrammarReloadRule'] #err: KeyError: 'ManualGrammarReloadRule
+	# RulestoBeExclusive_className = RulesCasterAlwayNeed_className + RweWantToBeExclusive
 
 	# #--- Diable all Rules, except those we want to be exclusive.
-	# # disableR(_NEXUS._grammar_manager._config.get_enabled_rcns_ordered(),RtoBeExclusive)
+	# # disableR(_NEXUS._grammar_manager._config.get_enabled_rcns_ordered(),RulestoBeExclusive_className)
 	# # def disableR(aRclassName,aExceptR=[]):
 	# 	# for iRclassName in aRclassName:
 	# 	# 	if iRclassName in aExceptR:
@@ -30,18 +30,18 @@ def OnFocusedWindowChanged():
 	# 	# 	_NEXUS._grammar_manager._change_rule_enabled(iRclassName, False)
 	# 	# 	Storage.RbeenExclusive.discard(iRclassName)
 
-	# AllRules = all_MappingRule +  all_MergeRules_className #!? all_MergeRules_className is empty!?
+	# AllRules = all_MappingRule +  all_MergeRule #!? all_MergeRule is empty!?
 	# # print "\n", "20200312223734| AllRules:", AllRules, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 	
 	# # for iRclassName in _NEXUS._grammar_manager._config.get_enabled_rcns_ordered():
 	# for iRclassName in AllRules:
-	# 	if iRclassName in RtoBeExclusive:
+	# 	if iRclassName in RulestoBeExclusive_className:
 	# 		continue
 	# 	_NEXUS._grammar_manager._change_rule_enabled(iRclassName, False)
 	# 	# print "\n", "20200312210240| Follow rule (class name) is disabled:", iRclassName, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 	# #--- Enable rule we want to be exclusive.
-	# # enableR(RtoBeExclusive)
+	# # enableR(RulestoBeExclusive_className)
 	# # def enableR(aRclassName):
 	# 	# """ Enables Rules so they gonna be part of exclusiveness """
 
@@ -50,7 +50,7 @@ def OnFocusedWindowChanged():
 	# 	# 		continue
 	# 	# 	# try:
 	# 	# 	_NEXUS._grammar_manager._change_rule_enabled(iRclassName, True)
-	# for iRclassName in RtoBeExclusive:
+	# for iRclassName in RulestoBeExclusive_className:
 	# 	# if iRclassName in Storage.RbeenExclusive:
 	# 	# 	continue
 	# 	_NEXUS._grammar_manager._change_rule_enabled(iRclassName, True)

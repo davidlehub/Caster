@@ -10,7 +10,7 @@ from castervoice.exclusiveness.isMergedGram import isMergedGram
 from castervoice.exclusiveness.isInUniqModeForCurrApp import isInUniqModeForCurrApp
 from castervoice.exclusiveness.setExclusivForGram_andMemorise import setExclusivForGram_andMemorise
 from castervoice.exclusiveness.globalVariable.Data_Manager import data
-from castervoice.exclusiveness.SetRuleToBeExclusive import SetRuleToBeExclusive
+from castervoice.exclusiveness.Set_Exclusiveness_ForRules import Set_Exclusiveness_ForRules
 
 
 # from castervoice.exclusiveness.globalVariable.Data_Manager import data_manager as data
@@ -94,7 +94,7 @@ def Notify_enter_context(aGram,aContext):
 		print "\n(Exclusiveness) Detected Window has AppContext: ",aContext, ". The following Rule gonna be exclusive:", RuleClassNames, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 		print "aGram: ",aGram, 
 		print "aGram.rules: ",aGram.rules, 
-		# SetRuleToBeExclusive(RuleClassNames)
+		# Set_Exclusiveness_ForRules(RuleClassNames)
 		
 		#--- TODO: ShoInf_thingzBnExclusiv()
   

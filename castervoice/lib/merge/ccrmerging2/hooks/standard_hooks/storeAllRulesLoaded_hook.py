@@ -5,7 +5,7 @@ from castervoice.lib import printer
 from castervoice.lib.merge.ccrmerging2.hooks.base_hook import BaseHook
 from castervoice.lib.merge.ccrmerging2.hooks.events.event_types import EventType
 
-# from castervoice.lib._tests.GlabalStorage.allGrammars import all_MappingRule, all_MergeRules_className
+# from castervoice.lib._tests.GlabalStorage.allGrammars import all_MappingRule, all_MergeRule
 from castervoice.exclusiveness.globalVariable import GlobalV as gl
 # from castervoice.lib.ctrl.mgr.rule_details.RuleDetails
 
@@ -13,7 +13,7 @@ def storeAllRulesLoaded(merge_rules=None, mapping_rule=None, mappingRule_anabled
 	#--- For More info: on 'RuleDetails of: each rule in merge_rules, and  mapping_rule: C:\Users\HP\Documents\Caster\castervoice\lib\ctrl\mgr\rule_details.py
 
 	if merge_rules:
-		# all_MergeRules_className = set()
+		# all_MergeRule = set()
 
 		for rule in merge_rules: # list
       
@@ -36,10 +36,10 @@ def storeAllRulesLoaded(merge_rules=None, mapping_rule=None, mappingRule_anabled
 			
 			# print "", "20200312151237| ",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 			#--- store those info globaly. Gonna needed for exclusiveness syst.
-			# if rule not in all_MergeRules_className:
-			# gl.all_MergeRules_className.add(rule.get_rule_class_name())
-			gl.all_MergeRules_className.add(rule)
-			print "\n", "20200315125726| a merged Rule is add to gl.all_MergeRules_className. Rdetail._filepath:", Rdetail._filepath, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+			# if rule not in all_MergeRule:
+			# gl.all_MergeRule.add(rule.get_rule_class_name())
+			gl.all_MergeRule.add(rule)
+			print "\n", "20200315125726| a merged Rule is add to gl.all_MergeRule. Rdetail._filepath:", Rdetail._filepath, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 
 			# #--- store Those having AppContext:
@@ -48,7 +48,7 @@ def storeAllRulesLoaded(merge_rules=None, mapping_rule=None, mappingRule_anabled
 			if (Rdetail.executable != None) or (Rdetail.title != None):
 				gl.all_RuleHavingAppContext.add(rule)
 				print "\n", "20200312212544| add a Mergerd Rule to set: gl.all_RuleHavingAppContext. Rdetail._filepath:", Rdetail._filepath, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-		# print "\n", "20200312212545| gl.all_MergeRules_className:", gl.all_MergeRules_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+		# print "\n", "20200312212545| gl.all_MergeRule:", gl.all_MergeRule, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 	elif mapping_rule: # Not a list
      

@@ -5,7 +5,7 @@ from castervoice.exclusiveness.windowManager import win
 from castervoice.exclusiveness.DragonModeOnly import DragonModeOnly
 from castervoice.exclusiveness.globalVariable import GlobalV as gl
 # from castervoice.lib.control import _NEXUS
-from castervoice.exclusiveness.SetRuleToBeExclusive import SetRuleToBeExclusive
+from castervoice.exclusiveness.Set_Exclusiveness_ForRules import Set_Exclusiveness_ForRules
 
 # from dragonfly.engines import (_default_engine)
 
@@ -53,6 +53,6 @@ def createAndSetExclusiv_forCurrApp(aAppGram, aContext):
 	else:
 		#--- TODO
 		pass 
-		# SetRuleToBeExclusive(aRuleClassNames)
+		# Set_Exclusiveness_ForRules(Rule)
 
 		
