@@ -8,5 +8,5 @@ class EventType(object):
     #region--- (david) 
     RULES_LOADED_EXCL = "rules loaded exclusive"
     APPCONTEXT_Matched_EXCL = "App Context Matched EXCL"
-    
+    REGISTER_Rule_EXCL = 'Register Rule EXCL'
     #endregion 
