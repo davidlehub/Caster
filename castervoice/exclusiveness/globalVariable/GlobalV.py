@@ -19,7 +19,10 @@ all_MappingRule = set()
     Rdetail.watch_exclusion:
     Rdetail._filepath:
  """
-all_RuleHavingAppContext = set() 
+allRegisteredRule = set() #elements are of type: C:\Users\HP\Documents\Caster\castervoice\exclusiveness\globalVariable\registeredRule_data.py
+allRegisteredRule_HavingAppContext = set() #elements are of type: C:\Users\HP\Documents\Caster\castervoice\exclusiveness\globalVariable\registeredRule_data.py
+all_RuleHavingAppContext_className = set() 
+allRules_className = set()
 
 prevWindHndl_onlyUseToDectectNewApp = None
 RbeenExclusive = set()
