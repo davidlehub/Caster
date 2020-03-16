@@ -19,8 +19,6 @@ def Notify_AppContextMathed(executable,title,handle): #id20200315080523
 
 	#region--- set exclusiveness For Rule(S) related to the matched App context
 	#--- Find out witch rule matched..
-	# print "", "gl.all_RuleHavingAppContext:",gl.all_RuleHavingAppContext
-	
 	RulesMatchingCurrAppContext_className = set()
 	for R in gl.all_RuleHavingAppContext:
 		Rdetail = R.get_details()

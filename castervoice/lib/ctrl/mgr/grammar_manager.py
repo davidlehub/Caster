@@ -121,6 +121,11 @@ class GrammarManager(object):
         """
         class_name = rule_class.__name__
 
+
+        from inspect import getframeinfo, stack, getframeinfo, currentframe
+        print "\n", "20200316075255| class_name:", class_name, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+        print "", "20200316075256| details.name:", details.name
+
         # do not load or watch invalid rules
         invalidation = self._get_invalidation(rule_class, details)
         if invalidation is not None:
@@ -287,19 +292,18 @@ class GrammarManager(object):
         :param enabled:
         :return: RulesEnabledDiff
         """
-        self._hooks_runner.execute(RulesLoadedExclEvent(managed_rule=managed_rule,mappingRule_anabled=enabled)) #david
         
         rcn = managed_rule.get_rule_class_name()
         if enabled:
             grammar = self._mapping_rule_maker.create_non_ccr_grammar(managed_rule)
             self._hooks_runner.execute(RulesLoadedEvent(managed_rule=managed_rule))
-            # self._hooks_runner.execute(RulesLoadedExclEvent(managed_rule=managed_rule,mappingRule_anabled=enabled)) #david
+            self._hooks_runner.execute(RulesLoadedExclEvent(managed_rule=managed_rule,mappingRule_anabled=enabled)) #david
             self._grammars_container.set_non_ccr(rcn, grammar)
             grammar.load()
             self._hooks_runner.execute(PostGrammersLoadedEvent(grammar))
             return RulesEnabledDiff([rcn], frozenset())
         else:
-            # self._hooks_runner.execute(RulesLoadedExclEvent(managed_rule=managed_rule,mappingRule_anabled=enabled)) #david
+            self._hooks_runner.execute(RulesLoadedExclEvent(managed_rule=managed_rule,mappingRule_anabled=enabled)) #david
             self._grammars_container.set_non_ccr(rcn, None)
             return RulesEnabledDiff(frozenset(), [rcn])
 
