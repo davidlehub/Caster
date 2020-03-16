@@ -4,7 +4,7 @@ from castervoice.exclusiveness.globalVariable import GlobalV as gl
 def disableR(aRclassName,aExceptR=[]):
 	for iRclassName in aRclassName:
 		if iRclassName in aExceptR:
-			gl.RbeenExclusive.add(iRclassName)
+			# gl.RbeenExclusive.add(iRclassName)
 			continue
 		# try:
 		_NEXUS._grammar_manager._change_rule_enabled(iRclassName, False)

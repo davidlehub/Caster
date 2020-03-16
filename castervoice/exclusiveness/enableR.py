@@ -7,11 +7,13 @@ def enableR(aRclassName):
 	""" Enables Rules so they gonna be part of exclusiveness """
 	 
 	for iRclassName in aRclassName:
-		# if iRclassName in Storage.RbeenExclusive:
 		if iRclassName in gl.RbeenExclusive:
+			# print "\n", "20200316170549| skeep iRclassName:", iRclassName, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 			continue
+
 		# try:
 		_NEXUS._grammar_manager._change_rule_enabled(iRclassName, True)
+
 		gl.RbeenExclusive.add(iRclassName)
   
 		# Storage.RbeenExclusive.add(iRclassName)

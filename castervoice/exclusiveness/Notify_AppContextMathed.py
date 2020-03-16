@@ -34,20 +34,9 @@ def Notify_AppContextMathed(executable,title,handle): #id20200315080523
 			RulesMatchingCurrAppContext_className.add(R.className)
 		# if Rdetail.executable in executable:
 		# 	RulesMatchingCurrAppContext_className.add(R.get_rule_class_name())		
+
 	print "\n", "20200315150947| (exclusiveness) App Context matched. So gonna try to set exclusivenss for: ",RulesMatchingCurrAppContext_className,  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 	Set_Exclusiveness_ForRules(RulesMatchingCurrAppContext_className)
-
-	# #--- Find out witch rule matched..
-	# RulesMatchingCurrAppContext_className = set()
-	# for R in gl.all_RuleHavingAppContext_className:
-	# 	Rdetail = R.get_details()
-	# 	#--- TODO: Filter/validate also using: title
-	# 	#--- (Rdetail.executable= ,exemple, 'code')
-	# 	if Rdetail.executable in executable:
-	# 		RulesMatchingCurrAppContext_className.add(R.get_rule_class_name())
-			
-	# print "\n", "20200315150947| (exclusiveness) App Context matched. So gonna try to set exclusivenss for: ",RulesMatchingCurrAppContext_className,  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-	# Set_Exclusiveness_ForRules(RulesMatchingCurrAppContext_className)
 
 	#endregion set exclusiveness For Rule(S) related to the matched App context
 	
