@@ -52,18 +52,18 @@ class HooksRunner(ActivationRuleGenerator):
         return HooksActivationRule, details
 
     def execute(self, event):
-        from inspect import getframeinfo, stack, getframeinfo, currentframe
+        # from inspect import getframeinfo, stack, getframeinfo, currentframe
 
-        print "\n", "20200316134745 _2| self._hooks:", self._hooks, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+        # print "\n", "20200316134745 _2| self._hooks:", self._hooks, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
         for hook in self._hooks:
             if not self._hooks_config.is_hook_active(hook.get_class_name()):
                 continue
-            print "", "20200316131513|  event.get_type():", event.get_type(), " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-            print "\n", "20200316131514|  hook.match(event.get_type()):", hook.match(event.get_type()), " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-            print "", "20200316131516|  hook.get_class_name():", hook.get_class_name(), " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+            # print "\n", "20200316131514|  hook.match(event.get_type()):", hook.match(event.get_type()), " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+            # print "", "20200316131513|  event.get_type():", event.get_type(), " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+            # print "", "20200316131516|  hook.get_class_name():", hook.get_class_name(), " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
             if hook.match(event.get_type()):
                 try:
-                    print "\n", "20200316131517| gonna run hook| hook.get_class_name():", hook.get_class_name(), " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+                    # print "\n", "20200316131517| gonna run hook| hook.get_class_name():", hook.get_class_name(), " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
                     
                     hook.run(event)
                 except:

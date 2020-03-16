@@ -23,7 +23,7 @@ def storeAllRulesLoaded(Rule_className, Rdetail):
 	gl.allRegisteredRule.add(registeredRuleData)
 
 	#--- store rules having AppContext:
-	print "\n", "ici 20200312212544| Rdetail.executable:", Rdetail.executable, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+	# print "\n", "ici 20200312212544| Rdetail.executable:", Rdetail.executable, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 	if (Rdetail.executable != None) or (Rdetail.title != None):
 		gl.allRegisteredRule_HavingAppContext.add(registeredRuleData)
 

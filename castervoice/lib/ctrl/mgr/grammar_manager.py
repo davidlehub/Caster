@@ -148,11 +148,11 @@ class GrammarManager(object):
 		#--- (Problem with The hook: only trigger the event fiew times (3). It supposed to triggue lots.
   		#--- Seems like not all the hooks are  registered yet at this point.
     	#---  So, decide to not use Hook-Event here.)
-		self._hooks_runner.execute(registerRule_ExclEvent(class_name=class_name, details=details)) #david
+		# self._hooks_runner.execute(registerRule_ExclEvent(class_name=class_name, details=details)) #david
 
-		#region--- (if the hook 'self._hooks_runner.execute(registerRule_ExclEvent...' above is used, comment out inside this region)
+		#region--- (Manualy trigguer a hook, bcz the 'self._hooks_runner.execute(registerRule_ExclEvent...', at line above, doesn't works as expected.)
 		# print "", "20200316075256 _3| details.executable:", details.executable        
-		# storeAllRulesLoaded(class_name, details)
+		storeAllRulesLoaded(class_name, details)
 		
 		#endregion (if the hook above is used, comment out inside this region)
 		#endregion (david)
