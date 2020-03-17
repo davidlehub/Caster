@@ -1,7 +1,7 @@
 from operator import attrgetter
 
 
-class ExclusivMode_cls(object):
+class ExclusivMode_class(object):
 
     def __init__(self):
         # self.enabled = True
@@ -21,4 +21,4 @@ class ExclusivMode_cls(object):
             # self.disabledApplicant = apl
         self.enabledApplicant = apl
 
-ExclusivMode = ExclusivMode_cls()
+ExclusivMode = ExclusivMode_class()

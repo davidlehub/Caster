@@ -1,5 +1,5 @@
 from inspect import getframeinfo, stack, getframeinfo, currentframe
-from castervoice.exclusiveness.ExclusivMode import ExclusivMode
+from castervoice.exclusiveness.ExclusivMode_class import ExclusivMode
 from castervoice.exclusiveness.globalVariable import GlobalV as gl
 from castervoice.exclusiveness.store_AllEnabledRule_ofApp import store_AllEnabledRule_ofApp
 from castervoice.exclusiveness.globalVariable.Data_Manager import data
@@ -10,6 +10,7 @@ from castervoice.lib.utilities import get_active_window_path,get_active_window_t
 
 
 def processExclusivForNewApp(aGram,aContext):
+	return
 	print "\n\n\n|~*** 20191202215108g| new app dected|wintitle,aContext,data.currWindHndl:", get_active_window_title(), aContext, data.currWindHndl, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)				
 	# print "\n\n\n|~*** 20191202215108g| new app dected|wintitle,aContext,data.currWindHndl:", get_active_window_title(data.currWindHndl), aContext, data.currWindHndl, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)				
 
