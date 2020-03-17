@@ -1,7 +1,8 @@
 from castervoice.exclusiveness.globalVariable.Data_Manager import data
 
 
-def BackToPreviousState_OfCurrApp(aContextGram):
+# def BackToPreviousState_OfCurrApp(aContextGram):
+def BackToPreviousState_OfCurrApp():
 	""" Back to the state this new app was,
 		if it was been in excluseness state (eg: was in Uniq mode layer).
 		So, the fflowing things gonna be set exclusiveness:

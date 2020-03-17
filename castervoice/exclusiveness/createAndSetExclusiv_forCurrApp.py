@@ -14,34 +14,38 @@ from castervoice.exclusiveness.Set_Exclusiveness_ForRules import Set_Exclusivene
 # from castervoice.exclusiveness.setGramToBeExclusive import setGramToBeExclusive
 
 
-def createAndSetExclusiv_forCurrApp(aAppGram, aContext):
+# def createAndSetExclusiv_forCurrApp(aAppGram, aContext): #(deprecated for new caster)
+def createAndSetExclusiv_forCurrApp(RulesRelatedToCurrWindow_className,CurrWindowData):
 	# type: (list(Grammar)) -> ?
 	#--== A: Set, and memorize, exclusiness of grammar related to current app.
 	#--== B: Make sure the list of grammars we want to be alway exlusive, are exclusive.
 
-	if not data.currWindHndl: #it hapen that this vallue = 0. (eg. when an app is closed).
-		return
+	#region--- (TODO: uncomment after quick test)
+	# if not data.currWindHndl: #it hapen that this vallue = 0. (eg. when an app is closed).
+	# 	return
 
-	#--- Only if current isn't in Uniq Mode
-	if isInUniqModeForCurrApp():
-		print "|~ici 20191211131841| Return (exit) of 'def createAndSetExclusiv_forCurrApp', bcz: in if isInUniqModeForCurrApp", " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-		return
+	# #--- Only if current isn't in Uniq Mode
+	# if isInUniqModeForCurrApp():
+	# 	print "|~ici 20191211131841| Return (exit) of 'def createAndSetExclusiv_forCurrApp', bcz: in if isInUniqModeForCurrApp", " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+	# 	return
 
-	#region--- instantiate class 'Exclusiveness()' (if not already exist). 
-	""" -- EACH APP is associate with an instance of the class 'Exclusiveness()'.
-		-- That class 'Exclusiveness()' is used to: remember witch grammar and rules are exclusive.
- 	 """
- 	#-- That class is use to remember  
-	if not data.appExclusiveness.has_key(data.currWindHndl):
-		data.appExclusiveness[data.currWindHndl] = Exclusiveness()		
-	if not data.appGramAndRules.has_key(data.currWindHndl):
-		data.appGramAndRules[data.currWindHndl] = GramAndRules()
-	#endregion
+	# #region--- instantiate class 'Exclusiveness()' (if not already exist). 
+	# """ -- EACH APP is associate with an instance of the class 'Exclusiveness()'.
+	# 	-- That class 'Exclusiveness()' is used to: remember witch grammar and rules are exclusive.
+ 	#  """
+ 	# #-- That class is use to remember  
+	# if not data.appExclusiveness.has_key(data.currWindHndl):
+	# 	data.appExclusiveness[data.currWindHndl] = Exclusiveness()		
+	# if not data.appGramAndRules.has_key(data.currWindHndl):
+	# 	data.appGramAndRules[data.currWindHndl] = GramAndRules()
+	# #endregion
+	#endregion (TODO: uncomment after quick test)
 
 	#region--- Case: 'dragon dictatation box' is the forgrounde window.
 	#-- A. no exclusiveness, bcz we want normal dragon vovabulary.
 	#-- B. Activate grammars we want to be with the dragon vocabulary, if any.		
 	if win.currentIs_DragonDictBox(data.currWindHndl):
+		print "\n", "20200317151843| Dected: win.currentIs_DragonDictBox.", " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 		#-- A.
 		# gl.ForgrnWind_BforeCalng_DgnDictationBox = data.prevWindHndl # Remember the app before this app.
@@ -51,8 +55,7 @@ def createAndSetExclusiv_forCurrApp(aAppGram, aContext):
 	
 	#region--- Case: other apps is the forgrounde window.
 	else:
-		#--- TODO
-		pass 
-		# Set_Exclusiveness_ForRules(Rule)
+		# pass 
+		Set_Exclusiveness_ForRules(RulesRelatedToCurrWindow_className)
 
 		

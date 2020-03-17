@@ -10,6 +10,7 @@ from castervoice.exclusiveness.setGramToBeExclusive import setGramToBeExclusive
 
 # def Set_Exclusiveness_ForRules(Rule):
 def Set_Exclusiveness_ForRules(Rules_className):
+    print "\n", "ici 20200317152040| Gonna set exclusiv for: @Rules_className:", Rules_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
     return
     #--- Rules_className = set
 

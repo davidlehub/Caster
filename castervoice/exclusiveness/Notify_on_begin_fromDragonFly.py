@@ -8,7 +8,7 @@ from castervoice.exclusiveness.processExclusivForNewApp import processExclusivFo
 import os, win32gui
 from castervoice.lib.utilities import get_active_window_path
 from castervoice.exclusiveness.Set_Exclusiveness_ForRules import Set_Exclusiveness_ForRules
-
+from castervoice.exclusiveness.CurrWindow_data import CurrWindow_data
 # def Notify_process_begin_GramBase(aGram, aExecutable, aTitle, aWindHndl):
 def Notify_on_begin_fromDragonFly():
 	# print "\n|~ici 20191215145726| in def Notify_process_begin_GramBase | aGram, aExecutable, aTitle, aWindHndl:", aGram, aExecutable, aTitle, aWindHndl, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
@@ -34,7 +34,9 @@ def Notify_on_begin_fromDragonFly():
 			return False	
 		#endregion (? still needed?)
 
+
 		ForegroundAppProcessName = (os.path.splitext(os.path.basename(activeWinPath))[0]).lower()
+		CurrWindowData = CurrWindow_data(ForegroundAppProcessName)
 		print "\n|>--20181110212119| ** Forground app changed, process name: ", ForegroundAppProcessName , " |=> In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 
@@ -55,24 +57,24 @@ def Notify_on_begin_fromDragonFly():
 			# if Rdetail.executable in executable:
 			# if Rdetail.executable in executable:
 			# 	RulesMatchingCurrAppContext_className.add(R.get_rule_class_name())		
-			if Rdetail.executable == ForegroundAppProcessName:
+			if Rdetail.executable == CurrWindowData.ForegroundAppProcessName:
 				RulesMatchingCurrAppContext_className.add(R.className)
 
-		if len(RulesMatchingCurrAppContext_className) > 0:
-			print "\n", "20200315150947| (exclusiveness) App Context matched. So gonna try to set exclusivenss for: ",RulesMatchingCurrAppContext_className,  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-			Set_Exclusiveness_ForRules(RulesMatchingCurrAppContext_className)
+		# if len(RulesMatchingCurrAppContext_className) > 0:
+		# 	print "\n", "20200315150947| (exclusiveness) App Context matched. So gonna try to set exclusivenss for: ",RulesMatchingCurrAppContext_className,  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+		# 	Set_Exclusiveness_ForRules(RulesMatchingCurrAppContext_className)
 
 		#endregion set exclusiveness For Rule(S) related to the matched App context
 		
-		return
+		# return
 
 
 
 
 
-
-		print "\n|~ici 20191215152147b| gonna process new app deted| data.currWindHndl,gl.prevWindHndl_onlyUseToDectectNewApp:", data.currWindHndl,gl.prevWindHndl_onlyUseToDectectNewApp, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-		processExclusivForNewApp(None,None)
+		# print "\n|~ici 20191215152147b| gonna process new app detecedd| data.currWindHndl,gl.prevWindHndl_onlyUseToDectectNewApp:", data.currWindHndl,gl.prevWindHndl_onlyUseToDectectNewApp, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+		# processExclusivForNewApp(None,None)
+		processExclusivForNewApp(RulesMatchingCurrAppContext_className,CurrWindowData)
 		# try:
 		# except:
 		# 	print "\n|~!!!20191216153327| error:", sys.exc_info()[0], " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
