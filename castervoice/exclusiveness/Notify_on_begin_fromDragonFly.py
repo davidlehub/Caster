@@ -1,3 +1,4 @@
+from inspect import getframeinfo, stack, getframeinfo, currentframe
 from castervoice.exclusiveness.ExclusivMode_class import ExclusivMode
 from castervoice.exclusiveness.globalVariable.Data_Manager import data
 from dragonfly import Window
@@ -9,8 +10,7 @@ from castervoice.lib.utilities import get_active_window_path
 
 # def Notify_process_begin_GramBase(aGram, aExecutable, aTitle, aWindHndl):
 def Notify_on_begin_fromDragonFly():
-	return	
-	print "\n|~ici 20191215145726| in def Notify_process_begin_GramBase | aGram, aExecutable, aTitle, aWindHndl:", aGram, aExecutable, aTitle, aWindHndl, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+	# print "\n|~ici 20191215145726| in def Notify_process_begin_GramBase | aGram, aExecutable, aTitle, aWindHndl:", aGram, aExecutable, aTitle, aWindHndl, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 	if not ExclusivMode.enabled: #skeep
 		print "\n|~20200109164509| Exclusive mode is off, so not gonna change exclusiveness state.",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 		return	
@@ -21,7 +21,7 @@ def Notify_on_begin_fromDragonFly():
 	#--== detect new app chenged
 	# if not data.currWindHndl == data.prevWindHndl:
 	# if not data.currWindHndl == gl.prevWindHndl_onlyUseToDectectNewApp:
-	print "\n|~ici 20191215152147| data.currWindHndl,gl.prevWindHndl_onlyUseToDectectNewApp:", data.currWindHndl,gl.prevWindHndl_onlyUseToDectectNewApp, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+	# print "\n|~ici 20191215152147| data.currWindHndl,gl.prevWindHndl_onlyUseToDectectNewApp:", data.currWindHndl,gl.prevWindHndl_onlyUseToDectectNewApp, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 	if data.currWindHndl != gl.prevWindHndl_onlyUseToDectectNewApp: #active window has changed
 		gl.prevWindHndl_onlyUseToDectectNewApp = data.currWindHndl
 
