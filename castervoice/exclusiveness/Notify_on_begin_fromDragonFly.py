@@ -7,6 +7,7 @@ from castervoice.exclusiveness.globalVariable import GlobalV as gl
 from castervoice.exclusiveness.processExclusivForNewApp import processExclusivForNewApp
 import os, win32gui
 from castervoice.lib.utilities import get_active_window_path
+from castervoice.exclusiveness.Set_Exclusiveness_ForRules import Set_Exclusiveness_ForRules
 
 # def Notify_process_begin_GramBase(aGram, aExecutable, aTitle, aWindHndl):
 def Notify_on_begin_fromDragonFly():
@@ -29,12 +30,42 @@ def Notify_on_begin_fromDragonFly():
 		#--== info user
 		activeWinPath = get_active_window_path()
 		if not activeWinPath:
-			print "\n|>1- Forground app changed. @ForegroundAppProcessName= '",activeWinPath,"'<|20181110212118| In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s|%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+			print "\n|>1- Forground app changed. @activeWinPath= '",activeWinPath,"'<|20181110212118| In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s|%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 			return False	
 		#endregion (? still needed?)
 
 		ForegroundAppProcessName = (os.path.splitext(os.path.basename(activeWinPath))[0]).lower()
 		print "\n|>--20181110212119| ** Forground app changed, process name: ", ForegroundAppProcessName , " |=> In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+
+
+
+		#region--- set exclusiveness For Rule(S) related to the matched App context
+		# print "\n", "20200316114715| gl.allRegisteredRule_HavingAppContext:", gl.allRegisteredRule_HavingAppContext, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+
+		#--- Find out witch rule matched..
+		RulesMatchingCurrAppContext_className = set()
+		for R in gl.allRegisteredRule_HavingAppContext: #R is type of: C:\Users\HP\Documents\Caster\castervoice\exclusiveness\globalVariable\registeredRule_data.py
+			Rdetail = R.detail #Rdetail is type of: #of type: C:\Users\HP\Documents\Caster\castervoice\lib\ctrl\mgr\rule_details.py
+			# print "\n", "20200316111905| Rdetail:", Rdetail, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+			# print "", "20200316111906| Rdetail.executable:", Rdetail.executable, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+			# print "", "20200316111907| executable:", executable, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+			
+			#--- TODO: Filter/validate also using: title
+			#--- (Rdetail.executable= ,exemple, 'code')
+			# if Rdetail.executable in executable:
+			# if Rdetail.executable in executable:
+			# 	RulesMatchingCurrAppContext_className.add(R.get_rule_class_name())		
+			if Rdetail.executable == ForegroundAppProcessName:
+				RulesMatchingCurrAppContext_className.add(R.className)
+
+		if len(RulesMatchingCurrAppContext_className) > 0:
+			print "\n", "20200315150947| (exclusiveness) App Context matched. So gonna try to set exclusivenss for: ",RulesMatchingCurrAppContext_className,  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+			Set_Exclusiveness_ForRules(RulesMatchingCurrAppContext_className)
+
+		#endregion set exclusiveness For Rule(S) related to the matched App context
+		
+		return
+
 
 
 
