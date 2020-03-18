@@ -15,10 +15,10 @@ def Set_Exclusiveness_ForRules(Rules_className):
     #--- Rules_className = set
 
     #--- list of rule we want to be exclusive
-    RulestoBeExclusive_className = Rules_className # | gl.RulesCasterAlwayNeed_className #the 'RulesCasterAlwayNeed_className' is added outside of this methode. bcz there is case we don't need it. 
-    # RulestoBeExclusive_className = Rules_className | gl.RulesCasterAlwayNeed_className
-    # RulestoBeExclusive_className = Rules_className + gl.RulesCasterAlwayNeed_className
-    # RulestoBeExclusive_className = Rule.get_rule_class_name() + gl.RulesCasterAlwayNeed_className
+    RulestoBeExclusive_className = Rules_className # | gl.RulesToBeAlwayExclusive_className #the 'RulesToBeAlwayExclusive_className' is added outside of this methode. bcz there is case we don't need it. 
+    # RulestoBeExclusive_className = Rules_className | gl.RulesToBeAlwayExclusive_className
+    # RulestoBeExclusive_className = Rules_className + gl.RulesToBeAlwayExclusive_className
+    # RulestoBeExclusive_className = Rule.get_rule_class_name() + gl.RulesToBeAlwayExclusive_className
 
     # print "\n", "20200112220615| New caster: exclusiveness for| RulestoBeExclusive_className:", RulestoBeExclusive_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
     #--- Diable all Rules, except those we want to be exclusive.

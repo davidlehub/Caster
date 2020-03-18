@@ -1,8 +1,6 @@
 from inspect import getframeinfo, stack, getframeinfo, currentframe
 
-# RulesCasterAlwayNeed_className = ['GrammarActivatorRule','HooksActivationRule','TransformersActivationRule']
-RulesCasterAlwayNeed_className = {"CasterRule", "HardwareRule", "MouseAlternativesRule", "WindowManagementRule", "DouglasGridRule", "RainbowGridRule", "SudokuGridRule", "HMCRule", "HMCConfirmRule", "HMCDirectoryRule", "HMCHistoryRule", "HMCLaunchRule", "HMCSettingsRule", "HistoryRule", "ChainAlias", "Alias", "BringRule", "Again", "LegionGridRule", "DragonRule", "GrammarActivatorRule", "HooksActivationRule", "TransformersActivationRule"}
-# RulesCasterAlwayNeed_className = {'GrammarActivatorRule','HooksActivationRule','TransformersActivationRule'
+
 # ,'CasterRule', 'HardwareRule','DragonRule'
 # ,'Alphabet'}
 

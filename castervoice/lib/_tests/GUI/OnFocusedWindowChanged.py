@@ -16,9 +16,9 @@ def OnFocusedWindowChanged():
 
 	# RweWantToBeExclusive = ["Alphabet",  "NavigationNon"]
 	# # _internal = ["GrammarActivatorRule", "HooksActivationRule", "TransformersActivationRule", "ManualGrammarReloadRule"]
-	# RulesCasterAlwayNeed_className = ['GrammarActivatorRule','HooksActivationRule','TransformersActivationRule']
-	# # RulesCasterAlwayNeed_className = ['GrammarActivatorRule','HooksActivationRule','TransformersActivationRule', 'ManualGrammarReloadRule'] #err: KeyError: 'ManualGrammarReloadRule
-	# RulestoBeExclusive_className = RulesCasterAlwayNeed_className + RweWantToBeExclusive
+	# RulesToBeAlwayExclusive_className = ['GrammarActivatorRule','HooksActivationRule','TransformersActivationRule']
+	# # RulesToBeAlwayExclusive_className = ['GrammarActivatorRule','HooksActivationRule','TransformersActivationRule', 'ManualGrammarReloadRule'] #err: KeyError: 'ManualGrammarReloadRule
+	# RulestoBeExclusive_className = RulesToBeAlwayExclusive_className + RweWantToBeExclusive
 
 	# #--- Diable all Rules, except those we want to be exclusive.
 	# # disableR(_NEXUS._grammar_manager._config.get_enabled_rcns_ordered(),RulestoBeExclusive_className)
