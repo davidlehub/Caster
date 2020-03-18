@@ -31,7 +31,10 @@ def processExclusivForNewApp(CurrWindowData):
 	#--- Cleanup/purge exclusiveness for previous app, IF needed
 	_cleanupPreviousApp()  #20191207210733
 		
-	#--- Back to .... if have to
+	#--- Back to previous state of the foregound window, if have to.
+	#--- ex.: We was with a window A, then we switch to window B. Then switch back to A, witch is the current foregound one.
+ 	#--- The current window A could have his exclusiveness 'state' previously saved (at id2020009170651), so we retore that saved 'state'.
+	#--- An other scenario: where the current foreground window is a new one, that just open/launched (so there is no state saved), ... 
 	# BackToPreviousState_OfCurrApp(aContext) #(deprecated for new caster)
 	BackToPreviousState_OfCurrApp()
 	

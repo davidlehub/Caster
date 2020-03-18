@@ -21,11 +21,11 @@ def Notify_on_begin_fromDragonFly():
 	data.currWindHndl =  Window.get_foreground().handle
 	# data.currWindHndl =  aWindHndl
 
-	#--== detect new app chenged
+	#--== detect foreground window changed. id20200318103821
 	# if not data.currWindHndl == data.prevWindHndl:
 	# if not data.currWindHndl == gl.prevWindHndl_onlyUseToDectectNewApp:
 	# print "\n|~ici 20191215152147| data.currWindHndl,gl.prevWindHndl_onlyUseToDectectNewApp:", data.currWindHndl,gl.prevWindHndl_onlyUseToDectectNewApp, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-	if data.currWindHndl != gl.prevWindHndl_onlyUseToDectectNewApp: #active window has changed
+	if data.currWindHndl != gl.prevWindHndl_onlyUseToDectectNewApp: #active window has changed #
 		gl.prevWindHndl_onlyUseToDectectNewApp = data.currWindHndl
 
 		#region--- (? still needed?)
@@ -46,27 +46,11 @@ def Notify_on_begin_fromDragonFly():
 		#region--- set exclusiveness For Rule(S) related to the matched App context
 		# print "\n", "20200316114715| gl.allRegisteredRule_HavingAppContext:", gl.allRegisteredRule_HavingAppContext, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
-		# #--- Find out witch rule matched... id20200318101805
-		# RulesRelatedToCurrWindow_className = []
-		# for R in gl.allRegisteredRule_HavingAppContext: #R is type of: C:\Users\HP\Documents\Caster\castervoice\exclusiveness\globalVariable\registeredRule_data.py
-		# 	Rdetail = R.detail #Rdetail is type of: #of type: C:\Users\HP\Documents\Caster\castervoice\lib\ctrl\mgr\rule_details.py
-		# 	# print "\n", "20200316111905| Rdetail:", Rdetail, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-		# 	# print "", "20200316111906| Rdetail.executable:", Rdetail.executable, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-		# 	# print "", "20200316111907| executable:", executable, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-			
-		# 	#--- TODO: Filter/validate also using: title
-		# 	#--- (Rdetail.executable= ,exemple, 'code')
-		# 	# if Rdetail.executable in executable:
-		# 	# if Rdetail.executable in executable:
-		# 	# 	RulesRelatedToCurrWindow_className.add(R.get_rule_class_name())		
-		# 	if Rdetail.executable == CurrWindowData.ForegroundAppProcessName:
-		# 		RulesRelatedToCurrWindow_className.append(R.className)
-
-		#--- ...
-		# if len(RulesRelatedToCurrWindow_className) > 0: #TODO: remove this line
+		#--- start to process exclusiveness for the forground window. id20200318104151
 		# processExclusivForNewApp(None,None) #
 		# processExclusivForNewApp(RulesRelatedToCurrWindow_className,CurrWindowData)
 		processExclusivForNewApp(CurrWindowData)
+
 		# try:
 		# except:
 		# 	print "\n|~!!!20191216153327| error:", sys.exc_info()[0], " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
