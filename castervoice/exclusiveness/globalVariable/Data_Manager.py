@@ -67,13 +67,15 @@ class data_manager(object):
 	def makeAcopy_AllEnabledRule(self, aWindHndl):
 		""" reverse of: 'def putBack_AllEnabledRule' """
 
+		if not self.appGramAndRules.has_key(aWindHndl):
+			self.appGramAndRules[aWindHndl] = GramAndRules()
+
 		# self.appGramAndRules[aWindHndl]._AllEnabledRule = _NEXUS._grammar_manager._config._config.get_enabled_rcns_ordered()[:]
 		self.appGramAndRules[aWindHndl]._AllEnabledRule = list(_NEXUS._grammar_manager._config._config[RulesConfig._ENABLED_ORDERED])
 		
 	def putBack_AllEnabledRule(self, aWindHndl):
 		""" reverse of: 'def makeAcopy_AllEnabledRule' """
   		_NEXUS._grammar_manager._config._config[RulesConfig._ENABLED_ORDERED] = list(self.appGramAndRules[aWindHndl]._AllEnabledRule)
-
 		# _NEXUS._grammar_manager._managed_rules = self.appGramAndRules[aWindHndl]._AllEnabledRule.copy()	
 
 	#--- 
@@ -441,6 +443,10 @@ class data_manager(object):
 class GramAndRules():
 
 	def __init__(self, aGram=None):	
+		#--- (new caster)
+		self._AllEnabledRule = None
+
+		#--- (old caster)
 		self._engine_grammars = None
 		self._NexusMerger_grammars = None
 		self._NexusMerger_app_rules = None
