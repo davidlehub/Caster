@@ -301,7 +301,7 @@ class data_manager(object):
 		if self.appExclusiveness.has_key(aWindHndl):
 			return self.appExclusiveness[aWindHndl].enablebRules_associatedWithApp
 		else:
-			return set()
+			return []
 	#endregion (new caster)
 
 	def getAll_normalGram_BeenExclusiv_ofApp(self,aWindHndl):

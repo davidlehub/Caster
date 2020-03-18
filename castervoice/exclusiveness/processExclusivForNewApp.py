@@ -52,7 +52,7 @@ def processExclusivForNewApp(RulesRelatedToCurrWindow_className,CurrWindowData):
 	# #--== ** Ceate and set exclusiveness for current app.
 	# createAndSetExclusiv_forCurrApp(aGram, aContext) #(deprecated for new caster)
 	createAndSetExclusiv_forCurrApp(RulesRelatedToCurrWindow_className,CurrWindowData)
-	
+
 	# else:
 	# 	# print "\n\t|~ici 20191208115702| Gonna create and ActivateExclusivenessForCurrApp()",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 	# 	createAndSetExclusiv_forCurrApp(aGram, aContext)

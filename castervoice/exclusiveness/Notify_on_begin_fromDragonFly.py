@@ -47,7 +47,7 @@ def Notify_on_begin_fromDragonFly():
 		# print "\n", "20200316114715| gl.allRegisteredRule_HavingAppContext:", gl.allRegisteredRule_HavingAppContext, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 		#--- Find out witch rule matched..
-		RulesMatchingCurrAppContext_className = set()
+		RulesRelatedToCurrWindow_className = []
 		for R in gl.allRegisteredRule_HavingAppContext: #R is type of: C:\Users\HP\Documents\Caster\castervoice\exclusiveness\globalVariable\registeredRule_data.py
 			Rdetail = R.detail #Rdetail is type of: #of type: C:\Users\HP\Documents\Caster\castervoice\lib\ctrl\mgr\rule_details.py
 			# print "\n", "20200316111905| Rdetail:", Rdetail, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
@@ -58,18 +58,18 @@ def Notify_on_begin_fromDragonFly():
 			#--- (Rdetail.executable= ,exemple, 'code')
 			# if Rdetail.executable in executable:
 			# if Rdetail.executable in executable:
-			# 	RulesMatchingCurrAppContext_className.add(R.get_rule_class_name())		
+			# 	RulesRelatedToCurrWindow_className.add(R.get_rule_class_name())		
 			if Rdetail.executable == CurrWindowData.ForegroundAppProcessName:
-				RulesMatchingCurrAppContext_className.add(R.className)
+				RulesRelatedToCurrWindow_className.append(R.className)
 
-		# if len(RulesMatchingCurrAppContext_className) > 0:
-		# 	print "\n", "20200315150947| (exclusiveness) App Context matched. So gonna try to set exclusivenss for: ",RulesMatchingCurrAppContext_className,  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-		# 	Set_Exclusiveness_ForRules(RulesMatchingCurrAppContext_className)
+		# if len(RulesRelatedToCurrWindow_className) > 0:
+		# 	print "\n", "20200315150947| (exclusiveness) App Context matched. So gonna try to set exclusivenss for: ",RulesRelatedToCurrWindow_className,  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+		# 	Set_Exclusiveness_ForRules(RulesRelatedToCurrWindow_className)
 		
 
-		# if len(RulesMatchingCurrAppContext_className) > 0: #TODO: remove this line
+		# if len(RulesRelatedToCurrWindow_className) > 0: #TODO: remove this line
 		# processExclusivForNewApp(None,None) #
-		processExclusivForNewApp(RulesMatchingCurrAppContext_className,CurrWindowData)
+		processExclusivForNewApp(RulesRelatedToCurrWindow_className,CurrWindowData)
 		# try:
 		# except:
 		# 	print "\n|~!!!20191216153327| error:", sys.exc_info()[0], " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)

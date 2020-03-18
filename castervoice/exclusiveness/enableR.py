@@ -14,7 +14,7 @@ def enableR(aRclassName):
 		# try:
 		_NEXUS._grammar_manager._change_rule_enabled(iRclassName, True)
 
-		gl.RbeenExclusive.add(iRclassName)
+		gl.RbeenExclusive.append(iRclassName)
   
 		# Storage.RbeenExclusive.add(iRclassName)
 

@@ -26,4 +26,4 @@ all_RuleHavingAppContext_className = set()
 allRules_className = set()
 
 prevWindHndl_onlyUseToDectectNewApp = None
-RbeenExclusive = set()
+RbeenExclusive = []

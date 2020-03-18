@@ -1,3 +1,4 @@
+
 from inspect import getframeinfo, stack, getframeinfo, currentframe
 from castervoice.exclusiveness.globalVariable.Data_Manager import data, Exclusiveness,GramAndRules
 from castervoice.exclusiveness.isInUniqModeForCurrApp import isInUniqModeForCurrApp
@@ -7,6 +8,7 @@ from castervoice.exclusiveness.globalVariable import GlobalV as gl
 # from castervoice.lib.control import _NEXUS
 from castervoice.exclusiveness.Set_Exclusiveness_ForRules import Set_Exclusiveness_ForRules
 from castervoice.exclusiveness.globalVariable.ExclusivenessSetting import DefaultRulesTobeExclsuive_className, RulesToBeAlwayExclusive_className
+from collections import OrderedDict
 
 # from dragonfly.engines import (_default_engine)
 
@@ -45,7 +47,7 @@ def createAndSetExclusiv_forCurrApp(RulesRelatedToCurrWindow_className,CurrWindo
 	#region--- Case: 'dragon dictatation box' is the forgrounde window.
 	#-- A. no exclusiveness, bcz we want normal dragon vovabulary.
 	#-- B. Activate grammars we want to be with the dragon vocabulary, if any.		
-	if win.currentIs_DragonDictBox(data.currWindHndl):
+	if win.currentIs_DragonDictBox(data.currWindHndl): #TODO: Create a grammar for this app instead ??
 		print "\n", "20200317151843| Dected: win.currentIs_DragonDictBox.", " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 		#-- A.
@@ -61,7 +63,8 @@ def createAndSetExclusiv_forCurrApp(RulesRelatedToCurrWindow_className,CurrWindo
 		if len(RulesRelatedToCurrWindow_className) == 0:
 			RulestoBeExclusive_className = DefaultRulesTobeExclsuive_className #use the setting >> default value, witch is same as the default of '_enabled_ordered' in rule.toml
 		else: 
-			RulestoBeExclusive_className =  RulesToBeAlwayExclusive_className + RulesRelatedToCurrWindow_className 
+			#--- (Concatonate 2 list without duplicate element)
+			RulestoBeExclusive_className = list(OrderedDict.fromkeys(RulesToBeAlwayExclusive_className + RulesToBeAlwayExclusive_className + RulesRelatedToCurrWindow_className ))
 
 		
 		Set_Exclusiveness_ForRules(RulestoBeExclusive_className)
