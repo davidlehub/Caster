@@ -9,6 +9,8 @@ from castervoice.exclusiveness.globalVariable import GlobalV as gl
 from castervoice.exclusiveness.Set_Exclusiveness_ForRules import Set_Exclusiveness_ForRules
 from castervoice.exclusiveness.globalVariable.ExclusivenessSetting import DefaultRulesTobeExclsuive_className, RulesToBeAlwayExclusive_className
 from collections import OrderedDict
+from castervoice.exclusiveness.get_RulesRelatedToAWindow import get_RulesRelatedToAWindow
+
 
 # from dragonfly.engines import (_default_engine)
 
@@ -18,7 +20,8 @@ from collections import OrderedDict
 
 
 # def createAndSetExclusiv_forCurrApp(aAppGram, aContext): #(deprecated for new caster)
-def createAndSetExclusiv_forCurrApp(RulesRelatedToCurrWindow_className,CurrWindowData):
+# def createAndSetExclusiv_forCurrApp(RulesRelatedToCurrWindow_className,CurrWindowData):
+def createAndSetExclusiv_forCurrApp(CurrWindowData):
 	# type: (list(Grammar)) -> ?
 	#--== A: Set, and memorize, exclusiness of grammar related to current app.
 	#--== B: Make sure the list of grammars we want to be alway exlusive, are exclusive.
@@ -58,7 +61,9 @@ def createAndSetExclusiv_forCurrApp(RulesRelatedToCurrWindow_className,CurrWindo
 	
 	#region--- Case: other apps is the forgrounde window.
 	else:
-		
+		#--- Find out witch rule matched... id20200318101805
+		RulesRelatedToCurrWindow_className = get_RulesRelatedToAWindow(CurrWindowData)
+
 		#--- if the current windows don't have rule related to it, we use the default rules
 		if len(RulesRelatedToCurrWindow_className) == 0:
 			RulestoBeExclusive_className = DefaultRulesTobeExclsuive_className #use the setting >> default value, witch is same as the default of '_enabled_ordered' in rule.toml

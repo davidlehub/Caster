@@ -10,7 +10,8 @@ from castervoice.lib.utilities import get_active_window_path,get_active_window_t
 
 
 # def processExclusivForNewApp(aGram,aContext): #(deprecated for new caster)
-def processExclusivForNewApp(RulesRelatedToCurrWindow_className,CurrWindowData):
+# def processExclusivForNewApp(RulesRelatedToCurrWindow_className,CurrWindowData):
+def processExclusivForNewApp(CurrWindowData):
 	# return
 	# print "\n\n\n|~*** 20191202215108g| new app dected|wintitle,data.currWindHndl:", get_active_window_title(), data.currWindHndl, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)				
 
@@ -51,7 +52,8 @@ def processExclusivForNewApp(RulesRelatedToCurrWindow_className,CurrWindowData):
 
 	# #--== ** Ceate and set exclusiveness for current app.
 	# createAndSetExclusiv_forCurrApp(aGram, aContext) #(deprecated for new caster)
-	createAndSetExclusiv_forCurrApp(RulesRelatedToCurrWindow_className,CurrWindowData)
+	# createAndSetExclusiv_forCurrApp(RulesRelatedToCurrWindow_className,CurrWindowData)
+	createAndSetExclusiv_forCurrApp(CurrWindowData)
 
 	# else:
 	# 	# print "\n\t|~ici 20191208115702| Gonna create and ActivateExclusivenessForCurrApp()",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
