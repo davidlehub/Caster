@@ -15,7 +15,8 @@ def Set_Exclusiveness_ForRules(Rules_className):
     #--- Rules_className = set
 
     #--- list of rule we want to be exclusive
-    RulestoBeExclusive_className = Rules_className | gl.RulesCasterAlwayNeed_className
+    RulestoBeExclusive_className = Rules_className # | gl.RulesCasterAlwayNeed_className #the 'RulesCasterAlwayNeed_className' is added outside of this methode. bcz there is case we don't need it. 
+    # RulestoBeExclusive_className = Rules_className | gl.RulesCasterAlwayNeed_className
     # RulestoBeExclusive_className = Rules_className + gl.RulesCasterAlwayNeed_className
     # RulestoBeExclusive_className = Rule.get_rule_class_name() + gl.RulesCasterAlwayNeed_className
 

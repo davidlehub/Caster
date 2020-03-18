@@ -55,7 +55,9 @@ def BackToPreviousState_OfCurrApp():
 	else:
 		#--- put back the 'default' things
 		# print "\n\n|~ici 20191215133611| put back the 'default' things.",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-		reStore_AllEnabledRule_ofApp(ct.default)
+		reStore_AllEnabledRule_ofApp(ct.default) #no need to have a methode?.
+		# data.putBack_AllEnabledRule(ct.default)
+
 
 
 	#region--- (old caster)

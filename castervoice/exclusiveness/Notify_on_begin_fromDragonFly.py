@@ -67,14 +67,14 @@ def Notify_on_begin_fromDragonFly():
 		# 	Set_Exclusiveness_ForRules(RulesMatchingCurrAppContext_className)
 		
 
-		if len(RulesMatchingCurrAppContext_className) > 0:
-			# processExclusivForNewApp(None,None) #
-			processExclusivForNewApp(RulesMatchingCurrAppContext_className,CurrWindowData)
-			# try:
-			# except:
-			# 	print "\n|~!!!20191216153327| error:", sys.exc_info()[0], " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-			# 	pass
-			# 	# data.prevWindHndl = data.currWindHndl
+		# if len(RulesMatchingCurrAppContext_className) > 0: #TODO: remove this line
+		# processExclusivForNewApp(None,None) #
+		processExclusivForNewApp(RulesMatchingCurrAppContext_className,CurrWindowData)
+		# try:
+		# except:
+		# 	print "\n|~!!!20191216153327| error:", sys.exc_info()[0], " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+		# 	pass
+		# 	# data.prevWindHndl = data.currWindHndl
 
 		#endregion set exclusiveness For Rule(S) related to the matched App context
 
