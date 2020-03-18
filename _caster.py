@@ -45,9 +45,15 @@ print("\n*- Starting " + settings.SOFTWARE_NAME + " -*")
 
 #region---=== David
 from castervoice.exclusiveness.globalVariable import Data_Manager
+from castervoice.exclusiveness import Constant as ct
 
 #--- init
 Data_Manager.init()
+from castervoice.exclusiveness.store_AllEnabledRule_ofApp import store_AllEnabledRule_ofApp
+store_AllEnabledRule_ofApp(ct.default, True)
+# from castervoice.exclusiveness.globalVariable.Data_Manager import data,GramAndRules
+# data.appGramAndRules[ct.default] = GramAndRules()
+
 
 
 #region--- test OnFocusedWindowChanged

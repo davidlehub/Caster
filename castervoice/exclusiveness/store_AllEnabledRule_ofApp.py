@@ -1,5 +1,5 @@
 from castervoice.exclusiveness.globalVariable import GlobalV as gl
-from castervoice.exclusiveness.globalVariable.Data_Manager import data,Exclusiveness,GramAndRules
+from castervoice.exclusiveness.globalVariable.Data_Manager import data,GramAndRules
 from castervoice.exclusiveness import Constant as ct
 
 def store_AllEnabledRule_ofApp(aWindHndl, aForce = False):
