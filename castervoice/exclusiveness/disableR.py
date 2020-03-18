@@ -1,5 +1,7 @@
+from inspect import getframeinfo, stack, getframeinfo, currentframe
 from castervoice.lib.control import _NEXUS
 from castervoice.exclusiveness.globalVariable import GlobalV as gl
+
 
 def disableR(aRclassName,aExceptR=[]):
 	for iRclassName in aRclassName:

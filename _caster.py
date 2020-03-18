@@ -54,7 +54,7 @@ store_AllEnabledRule_ofApp(ct.default, True)
 # from castervoice.exclusiveness.globalVariable.Data_Manager import data,GramAndRules
 # data.appGramAndRules[ct.default] = GramAndRules()
 
-
+ 
 
 #region--- test OnFocusedWindowChanged
 # from inspect import getframeinfo, stack, getframeinfo, currentframe
