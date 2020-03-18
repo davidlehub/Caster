@@ -64,6 +64,18 @@ class data_manager(object):
 
 	#endregion
 
+	def makeAcopy_AllEnabledRule(self, aWindHndl):
+		""" reverse of: 'def putBack_AllEnabledRule' """
+
+		# self.appGramAndRules[aWindHndl]._AllEnabledRule = _NEXUS._grammar_manager._config._config.get_enabled_rcns_ordered()[:]
+		self.appGramAndRules[aWindHndl]._AllEnabledRule = list(_NEXUS._grammar_manager._config._config[RulesConfig._ENABLED_ORDERED])
+		
+	def putBack_AllEnabledRule(self, aWindHndl):
+		""" reverse of: 'def makeAcopy_AllEnabledRule' """
+  		_NEXUS._grammar_manager._config._config[RulesConfig._ENABLED_ORDERED] = list(self.appGramAndRules[aWindHndl]._AllEnabledRule)
+
+		# _NEXUS._grammar_manager._managed_rules = self.appGramAndRules[aWindHndl]._AllEnabledRule.copy()	
+
 	#--- 
 	def populate_GramName_byGramobj(self,aGram):
 		# return gl.Gid_x_Gobj[Gid[0]]
@@ -456,6 +468,10 @@ class Exclusiveness():
   		"""
 
 	def __init__(self, aGram=None):
+		#--- (New Caster)
+		self.enablebRules_associatedWithApp = []
+  
+		#--- (old caster)
 		self.normalGram = set()
 		self._UniqModLayer = [] #content list of dictionary of uniqMode layer
 		self.CcrNonGram = set()

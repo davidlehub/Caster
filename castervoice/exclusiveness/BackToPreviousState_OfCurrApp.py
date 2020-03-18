@@ -1,4 +1,9 @@
+from inspect import getframeinfo, stack, getframeinfo, currentframe
 from castervoice.exclusiveness.globalVariable.Data_Manager import data
+from castervoice.exclusiveness.reStore_AllEnabledRule_ofApp import reStore_AllEnabledRule_ofApp
+from castervoice.exclusiveness.get_currUniqModeLayer_ofApp import get_currUniqModeLayer_ofApp
+from castervoice.exclusiveness.Set_Exclusiveness_ForRules import Set_Exclusiveness_ForRules
+from castervoice.exclusiveness import Constant as ct
 
 
 # def BackToPreviousState_OfCurrApp(aContextGram):
@@ -29,15 +34,20 @@ def BackToPreviousState_OfCurrApp():
 			# print "\n|>0-20191218122310| Using a 'bogusPronun' to Trigger the merging process, to update merged things (eg.CCR rules).",":->In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s|%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 			# MergeRulePronun(bogusPronun, False, False)		
 
-			print "\n|~ici 20191208170030| set back exclusiveness| currUML['thingsToBeUniq']:", currUML["thingsToBeUniq"], " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-			SetThingzToBeExclusive(currUML["thingsToBeUniq"], [], [], "Back To PreviousState _Of CurrApp")
+			print "\n", "20200317223538| *** CODE is Not modified yet for new Caster", " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+			#region--- TODO: Modify for new Caster 
+			# print "\n|~ici 20191208170030| set back exclusiveness| currUML['thingsToBeUniq']:", currUML["thingsToBeUniq"], " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+			# SetThingzToBeExclusive(currUML["thingsToBeUniq"], [], [], "Back To PreviousState _Of CurrApp")
+			#endregion TODO:  Modify for new Caster
 
 		#--== 
 		else: #No any UML layer
 			#---== Set back Excluvenisse of where it was
 			# Exclusiveness.getAllGram()
 			#--- for 'Normal' Grammars 
-			enableR(data.restore_enablebRules_associatedWithApp(data.currWindHndl))
+			# enableR(data.restore_enablebRules_associatedWithApp(data.currWindHndl)) #not sure if this is ok with new Caster. Or the line below.
+			restoredRules_className = data.restore_enablebRules_associatedWithApp(data.currWindHndl)
+   			Set_Exclusiveness_ForRules(restoredRules_className)
 
 		#endregion 
 

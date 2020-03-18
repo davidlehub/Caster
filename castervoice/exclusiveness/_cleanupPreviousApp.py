@@ -1,4 +1,6 @@
+from inspect import getframeinfo, stack, getframeinfo, currentframe
 from castervoice.exclusiveness.globalVariable.Data_Manager import data
+from castervoice.exclusiveness.appExist import appExist
 
 
 def _cleanupPreviousApp():
