@@ -13,8 +13,8 @@ from castervoice.exclusiveness.globalVariable.registeredRule_data import registe
 #endregion (import)
 
 
-# def storeAllRulesLoaded(merge_rules=None, mapping_rule=None, mappingRule_anabled=None):
-def storeAllRulesLoaded(Rule_className, Rdetail):
+# def storeAll_RegisteredRule(merge_rules=None, mapping_rule=None, mappingRule_anabled=None):
+def storeAll_registeredRule(Rule_className, Rdetail):
 	#--- For More info: on 'RuleDetails of: each rule in merge_rules, and  mapping_rule: C:\Users\HP\Documents\Caster\castervoice\lib\ctrl\mgr\rule_details.py
 
 	#--- 
@@ -111,10 +111,9 @@ def storeAllRulesLoaded(Rule_className, Rdetail):
 	# 			pass
 	# 	# print "\n", "20200312212546| gl.all_MappingRule:", gl.all_MappingRule, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 			
-
-class storeAllRulesLoadedHook(BaseHook):
+class storeAll_registeredRule_hook(BaseHook):
 	def __init__(self):
-		super(storeAllRulesLoadedHook, self).__init__(EventType.REGISTER_Rule_EXCL)
+		super(storeAll_registeredRule_hook, self).__init__(EventType.REGISTER_Rule_EXCL)
 
 	def get_pronunciation(self):
 		return "registered rule storage"
@@ -124,7 +123,7 @@ class storeAllRulesLoadedHook(BaseHook):
 		class_name = event_data.class_name
 		details = event_data.details
 		
-		storeAllRulesLoaded(class_name, details)
+		storeAll_registeredRule(class_name, details)
 
 def get_hook():
-	return storeAllRulesLoadedHook
+	return storeAll_registeredRule_hook

@@ -20,9 +20,9 @@ from castervoice.lib.util.ordered_set import OrderedSet
 #region--- (david)
 from inspect import getframeinfo, stack, getframeinfo, currentframe
 
-from castervoice.lib.merge.ccrmerging2.hooks.events.rules_loaded_excl_event import rules_loaded_excl_event
+from castervoice.lib.merge.ccrmerging2.hooks.events.rules_loaded_exclEvent import rules_loaded_exclEvent
 from castervoice.lib.merge.ccrmerging2.hooks.events.registerRule_ExclEvent import registerRule_ExclEvent
-from castervoice.lib.merge.ccrmerging2.hooks.standard_hooks.storeAllRulesLoaded_hook import storeAllRulesLoaded
+from castervoice.lib.merge.ccrmerging2.hooks.standard_hooks.storeAll_registeredRule_hook import storeAll_registeredRule
 #endregion 
 
 class GrammarManager(object):
@@ -152,7 +152,7 @@ class GrammarManager(object):
 
 		#region--- (Manualy trigguer a hook, bcz the 'self._hooks_runner.execute(registerRule_ExclEvent...', at line above, doesn't works as expected.)
 		# print "", "20200316075256 _3| details.executable:", details.executable        
-		storeAllRulesLoaded(class_name, details)
+		storeAll_registeredRule(class_name, details)
 		
 		#endregion (if the hook above is used, comment out inside this region)
 		#endregion (david)
@@ -263,7 +263,7 @@ class GrammarManager(object):
 		active_ccr_mrs = [mr for mr in active_mrs if mr.get_details().declared_ccrtype is not None]
 		self._hooks_runner.execute(RulesLoadedEvent(active_mrs=active_mrs))
 		#region--- (david)
-		self._hooks_runner.execute(rules_loaded_excl_event(active_mrs=active_mrs))
+		self._hooks_runner.execute(rules_loaded_exclEvent(active_mrs=active_mrs))
 		#endregion 
 
 		'''
@@ -310,14 +310,14 @@ class GrammarManager(object):
 			self._hooks_runner.execute(RulesLoadedEvent(managed_rule=managed_rule))
 			self._grammars_container.set_non_ccr(rcn, grammar)
 			#region--- (david)
-			self._hooks_runner.execute(rules_loaded_excl_event(managed_rule=managed_rule,mappingRule_anabled=enabled)) #david
+			self._hooks_runner.execute(rules_loaded_exclEvent(managed_rule=managed_rule,mappingRule_anabled=enabled)) #david
 			#endregion 
 			grammar.load()
 			self._hooks_runner.execute(PostGrammersLoadedEvent(grammar))
 			return RulesEnabledDiff([rcn], frozenset())
 		else:
 			#region--- (david)
-			self._hooks_runner.execute(rules_loaded_excl_event(managed_rule=managed_rule,mappingRule_anabled=enabled)) #david
+			self._hooks_runner.execute(rules_loaded_exclEvent(managed_rule=managed_rule,mappingRule_anabled=enabled)) #david
 			#endregion 
 			self._grammars_container.set_non_ccr(rcn, None)
 			return RulesEnabledDiff(frozenset(), [rcn])

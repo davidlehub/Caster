@@ -27,3 +27,8 @@ allRules_className = set()
 
 prevWindHndl_onlyUseToDectectNewApp = None
 RbeenExclusive = []
+
+all_loadedRule_mappingRule = []
+all_loadedRule_mergeRule = []
+# all_MappingRulesLoaded_className = []
+#  all_MergeRulesLoaded_className = []
