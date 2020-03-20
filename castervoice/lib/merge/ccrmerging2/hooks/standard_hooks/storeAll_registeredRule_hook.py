@@ -58,7 +58,7 @@ def storeAll_registeredRule(Rule_className, Rdetail):
 	# 		# if rule not in all_MergeRule:
 	# 		# gl.all_MergeRule.add(rule.get_rule_class_name())
 	# 		gl.all_MergeRule.add(rule)
-	# 		print "\n", "20200315125726| a merged Rule is add to gl.all_MergeRule. Rdetail._filepath:", Rdetail._filepath, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+	# 		print "\n", "20200319193148| a merged Rule is add to gl.all_MergeRule. Rdetail._filepath:", Rdetail._filepath, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 
 	# 		# #--- store Those having AppContext:

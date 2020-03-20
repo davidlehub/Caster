@@ -282,7 +282,11 @@ class GrammarManager(object):
 		global stuff.
 		'''
 		sorter = ConfigBasedRuleSetSorter(enabled_rcns)
-		merge_result = self._merger.merge_rules(active_ccr_mrs, sorter)
+		""" (david)
+		Interesting: 'merge_result.all_rule_class_names', exemple, = ['Alphabet', 'Navigation', 'Numbers', 'Punctuation', 'HistoryRule', 'ChainAlias', 'BringRule'] 
+  		 """
+		merge_result = self._merger.merge_rules(active_ccr_mrs, sorter) #'merge_result' is type of <C:\Users\HP\Documents\Caster\castervoice\lib\merge\ccrmerging2\merge_result.py>
+		print "\n", "20200319202237| merge_result.all_rule_class_names:", merge_result.all_rule_class_names, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 		grammars = []
 		for rule_and_context in merge_result.ccr_rules_and_contexts:
 			rule = rule_and_context[0]

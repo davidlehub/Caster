@@ -26,6 +26,13 @@ all_RuleHavingAppContext_className = set()
 allRules_className = set()
 
 prevWindHndl_onlyUseToDectectNewApp = None
+
+"""
+Store: all rules been exclusive (been active).
+This variable is equivalent of: (gl.all_loadedRule_mergeRule + gl.all_loadedRule_mappingRule), without the duplicates, like: 
+    #--- (Concatonate/add 2 list without duplicate element)
+    list(OrderedDict.fromkeys([i.get_rule_class_name() for i in gl.all_loadedRule_mergeRule] + [i.get_rule_class_name() for i in gl.all_loadedRule_mappingRule]))
+ """
 RbeenExclusive = []
 
 all_loadedRule_mappingRule = []

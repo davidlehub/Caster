@@ -25,7 +25,7 @@ def disableR(targetRules_className,aExceptR=[]):
 
 			#--- (...)
 			try:
-				gl.RbeenExclusive.remove(targetRule_className)
+				gl.RbeenExclusive.remove(targetRule_className) #not sure about this line. It got exception?
 				print "\n", "ici20200319191944| rule remove from 'gl.RbeenExclusive':", targetRule_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 			except :

@@ -33,9 +33,10 @@ def storeAll_LoadedRule(merge_rules=None, mapping_rule=None, mappingRule_anabled
 			#endregion (Get to know infos)
 			
 			#--- store those info globaly. Gonna needed for exclusiveness syst.
-			gl.all_loadedRule_mergeRule.append(rule)
+			if rule not in gl.all_loadedRule_mergeRule: #(avoid duplicate.)
+				gl.all_loadedRule_mergeRule.append(rule)
 
-			print "\n", "20200315125726| MERGED loaded:", rule.get_rule_class_name(), " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+				print "\n", "20200315125726| MERGED loaded:", rule.get_rule_class_name(), " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 
 			# #--- store Those having AppContext:
@@ -58,7 +59,8 @@ def storeAll_LoadedRule(merge_rules=None, mapping_rule=None, mappingRule_anabled
 
 		#endregion (Get to know infos)        
 
-		if mappingRule_anabled:
+		# if mappingRule_anabled:
+		if mappingRule_anabled and (mapping_rule not in gl.all_loadedRule_mappingRule): #(the 2nd condition: avoid duplicate.)
 			# gl.all_loadedRule_mappingRule.add(mapping_rule.get_rule_class_name())
 			gl.all_loadedRule_mappingRule.append(mapping_rule)
 
