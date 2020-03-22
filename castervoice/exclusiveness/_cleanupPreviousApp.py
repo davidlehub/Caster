@@ -12,14 +12,19 @@ def _cleanupPreviousApp():
 
 	#---- delete data.appExclusiveness if thre is no any UML layer... ANd when detec app (the handle) is no more exist.
 	if data.count_UML_ofApp(data.prevWindHndl) <= 0:
-		# print "\n\t|~ici 20191208115134| delete data.appExclusiveness of previous app, bcz it has is no any UML layer.",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno) #checked 20200322131735
-		del data.appExclusiveness[data.prevWindHndl]			
+		pass #vid 20200322155959
+		# # print "\n\t|~ici 20191208115134| delete data.appExclusiveness of previous app, bcz it has is no any UML layer.",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno) #checked 20200322131735
+		# # del data.appExclusiveness[data.prevWindHndl]			
+
+		# data.del_appExclusiveness(data.prevWindHndl)
 
 	#---- Also delete data.appExclusiveness if that app doesn't exist anymore.
 	elif not appExist(data.prevWindHndl):
 		print "\n\t|~ici 20191208115135| delete data.appExclusiveness of previous app, bcz that app doesn't exist anymore (closed).",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 		#---- delete data.appExclusiveness
-		del data.appExclusiveness[data.prevWindHndl]		
+		# del data.appExclusiveness[data.prevWindHndl]
+		data.del_appExclusiveness(data.prevWindHndl)
+  		
 
 	
 	

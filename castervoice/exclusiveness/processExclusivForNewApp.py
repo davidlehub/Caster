@@ -29,14 +29,21 @@ def processExclusivForNewApp(CurrWindowData):
 
 	# #-- 20191205214327
 	#--- Cleanup/purge exclusiveness for previous app, IF needed
+ 
 	_cleanupPreviousApp()  #20191207210733
 		
 	#--- Back to previous state of the foregound window, if have to.
 	#--- ex.: We was with a window A, then we switch to window B. Then switch back to A, witch is the current foregound one.
  	#--- The current window A could have his exclusiveness 'state' previously saved (at id2020009170651), so we retore that saved 'state'.
 	#--- An other scenario: where the current foreground window is a new one, that just open/launched (so there is no state saved), ... 
-	BackToPreviousState_OfCurrApp() 
-	
+
+	# print "\n", "dbg20200322140745| data.currWindHndl:", data.currWindHndl, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+
+	if data.appExclusiveness.has_key(data.currWindHndl): 
+
+
+		print "\n", "dbg20200322135904| (back to previoustate).",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+		BackToPreviousState_OfCurrApp() 
 
 	# #region--- Case: 'dragon dictatation box' is the forgrounde window.
 	# #-- A. no exclusiveness, bcz we want normal dragon vovabulary.
@@ -55,7 +62,8 @@ def processExclusivForNewApp(CurrWindowData):
 	# #--== ** Ceate and set exclusiveness for current app.
 	# createAndSetExclusiv_forCurrApp(aGram, aContext) #(deprecated for new caster)
 	# createAndSetExclusiv_forCurrApp(RulesRelatedToCurrWindow_className,CurrWindowData)
-	createAndSetExclusiv_forCurrApp(CurrWindowData)
+	else:
+		createAndSetExclusiv_forCurrApp(CurrWindowData)
 
 	# else:
 	# 	# print "\n\t|~ici 20191208115702| Gonna create and ActivateExclusivenessForCurrApp()",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)

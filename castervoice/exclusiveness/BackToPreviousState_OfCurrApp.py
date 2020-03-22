@@ -17,46 +17,50 @@ def BackToPreviousState_OfCurrApp():
 		- (but not the grammar in >> retGrmAndRule['grammar']
 	 """
 	
+	#region--- (deprecated with new Caster)
 	#--- Case: Current App has data previously stored
-	if data.appExclusiveness.has_key(data.currWindHndl): 
-		#--- Put back grammar and rules for the app
-		print "\n|~ici20191218191823| Put back grammar and rules for curr app." , " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-		reStore_AllEnabledRule_ofApp(data.currWindHndl)  
-	
-		#region 20191207150310: Back to previous state of exclusiveness.  
-		#--== Any UML layer?
-		# print "\n|~ici 20191207003726| data.count_UML_ofApp(data.currWindHndl):",data.count_UML_ofApp(data.currWindHndl) , " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-		if data.count_UML_ofApp(data.currWindHndl) > 0:
-			#-- activate excluseveness the grammar of that UML
-			currUML = get_currUniqModeLayer_ofApp(data.currWindHndl)
+	# if data.appExclusiveness.has_key(data.currWindHndl): 
 
-			# #-- Triggering the merging process to update merged things . We give a bogus rule pronunciation.
-			# print "\n|>0-20191218122310| Using a 'bogusPronun' to Trigger the merging process, to update merged things (eg.CCR rules).",":->In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s|%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-			# MergeRulePronun(bogusPronun, False, False)		
+	# #--- Put back grammar and rules for the app
+	# print "\n|~ici20191218191823| Put back grammar and rules for curr app." , " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+	# # reStore_AllEnabledRule_ofApp(data.currWindHndl)  
+	# data.putBack_AllEnabledRule(data.currWindHndl)
+	#endregion (deprecated with new Caster)
 
-			print "\n", "20200317223538| *** CODE is Not modified yet for new Caster", " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-			#region--- TODO: Modify for new Caster 
-			# print "\n|~ici 20191208170030| set back exclusiveness| currUML['thingsToBeUniq']:", currUML["thingsToBeUniq"], " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-			# SetThingzToBeExclusive(currUML["thingsToBeUniq"], [], [], "Back To PreviousState _Of CurrApp")
-			#endregion TODO:  Modify for new Caster
+	#region 20191207150310: Back to previous state of exclusiveness.  
+	#--== Any UML layer?
+	# print "\n|~ici 20191207003726| data.count_UML_ofApp(data.currWindHndl):",data.count_UML_ofApp(data.currWindHndl) , " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+	if data.count_UML_ofApp(data.currWindHndl) > 0:
+		#-- activate excluseveness the grammar of that UML
+		currUML = get_currUniqModeLayer_ofApp(data.currWindHndl)
 
-		#--== 
-		else: #No any UML layer
-			#---== Set back Excluvenisse of where it was
-			# Exclusiveness.getAllGram()
-			#--- for 'Normal' Grammars 
-			# enableR(data.restore_enablebRules_associatedWithApp(data.currWindHndl)) #not sure if this is ok with new Caster. Or the line below.
-			restoredRules_className = data.restore_enablebRules_associatedWithApp(data.currWindHndl)
-   			Set_Exclusiveness_ForRules(restoredRules_className)
+		# #-- Triggering the merging process to update merged things . We give a bogus rule pronunciation.
+		# print "\n|>0-20191218122310| Using a 'bogusPronun' to Trigger the merging process, to update merged things (eg.CCR rules).",":->In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s|%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+		# MergeRulePronun(bogusPronun, False, False)		
 
-		#endregion 
+		print "\n", "20200317223538| *** CODE is Not modified yet for new Caster", " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+		#region--- TODO: Modify for new Caster 
+		# print "\n|~ici 20191208170030| set back exclusiveness| currUML['thingsToBeUniq']:", currUML["thingsToBeUniq"], " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+		# SetThingzToBeExclusive(currUML["thingsToBeUniq"], [], [], "Back To PreviousState _Of CurrApp")
+		#endregion TODO:  Modify for new Caster
 
-	#--- Case: Current App doesn't have any data previously stored 
-	else:
-		#--- put back the 'default' things
-		print "\n|~ici 20191215133611| put back the 'default' things.",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-		reStore_AllEnabledRule_ofApp(ct.default) #no need to have a methode?.
-		# data.putBack_AllEnabledRule(ct.default)
+	#--== 
+	else: #No any UML layer
+		#---== Set back Excluvenisse of where it was
+		# Exclusiveness.getAllGram()
+		#--- for 'Normal' Grammars 
+		# enableR(data.restore_enablebRules_associatedWithApp(data.currWindHndl)) #not sure if this is ok with new Caster. Or the line below.
+		restoredRules_className = data.restore_enablebRules_associatedWithApp(data.currWindHndl)
+		Set_Exclusiveness_ForRules(restoredRules_className)
+
+	#endregion 
+
+	# #--- Case: Current App doesn't have any data previously stored 
+	# else:
+	# 	#--- put back the 'default' things
+	# 	print "\n|~ici 20191215133611| put back the 'default' things.",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+	# 	reStore_AllEnabledRule_ofApp(ct.default) #no need to have a methode?.
+	# 	# data.putBack_AllEnabledRule(ct.default)
 
 
 
