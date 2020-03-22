@@ -10,6 +10,7 @@ from castervoice.lib.control import _NEXUS
 from dragonfly.engines import (_default_engine)
 
 from castervoice.exclusiveness.globalVariable import GlobalV as gl
+from castervoice.exclusiveness.get_AllActiveRules import get_AllActiveRules
 
 
 def init():
@@ -120,7 +121,8 @@ class data_manager(object):
 
 		# self.appGramAndRules[aWindHndl]._AllEnabledRule = _NEXUS._grammar_manager._config._config.get_enabled_rcns_ordered()[:]
 		# self.appGramAndRules[aWindHndl]._AllEnabledRule = list(_NEXUS._grammar_manager._config._config[RulesConfig._ENABLED_ORDERED])
-		self.appGramAndRules[aWindHndl]._AllEnabledRule = gl.RbeenExclusive
+		# self.appGramAndRules[aWindHndl]._AllEnabledRule = gl.RbeenExclusive
+		self.appGramAndRules[aWindHndl]._AllEnabledRule = list(get_AllActiveRules())
 		
 	def putBack_AllEnabledRule(self, aWindHndl):
 		""" reverse of: 'def makeAcopy_AllEnabledRule' """
