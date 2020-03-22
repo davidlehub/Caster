@@ -9,7 +9,8 @@ from castervoice.lib.control import _NEXUS
 # from rules.lib import TamFunction as TamFc
 from dragonfly.engines import (_default_engine)
 
-# from rules import GlobalV as gl
+from castervoice.exclusiveness.globalVariable import GlobalV as gl
+
 
 def init():
 	global data
@@ -71,10 +72,12 @@ class data_manager(object):
 			self.appGramAndRules[aWindHndl] = GramAndRules()
 
 		# self.appGramAndRules[aWindHndl]._AllEnabledRule = _NEXUS._grammar_manager._config._config.get_enabled_rcns_ordered()[:]
-		self.appGramAndRules[aWindHndl]._AllEnabledRule = list(_NEXUS._grammar_manager._config._config[RulesConfig._ENABLED_ORDERED])
+		# self.appGramAndRules[aWindHndl]._AllEnabledRule = list(_NEXUS._grammar_manager._config._config[RulesConfig._ENABLED_ORDERED])
+		self.appGramAndRules[aWindHndl]._AllEnabledRule = gl.RbeenExclusive
 		
 	def putBack_AllEnabledRule(self, aWindHndl):
 		""" reverse of: 'def makeAcopy_AllEnabledRule' """
+		print "\n", "20200322125831| TODO: to modif", " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
   		_NEXUS._grammar_manager._config._config[RulesConfig._ENABLED_ORDERED] = list(self.appGramAndRules[aWindHndl]._AllEnabledRule)
 		# _NEXUS._grammar_manager._managed_rules = self.appGramAndRules[aWindHndl]._AllEnabledRule.copy()	
 

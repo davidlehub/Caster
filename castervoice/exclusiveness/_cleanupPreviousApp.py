@@ -6,13 +6,13 @@ from castervoice.exclusiveness.appExist import appExist
 def _cleanupPreviousApp():
 	""" Cleanup/purge exclusiveness for previous app, IF needed """
 	if not data.prevWindHndl or not data.appExclusiveness.has_key(data.prevWindHndl):
-		# print "\n|~icici20191219125222| cancel function '_cleanupPreviousApp', bcz in 'if not data.prevWindHndl' " , " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+		# print "\n|~icici20191219125222| cancel function '_cleanupPreviousApp', bcz in 'if not data.prevWindHndl' " , " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno) #checked 20200322131735
 		# print "\b|~icici20191219125222b| or , bcz in 'if not data.appExclusiveness.has_key(data.prevWindHndl)' " , " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 		return	
 
-	#---- delete data.appExclusiveness if thre is no any UML layer... ANd when detec app (the handle) is no more exist
+	#---- delete data.appExclusiveness if thre is no any UML layer... ANd when detec app (the handle) is no more exist.
 	if data.count_UML_ofApp(data.prevWindHndl) <= 0:
-		# print "\n\t|~ici 20191208115134| delete data.appExclusiveness of previous app, bcz it has is no any UML layer.",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+		# print "\n\t|~ici 20191208115134| delete data.appExclusiveness of previous app, bcz it has is no any UML layer.",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno) #checked 20200322131735
 		del data.appExclusiveness[data.prevWindHndl]			
 
 	#---- Also delete data.appExclusiveness if that app doesn't exist anymore.
