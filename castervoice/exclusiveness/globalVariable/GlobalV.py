@@ -35,7 +35,14 @@ This variable is equivalent of: (gl.all_loadedRule_mergeRule + gl.all_loadedRule
  """
 RbeenExclusive = []
 
+#region--- to get all active rules: all_loadedRule_mappingRule + all_Merge_result 
 all_loadedRule_mappingRule = []
-all_loadedRule_mergeRule = []
+all_loadedRule_mergeRule = [] #TODO: to delete?
+""" (david)
+Interesting: 'all_Merge_result.all_rule_class_names', exemple, = ['Alphabet', 'Navigation', 'Numbers', 'Punctuation', 'HistoryRule', 'ChainAlias', 'BringRule'] 
+"""
+all_Merge_result = None #'all_Merge_result' is type of <C:\Users\HP\Documents\Caster\castervoice\lib\merge\ccrmerging2\merge_result.py>
+#endregion to get all active rules
+
 # all_MappingRulesLoaded_className = []
 #  all_MergeRulesLoaded_className = []

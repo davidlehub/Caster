@@ -9,4 +9,5 @@ class EventType(object):
     RULES_LOADED_EXCL = "rules loaded exclusive"
     APPCONTEXT_Matched_EXCL = "App Context Matched EXCL"
     REGISTER_Rule_EXCL = 'Register Rule EXCL'
+    REMERGE_CCR_RULES_EXCL = 'REMERGE CCR RULES EXCL'
     #endregion 
