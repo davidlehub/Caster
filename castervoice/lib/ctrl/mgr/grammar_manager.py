@@ -254,6 +254,7 @@ class GrammarManager(object):
 		"""
 		:return: RulesEnabledDiff
 		"""
+		print "\n", "dbg20200322165804| _remerge_ccr_rules(..).",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 		# if the global ccr toggle was off, activating a ccr rule turns it back on
 		self._ccr_toggle.set_active(True)
 
@@ -315,6 +316,7 @@ class GrammarManager(object):
 		:param enabled:
 		:return: RulesEnabledDiff
 		"""
+		print "\n", "dbg20200322165805| _enable_non_ccr_rule(..).",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 		
 		rcn = managed_rule.get_rule_class_name()
 		if enabled:

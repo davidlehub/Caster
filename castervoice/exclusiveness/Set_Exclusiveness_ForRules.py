@@ -11,7 +11,7 @@ from castervoice.exclusiveness.setGramToBeExclusive import setGramToBeExclusive
 # def Set_Exclusiveness_ForRules(Rule):
 def Set_Exclusiveness_ForRules(RulestoBeExclusive_className):
     #--- RulestoBeExclusive_className = list
-    # print "\n", "dbg 20200317152040| Gonna set exclusiv for: @RulestoBeExclusive_className:", RulestoBeExclusive_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+    print "\n", "dbg20200317152040| Gonna set exclusiv for: @RulestoBeExclusive_className:", RulestoBeExclusive_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
     # print "\n", "20200112220615| New caster: exclusiveness for| RulestoBeExclusive_className:", RulestoBeExclusive_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
     #--- Disable all Rules, except those we want to be exclusive.

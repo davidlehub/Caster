@@ -57,6 +57,8 @@ def createAndSetExclusiv_forCurrApp(CurrWindowData):
 	#-- A. no exclusiveness, bcz we want normal dragon vovabulary.
 	#-- B. Activate grammars we want to be with the dragon vocabulary, if any.		
 	if win.currentIs_DragonDictBox(data.currWindHndl): #TODO: Create a grammar for this app instead ??
+		pass #TODO: remove this pass...
+
 		print "\n", "20200317151843| Dected: win.currentIs_DragonDictBox.", " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 		#-- A.

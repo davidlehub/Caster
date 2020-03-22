@@ -37,14 +37,14 @@ def storeAll_LoadedRule(merge_rules=None, mapping_rule=None, mappingRule_anabled
 			# gl.all_loadedRule_mappingRule.add(mapping_rule.get_rule_class_name())
 			gl.all_loadedRule_mappingRule.append(mapping_rule)
 
-			print "\n", "20200319083742| MAPPING loaded and ENABLED :", mapping_rule.get_rule_class_name(), " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+			# print "\n", "20200319083742| MAPPING loaded and ENABLED :", mapping_rule.get_rule_class_name(), " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 			
 		elif not mappingRule_anabled:
 			try:
 				# gl.all_loadedRule_mappingRule.discard(mapping_rule.get_rule_class_name())
 				gl.all_loadedRule_mappingRule.remove(mapping_rule)
 
-				print "\n", "20200319083743| MAPPING loaded and DISABLED :", mapping_rule.get_rule_class_name(), " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+				# print "\n", "20200319083743| MAPPING loaded and DISABLED :", mapping_rule.get_rule_class_name(), " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 			except:
 				pass
 			

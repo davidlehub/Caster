@@ -3,9 +3,13 @@ from castervoice.lib.merge.ccrmerging2.hooks.base_hook import BaseHook
 from castervoice.lib.merge.ccrmerging2.hooks.events.event_types import EventType
 from castervoice.lib import printer
 
+from inspect import getframeinfo, stack, getframeinfo, currentframe
+
+
 def _apply_exclusiveness(grammar):
     try:
         grammar.set_exclusiveness(1)
+        print "\n", "dbg20200322172337| grammar set_exclusiveness(1):",grammar.name , " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
     except Exception as e:
         printer.out(e)
 

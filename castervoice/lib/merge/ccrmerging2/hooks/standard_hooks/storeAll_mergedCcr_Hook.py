@@ -12,7 +12,7 @@ from castervoice.exclusiveness.globalVariable import GlobalV as gl
 def storeAll_mergedCcr(all_Merge_result):
 
 	gl.all_Merge_result = all_Merge_result
-	# print "\n", "20200321231424| gl.all_Merge_result.all_rule_class_names:", gl.all_Merge_result.all_rule_class_names, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+	print "\n", "20200321231424| gl.all_Merge_result.all_rule_class_names:", gl.all_Merge_result.all_rule_class_names, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 			
 class storeAll_mergedCcr_Hook(BaseHook):
