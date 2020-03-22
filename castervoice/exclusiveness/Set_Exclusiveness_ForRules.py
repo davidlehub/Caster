@@ -42,7 +42,6 @@ def Set_Exclusiveness_ForRules(RulestoBeExclusive_className):
 
     print "\n", "20200319194948| gl.all_loadedRule_mappingRule:", [i.get_rule_class_name() for i in gl.all_loadedRule_mappingRule], " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
     print "\n", "20200319194949| gl.all_Merge_result.all_rule_class_names:", gl.all_Merge_result.all_rule_class_names, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-    # print "\n", "20200319194949| gl.all_loadedRule_mergeRule:", [i.get_rule_class_name() for i in gl.all_loadedRule_mergeRule], " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
     #--- Set Exclusiveness of all grammsar in the system (_default_engine).
     #--- Set ExclusiveHook = true. (in C:\Users\HP\AppData\Local\caster\settings\hooks.toml)
