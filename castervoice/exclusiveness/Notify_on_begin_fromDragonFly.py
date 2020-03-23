@@ -32,14 +32,14 @@ def Notify_on_begin_fromDragonFly():
 		#--== info user
 		activeWinPath = get_active_window_path()
 		if not activeWinPath:
-			print "\n|>1- Forground app changed. @activeWinPath= '",activeWinPath,"'<|20181110212118| In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s|%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+			print "\n", "20200323114542| @activeWinPath is None:", activeWinPath, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 			return False	
 		#endregion (? still needed?)
 
 
 		ForegroundAppProcessName = (os.path.splitext(os.path.basename(activeWinPath))[0]).lower()
 		CurrWindowData = CurrWindow_data(ForegroundAppProcessName)
-		print "\n|>--20181110212119| ** Forground app changed, process name: ", ForegroundAppProcessName , " |=> In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+		print "\n\n|>--20181110212119| ** Forground app changed, process name: ", ForegroundAppProcessName , " |=> In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 
 

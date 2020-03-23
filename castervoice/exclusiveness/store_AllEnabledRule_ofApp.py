@@ -15,9 +15,9 @@ def store_AllEnabledRule_ofApp(aWindHndl, aForce = False):
 
 	#--- do it
 	# data.makeAcopy_AllEnabledRule(aWindHndl)
-	data.store_enablebRules_associatedWithApp(data.prevWindHndl)
-
-	print "\n", "dbg20200322191551| done: data.store_enablebRules_associatedWithApp.",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+	data.store_enablebRules_associatedWithApp(data.prevWindHndl) # is 'data.prevWindHndl', not 'data.currWindHndl'
+	print "\n", "dbg20200322191551| Exclusive state saved.",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+	print "", "dbg20200322191551b| data.store_enablebRules_associatedWithApp(data.prevWindHndl):", data.restore_enablebRules_associatedWithApp(data.prevWindHndl),  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 	#region--- (old caster
 	# data.makeAcopy_AllEnabledRule(aWindHndl)

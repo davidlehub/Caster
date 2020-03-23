@@ -8,14 +8,17 @@ from castervoice.exclusiveness.globalVariable import GlobalV as gl
 
 def Update_RbeenExclusive(rule_className, active):
 
+	# print "\n", "dbg20200323124506| in Update_RbeenExclusive() | rule_className, active:", rule_className, active, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 	if active and (rule_className not in gl.RbeenExclusive):
 		gl.RbeenExclusive.append(rule_className)
-		print "\n", "dbg20200319191943| rule added to 'gl.RbeenExclusive':", rule_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+		print "\t", "dbg20200319191943| rule added to 'gl.RbeenExclusive':", rule_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 	else:
 		try:
+			print "\t", "dbg20200319191944a|Before gl.RbeenExclusive:", gl.RbeenExclusive, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 			gl.RbeenExclusive.remove(rule_className) #not sure about this line. It got exception?
-			print "\n", "dbg20200319191944| rule remove from 'gl.RbeenExclusive':", rule_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+			print "\t", "dbg20200319191944| rule remove from 'gl.RbeenExclusive':", rule_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+			print "\t", "dbg20200319191944b|After gl.RbeenExclusive:", gl.RbeenExclusive, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 		except :
 			pass
 #endregion (david)

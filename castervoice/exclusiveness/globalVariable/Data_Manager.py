@@ -354,7 +354,8 @@ class data_manager(object):
 
 	def restore_enablebRules_associatedWithApp(self,aWindHndl):
 		if self.appExclusiveness.has_key(aWindHndl):
-			return self.appExclusiveness[aWindHndl].enablebRules_associatedWithApp
+			# return self.appExclusiveness[aWindHndl].enablebRules_associatedWithApp
+			return list(self.appExclusiveness[aWindHndl].enablebRules_associatedWithApp)
 		else:
 			return []
 	#endregion (new caster)
