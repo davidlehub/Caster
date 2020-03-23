@@ -30,4 +30,4 @@ def enableR(targetRules_className):
 
 		_NEXUS._grammar_manager._change_rule_enabled(targetRule_className, True)
 
-		gl.RbeenExclusive.append(targetRule_className)
+		# gl.RbeenExclusive.append(targetRule_className)
