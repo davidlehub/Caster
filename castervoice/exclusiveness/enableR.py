@@ -23,11 +23,10 @@ def enableR(targetRules_className):
 			# print "\n", "20200319185240| skeep to enable rule:", targetRule_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 			#--- (Add to the list, bcz that rule gonna be exclusive)
-			gl.RbeenExclusive.append(targetRule_className)
+			if targetRule_className not in gl.RbeenExclusive:
+				gl.RbeenExclusive.append(targetRule_className)
 
 			continue
 		#endregion Optimizing by not enable rule already loaded
 
 		_NEXUS._grammar_manager._change_rule_enabled(targetRule_className, True)
-
-		# gl.RbeenExclusive.append(targetRule_className)

@@ -37,10 +37,3 @@ def disableR(targetRules_className,aExceptR=[]):
 
 		#--- Do It.	
 		_NEXUS._grammar_manager._change_rule_enabled(targetRule_className, False)
-		# try:
-		# 	gl.RbeenExclusive.remove(targetRule_className)
-		# 	# print "\n", "dbg20200319191945| rule remove from 'gl.RbeenExclusive':", targetRule_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-
-		# except :
-		# 	pass
-

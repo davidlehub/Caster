@@ -8,4 +8,3 @@ def setExclusivForGram_andMemorise(aRules):
 	"""	aRules: LIST 
 		"""
 	enableR(aRules)
-	# data.memoriseAppExclusiveness(aRules) #replaced by 'gl.RbeenExclusive.append()'
