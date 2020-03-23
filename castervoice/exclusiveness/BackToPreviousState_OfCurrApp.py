@@ -51,7 +51,10 @@ def BackToPreviousState_OfCurrApp():
 		#--- for 'Normal' Grammars 
 		# enableR(data.restore_enablebRules_associatedWithApp(data.currWindHndl)) #not sure if this is ok with new Caster. Or the line below.
 		restoredRules_className = data.restore_enablebRules_associatedWithApp(data.currWindHndl)
+		print "\n", "dbg20200322135904| (back to previoustate).| restoredRules_className:",restoredRules_className,  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+
 		Set_Exclusiveness_ForRules(restoredRules_className)
+		
 
 	#endregion 
 

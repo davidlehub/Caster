@@ -121,7 +121,7 @@ class data_manager(object):
 
 		# self.appGramAndRules[aWindHndl]._AllEnabledRule = _NEXUS._grammar_manager._config._config.get_enabled_rcns_ordered()[:]
 		# self.appGramAndRules[aWindHndl]._AllEnabledRule = list(_NEXUS._grammar_manager._config._config[RulesConfig._ENABLED_ORDERED])
-		self.appGramAndRules[aWindHndl]._AllEnabledRule = gl.RbeenExclusive
+		self.appGramAndRules[aWindHndl]._AllEnabledRule = list(gl.RbeenExclusive)
 		# self.appGramAndRules[aWindHndl]._AllEnabledRule = list(get_AllActiveRules())
 
 		
@@ -342,13 +342,15 @@ class data_manager(object):
 
 	#region--- (new caster
 	def store_enablebRules_associatedWithApp(self,aWindHndl):
-		if not self.appExclusiveness.has_key(self.currWindHndl):
-			self.appExclusiveness[self.currWindHndl] = Exclusiveness()
+		# if not self.appExclusiveness.has_key(self.currWindHndl):
+		if not self.appExclusiveness.has_key(aWindHndl):
+			self.appExclusiveness[aWindHndl] = Exclusiveness()
 		# 	self.appExclusiveness[aWindHndl].enablebRules_associatedWithApp = list(_NEXUS._grammar_manager._config._config[RulesConfig._ENABLED_ORDERED])
 	
 		# else:
 		#--- TODO: not sure about 'list(_NEXUS._grammar_manager._config._config[RulesConfig._ENABLED_ORDERED])'
-		self.appExclusiveness[aWindHndl].enablebRules_associatedWithApp = list(_NEXUS._grammar_manager._config._config[RulesConfig._ENABLED_ORDERED])
+		# self.appExclusiveness[aWindHndl].enablebRules_associatedWithApp = list(_NEXUS._grammar_manager._config._config[RulesConfig._ENABLED_ORDERED])
+		self.appExclusiveness[aWindHndl].enablebRules_associatedWithApp = list(gl.RbeenExclusive)
 
 	def restore_enablebRules_associatedWithApp(self,aWindHndl):
 		if self.appExclusiveness.has_key(aWindHndl):

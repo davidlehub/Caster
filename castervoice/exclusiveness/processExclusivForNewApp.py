@@ -25,7 +25,6 @@ def processExclusivForNewApp(CurrWindowData):
 	#--- Backup Grammars and rules of previous app, before restoring/cleanup.
 	# #--- id2020009170651: do it only >> if the app exist (not closed).
 	store_AllEnabledRule_ofApp(data.prevWindHndl)
-	# store_EnabledRule_byApp(data.prevWindHndl)
 
 	# #-- 20191205214327
 	#--- Cleanup/purge exclusiveness for previous app, IF needed
@@ -42,7 +41,6 @@ def processExclusivForNewApp(CurrWindowData):
 	if data.appExclusiveness.has_key(data.currWindHndl): 
 
 
-		print "\n", "dbg20200322135904| (back to previoustate).",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 		BackToPreviousState_OfCurrApp() 
 
 	# #region--- Case: 'dragon dictatation box' is the forgrounde window.
