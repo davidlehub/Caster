@@ -34,6 +34,7 @@ This variable is equivalent of: (gl.all_Merge_result + gl.all_loadedRule_mapping
     list(OrderedDict.fromkeys(gl.all_Merge_result.all_rule_class_names + [i.get_rule_class_name() for i in gl.all_loadedRule_mappingRule]))
  """
 RbeenExclusive = []
+GbeenExclusive = [] #Grammars been exclusive.
 
 #region--- to get all active rules: all_loadedRule_mappingRule + all_Merge_result 
 all_loadedRule_mappingRule = []

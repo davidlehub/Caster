@@ -9,6 +9,7 @@ class ExclusivMode_class(object):
         # self.disabled = True
         self.enabledApplicant = ""
 
+    #__ TODO: refactory this line and the 'def set_enabled()'.
     enabled = property(attrgetter("_enabled")) #read only, use 'set_enabled' to write.
 
     def set_enabled(self,b, apl=""):

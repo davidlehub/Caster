@@ -43,7 +43,9 @@ if settings.SETTINGS["sikuli"]["enabled"]:
 print("\n*- Starting " + settings.SOFTWARE_NAME + " -*")
 
 
+
 #region---=== David
+from inspect import getframeinfo, stack, getframeinfo, currentframe
 from castervoice.exclusiveness.globalVariable import Data_Manager
 from castervoice.exclusiveness import Constant as ct
 
@@ -72,95 +74,101 @@ store_AllEnabledRule_ofApp(ct.default, True)
 #endregion test OnFocusedWindowChanged
 
 #region--- GUI
-# print "\n", "20200311205425| show GUI for test simulation.",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-# import wx 
-# class Mywin(wx.Frame): 
-# 	def __init__(self, parent, title): 
-# 		super(Mywin, self).__init__(parent, title = title,size = (200,150))  
-# 		panel = wx.Panel(self) 
-# 		vbox = wx.BoxSizer(wx.VERTICAL) 
-			
-# 		self.btn = wx.Button(panel,-1,"Simulate NewAppDetected") 
-# 		vbox.Add(self.btn,0,wx.ALIGN_CENTER) 
-# 		self.btn.Bind(wx.EVT_BUTTON,self.NewAppDetected) 
-# 		# self.btn.Bind(wx.EVT_BUTTON,self.SimulateFocusedWIndowsChanged) 
-			
-# 		self.tbtn = wx.ToggleButton(panel , -1, "click to on") 
-# 		vbox.Add(self.tbtn,0,wx.EXPAND|wx.ALIGN_CENTER) 
-# 		self.tbtn.Bind(wx.EVT_TOGGLEBUTTON,self.OnToggle) 
-			
-# 		hbox = wx.BoxSizer(wx.HORIZONTAL) 
-			
-# 		bmp = wx.Bitmap("NEW.BMP", wx.BITMAP_TYPE_BMP) 
-# 		self.bmpbtn = wx.BitmapButton(panel, id = wx.ID_ANY, bitmap = bmp,
-# 		 	size = (bmp.GetWidth()+10, bmp.GetHeight()+10)) 
-			
-# 		# hbox.Add(self.bmpbtn,0,wx.ALIGN_CENTER) 
-# 		# self.bmpbtn.Bind(wx.EVT_BUTTON,self.NewAppDetected) 
-# 		# self.bmpbtn.SetLabel("NEW") 
-			
-# 		bmp1 = wx.Bitmap("OPEN.BMP", wx.BITMAP_TYPE_BMP) 
-# 		self.bmpbtn1 = wx.BitmapButton(panel, id = wx.ID_ANY, bitmap = bmp1,
-# 		 	size = (bmp.GetWidth()+10, bmp.GetHeight()+10)) 
-			
-# 		# hbox.Add(self.bmpbtn1,0,wx.ALIGN_CENTER) 
-# 		# self.bmpbtn1.Bind(wx.EVT_BUTTON,self.NewAppDetected) 
-# 		# self.bmpbtn1.SetLabel("OPEN") 
-			
-# 		bmp2 = wx.Bitmap("SAVE.BMP", wx.BITMAP_TYPE_BMP) 
-# 		self.bmpbtn2 = wx.BitmapButton(panel, id = wx.ID_ANY, bitmap = bmp2,
-# 		 	size = (bmp.GetWidth()+10, bmp.GetHeight()+10))
-			
-# 		# hbox.Add(self.bmpbtn2,0,wx.ALIGN_CENTER) 
-# 		# self.bmpbtn2.Bind(wx.EVT_BUTTON,self.NewAppDetected)
-# 		# self.bmpbtn2.SetLabel("SAVE") 
-			
-# 		vbox.Add(hbox,1,wx.ALIGN_CENTER) 
-# 		panel.SetSizer(vbox) 
-			
-# 		self.Centre() 
-# 		self.Show() 
-# 		self.Fit()  
-		
-# 	# def SimulateFocusedWIndowsChanged(self, event): #id20200108135455
-# 	def NewAppDetected(self, event_data): #id20200108135454
-# 		pass
-# 		# print "\n", "Gui button 'Simulate NewAppDetected' pressed.",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-# 		# OnFocusedWindowChanged()
-# 		#region--- (old)
-# 		# #--- (not True) !! carefull: when, for example, the Dictaion Box is been forground, the button will NOT respond.
-# 		# # gl.dbgInd["childs"] = gl.dbgInd["childs"] + "--|"
-		
-# 		# # print "\n", gl.dbgInd["childs"],"20200108204206| in 'def NewAppDetected'"
 
-# 		# btn = event.GetEventObject().GetLabel()
-# 		# TamFc.Notify_enter_context(None,None)
-# 		# # TamFc.handle_forgroundAppChanged()
+print "\n", "20200311205425| show GUI for test simulation.",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+import wx 
+class Mywin(wx.Frame): 
+	def __init__(self, parent, title): 
+		super(Mywin, self).__init__(parent, title = title,size = (200,150))  
+		panel = wx.Panel(self) 
+		vbox = wx.BoxSizer(wx.VERTICAL) 
+			
+		self.btn = wx.Button(panel,-1,"Simulate bt1") 
+		vbox.Add(self.btn,0,wx.ALIGN_CENTER) 
+		self.btn.Bind(wx.EVT_BUTTON,self.bt1) 
+		# self.btn.Bind(wx.EVT_BUTTON,self.SimulateFocusedWIndowsChanged) 
+			
+		self.tbtn = wx.ToggleButton(panel , -1, "click to on") 
+		vbox.Add(self.tbtn,0,wx.EXPAND|wx.ALIGN_CENTER) 
+		self.tbtn.Bind(wx.EVT_TOGGLEBUTTON,self.OnToggle) 
+			
+		hbox = wx.BoxSizer(wx.HORIZONTAL) 
+			
+		bmp = wx.Bitmap("NEW.BMP", wx.BITMAP_TYPE_BMP) 
+		self.bmpbtn = wx.BitmapButton(panel, id = wx.ID_ANY, bitmap = bmp,
+		 	size = (bmp.GetWidth()+10, bmp.GetHeight()+10)) 
+			
+		# hbox.Add(self.bmpbtn,0,wx.ALIGN_CENTER) 
+		# self.bmpbtn.Bind(wx.EVT_BUTTON,self.bt1) 
+		# self.bmpbtn.SetLabel("NEW") 
+			
+		bmp1 = wx.Bitmap("OPEN.BMP", wx.BITMAP_TYPE_BMP) 
+		self.bmpbtn1 = wx.BitmapButton(panel, id = wx.ID_ANY, bitmap = bmp1,
+		 	size = (bmp.GetWidth()+10, bmp.GetHeight()+10)) 
+			
+		# hbox.Add(self.bmpbtn1,0,wx.ALIGN_CENTER) 
+		# self.bmpbtn1.Bind(wx.EVT_BUTTON,self.bt1) 
+		# self.bmpbtn1.SetLabel("OPEN") 
+			
+		bmp2 = wx.Bitmap("SAVE.BMP", wx.BITMAP_TYPE_BMP) 
+		self.bmpbtn2 = wx.BitmapButton(panel, id = wx.ID_ANY, bitmap = bmp2,
+		 	size = (bmp.GetWidth()+10, bmp.GetHeight()+10))
+			
+		# hbox.Add(self.bmpbtn2,0,wx.ALIGN_CENTER) 
+		# self.bmpbtn2.Bind(wx.EVT_BUTTON,self.bt1)
+		# self.bmpbtn2.SetLabel("SAVE") 
+			
+		vbox.Add(hbox,1,wx.ALIGN_CENTER) 
+		panel.SetSizer(vbox) 
+			
+		self.Centre() 
+		self.Show() 
+		self.Fit()  
+		
+	# def SimulateFocusedWIndowsChanged(self, event): #id20200108135455
+	def bt1(self, event_data): #id20200108135454
+		# pass
+		from castervoice.exclusiveness.enableDNS import enableDNS
 
-# 		# # data.currWindHndl =  Window.get_foreground().handle
-# 		# # TamFc.processExclusivForNewApp(None,None)
+		enableDNS()
 
-# 		# # gl.dbgInd["childs"] = gl.dbgInd["childs"].replace('--|', '', 1)
-# 		#endregion 
+
+		# print "\n", "Gui button 'Simulate bt1' pressed.",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+		# OnFocusedWindowChanged()
+		#region--- (old)
+		# #--- (not True) !! carefull: when, for example, the Dictaion Box is been forground, the button will NOT respond.
+		# # gl.dbgInd["childs"] = gl.dbgInd["childs"] + "--|"
+		
+		# # print "\n", gl.dbgInd["childs"],"20200108204206| in 'def bt1'"
+
+		# btn = event.GetEventObject().GetLabel()
+		# TamFc.Notify_enter_context(None,None)
+		# # TamFc.handle_forgroundAppChanged()
+
+		# # data.currWindHndl =  Window.get_foreground().handle
+		# # TamFc.processExclusivForNewApp(None,None)
+
+		# # gl.dbgInd["childs"] = gl.dbgInd["childs"].replace('--|', '', 1)
+		#endregion 
 		
 		
-# 	def OnToggle(self,event): 
-# 		state = event.GetEventObject().GetValue() 
+	def OnToggle(self,event): 
+		state = event.GetEventObject().GetValue() 
 		
-# 		if state == True: 
-# 			print "Toggle button state off" 
-# 			event.GetEventObject().SetLabel("click to off") 
-# 		else: 
-# 			print " Toggle button state on" 
-# 			event.GetEventObject().SetLabel("click to on") 
+		if state == True: 
+			print "Toggle button state off" 
+			event.GetEventObject().SetLabel("click to off") 
+		else: 
+			print " Toggle button state on" 
+			event.GetEventObject().SetLabel("click to on") 
 				
-# app = wx.App() 
-# Mywin(None,  'Button demo') 
+app = wx.App() 
+Mywin(None,  'Button demo') 
 
 
-# # Mywin.Show(,)
-# # frm.Show()
-# # app.MainLoop()
+# Mywin.Show(,)
+# frm.Show()
+# app.MainLoop()
 
 #endregion--- GUI
 
