@@ -7,9 +7,18 @@ from castervoice.exclusiveness.enableR import enableR
 from castervoice.exclusiveness.setGramToBeExclusive import setGramToBeExclusive
 from castervoice.exclusiveness.get_AllActiveRules import get_AllActiveRules
 
+#region--- (This is how you annotate a function definitio)
+# def f(num1, ListOfString, my_float=3.5):
+#     # type: (int,List[str], float) -> float
+#     """Your function docstring goes here after the type definition."""
+#     return num1 + my_float 
+#endregion (This is how you annotate a function definitio)
 
 # def Set_Exclusiveness_ForRules(Rule):
 def Set_Exclusiveness_ForRules(RulestoBeExclusive_className):
+    # type: (List[str]) -> None
+    """  """
+
     #--- RulestoBeExclusive_className = list
     print "\n", "dbg20200317152040| Gonna set exclusiv for: @RulestoBeExclusive_className:", RulestoBeExclusive_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 

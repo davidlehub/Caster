@@ -14,11 +14,11 @@ from castervoice.exclusiveness.globalVariable.registeredRule_data import registe
 
 
 # def storeAll_RegisteredRule(merge_rules=None, mapping_rule=None, mappingRule_anabled=None):
-def storeAll_registeredRule(Rule_className, Rdetail):
+def storeAll_registeredRule(Rule_className, Rdetail, rule_class):
 	#--- For More info: on 'RuleDetails of: each rule in merge_rules, and  mapping_rule: C:\Users\HP\Documents\Caster\castervoice\lib\ctrl\mgr\rule_details.py
 
 	#--- 
-	registeredRuleData = registeredRule_data(Rule_className, Rdetail)
+	registeredRuleData = registeredRule_data(Rule_className, Rdetail, rule_class)
 	#--- 
 	gl.allRegisteredRule.add(registeredRuleData)
 
@@ -122,8 +122,9 @@ class storeAll_registeredRule_hook(BaseHook):
 		# print "\n", "ici 20200316130401|in run :" , " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 		class_name = event_data.class_name
 		details = event_data.details
+		rule_class = event_data.rule_class
 		
-		storeAll_registeredRule(class_name, details)
+		storeAll_registeredRule(class_name, details,rule_class)
 
 def get_hook():
 	return storeAll_registeredRule_hook

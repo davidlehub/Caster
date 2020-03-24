@@ -153,7 +153,8 @@ class GrammarManager(object):
 
 		#region--- (Manualy trigguer a hook, bcz the 'self._hooks_runner.execute(registerRule_ExclEvent...', at line above, doesn't works as expected.)
 		# print "", "20200316075256 _3| details.executable:", details.executable        
-		storeAll_registeredRule(class_name, details)
+		# storeAll_registeredRule(class_name, details)
+		storeAll_registeredRule(class_name, details, rule_class)
 		
 		#endregion (if the hook above is used, comment out inside this region)
 		#endregion (david)
@@ -263,17 +264,9 @@ class GrammarManager(object):
 		loaded_enabled_rcns = set(self._managed_rules.keys())
 		active_rule_class_names = [rcn for rcn in enabled_rcns if rcn in loaded_enabled_rcns]
 		active_mrs = [self._managed_rules[rcn] for rcn in active_rule_class_names]
-		
-
-		for mr in active_mrs:
-			Rinstance = mr.get_rule_instance()
-			print "\n", "ici202003244106| Rinstance:",Rinstance, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-			print "\n", "ici202003244107| Rinstance:",Rinstance.mapping, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 		active_ccr_mrs = [mr for mr in active_mrs if mr.get_details().declared_ccrtype is not None]
-		# print "\n", "ici202003244107| active_ccr_mrs:",active_ccr_mrs, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-		
-		
 		self._hooks_runner.execute(RulesLoadedEvent(active_mrs=active_mrs))
+		
 		#region--- (david)
 		self._hooks_runner.execute(rules_loaded_exclEvent(active_mrs=active_mrs))
 		#endregion 
