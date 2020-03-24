@@ -29,15 +29,9 @@ def set_UniqModeLay(new_UniqModeLayer_instance):
 
 	#__ Set "dynamically" the mapping
 	UniqMode_NonCCR_ruleClass.mapping = new_UniqModeLayer_instance.ending_cmd.copy()
-	print "\n", "ici20200324113228| UniqMode_NonCCR_ruleClass.mapping:", UniqMode_NonCCR_ruleClass.mapping, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-	# UniqMode_NonCCR_ruleClass.mapping = {"(done | finished)": R(Text("coucou 20200324113924"), rdescript="test test")} 
+	# print "\n", "ici20200324113228| UniqMode_NonCCR_ruleClass.mapping:", UniqMode_NonCCR_ruleClass.mapping, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 	#endregion Set "dynamically" the mapping attribute of the class 'UniqMode_NonCCR'
-	
-
-	# rule = UniqMode_NonCCR(mapping = new_UniqModeLayer_instance["ending_cmd"])
-	# rule = UniqMode_NonCCR(mapping = new_UniqModeLayer_instance.ending_cmd, name='UniqMode_NonCCR' + str(data.count_UML_ofApp(data.currWindHndl)))
-	# ['Alphabet', 'Numbers', UniqMode_NonCCR(UniqMode NonCCR0)]	
  
 	#__ 
  	new_UniqModeLayer_instance.uniqRule.append('UniqMode_NonCCR') #TODO: no need this one?
@@ -48,9 +42,7 @@ def set_UniqModeLay(new_UniqModeLayer_instance):
 
 	#__ Backup/store Rules been exclusive.
 	new_UniqModeLayer_instance.RbeenExclusive_stored = list(gl.RbeenExclusive)
-	# new_UniqModeLayer_instance["bkp_MergedCcRule_inf"] = currMergedCcRule_inf.copy()	
 
 	#__
 	#__ TODO: not sure about this calling.
-	# Set_Exclusiveness_ForRules(['UniqMode_NonCCR'])
 	Set_Exclusiveness_ForRules(new_UniqModeLayer_instance.RtoActivate)
