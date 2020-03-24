@@ -77,7 +77,8 @@ def createAndSetExclusiv_forCurrApp(CurrWindowData):
 			RulestoBeExclusive_className = DefaultRulesTobeExclsuive_className #use the setting >> default value, witch is same as the default of '_enabled_ordered' in rule.toml
 		else: 
 			#--- (Concatonate 2 list without duplicate element)
-			RulestoBeExclusive_className = list(OrderedDict.fromkeys(RulesToBeAlwayExclusive_className + RulesToBeAlwayExclusive_className + RulesRelatedToCurrWindow_className ))
+			RulestoBeExclusive_className = list(OrderedDict.fromkeys(RulesToBeAlwayExclusive_className +  RulesRelatedToCurrWindow_className ))
+			# RulestoBeExclusive_className = list(OrderedDict.fromkeys(RulesToBeAlwayExclusive_className + RulesToBeAlwayExclusive_className + RulesRelatedToCurrWindow_className ))
 
 
 		# from castervoice.exclusiveness.logRulesInfo import logRulesInfo

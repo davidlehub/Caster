@@ -5,6 +5,12 @@ Created on Jun 29, 2014
 '''
 import six
 
+#region--- (david)
+from castervoice.exclusiveness.globalVariable import Data_Manager
+#--- init
+Data_Manager.init()
+#endregion (david)
+
 if six.PY2:
 	import logging
 	logging.basicConfig()
@@ -46,11 +52,11 @@ print("\n*- Starting " + settings.SOFTWARE_NAME + " -*")
 
 #region---=== David
 from inspect import getframeinfo, stack, getframeinfo, currentframe
-from castervoice.exclusiveness.globalVariable import Data_Manager
+# from castervoice.exclusiveness.globalVariable import Data_Manager
 from castervoice.exclusiveness import Constant as ct
 
-#--- init
-Data_Manager.init()
+# #--- init
+# Data_Manager.init()
 from castervoice.exclusiveness.store_AllEnabledRule_ofApp import store_AllEnabledRule_ofApp
 store_AllEnabledRule_ofApp(ct.default, True)
 # from castervoice.exclusiveness.globalVariable.Data_Manager import data,GramAndRules
@@ -125,31 +131,38 @@ class Mywin(wx.Frame):
 		self.Show() 
 		self.Fit()  
 		
-	# def SimulateFocusedWIndowsChanged(self, event): #id20200108135455
-	def bt1(self, event_data): #id20200108135454
-		# pass
-		from castervoice.exclusiveness.enableDNS import enableDNS
+	def bt1(self, event_data): 
+		from castervoice.exclusiveness.globalVariable import GlobalV as gl
+		gl.allRegisteredRule
 
-		enableDNS()
-
-
-		# print "\n", "Gui button 'Simulate bt1' pressed.",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-		# OnFocusedWindowChanged()
-		#region--- (old)
-		# #--- (not True) !! carefull: when, for example, the Dictaion Box is been forground, the button will NOT respond.
-		# # gl.dbgInd["childs"] = gl.dbgInd["childs"] + "--|"
 		
-		# # print "\n", gl.dbgInd["childs"],"20200108204206| in 'def bt1'"
+	# def SimulateFocusedWIndowsChanged(self, event): #id20200108135455
 
-		# btn = event.GetEventObject().GetLabel()
-		# TamFc.Notify_enter_context(None,None)
-		# # TamFc.handle_forgroundAppChanged()
+	
+	# def bt1(self, event_data): 
+	# 	# pass
+	# 	from castervoice.exclusiveness.enableDNS import enableDNS
 
-		# # data.currWindHndl =  Window.get_foreground().handle
-		# # TamFc.processExclusivForNewApp(None,None)
+	# 	enableDNS()
 
-		# # gl.dbgInd["childs"] = gl.dbgInd["childs"].replace('--|', '', 1)
-		#endregion 
+
+	# 	# print "\n", "Gui button 'Simulate bt1' pressed.",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+	# 	# OnFocusedWindowChanged()
+	# 	#region--- (old)
+	# 	# #--- (not True) !! carefull: when, for example, the Dictaion Box is been forground, the button will NOT respond.
+	# 	# # gl.dbgInd["childs"] = gl.dbgInd["childs"] + "--|"
+		
+	# 	# # print "\n", gl.dbgInd["childs"],"20200108204206| in 'def bt1'"
+
+	# 	# btn = event.GetEventObject().GetLabel()
+	# 	# TamFc.Notify_enter_context(None,None)
+	# 	# # TamFc.handle_forgroundAppChanged()
+
+	# 	# # data.currWindHndl =  Window.get_foreground().handle
+	# 	# # TamFc.processExclusivForNewApp(None,None)
+
+	# 	# # gl.dbgInd["childs"] = gl.dbgInd["childs"].replace('--|', '', 1)
+	# 	#endregion 
 		
 		
 	def OnToggle(self,event): 

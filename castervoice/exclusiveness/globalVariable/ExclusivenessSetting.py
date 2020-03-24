@@ -1,12 +1,14 @@
 ﻿
+#__ 
+Rule_UniqMode_NonCCR = ['UniqMode_NonCCR']
+
 #--- (Copy of '_enabled_ordered' in rules.toml)
-DefaultRulesTobeExclsuive_className = ["Alphabet", "Navigation", "NavigationNon", "Numbers", "Punctuation", "CasterRule", "HardwareRule", "MouseAlternativesRule", "WindowManagementRule", "DouglasGridRule", "RainbowGridRule", "SudokuGridRule", "HMCRule", "HMCConfirmRule", "HMCDirectoryRule", "HMCHistoryRule", "HMCLaunchRule", "HMCSettingsRule", "HistoryRule", "ChainAlias", "Alias", "BringRule", "Again", "LegionGridRule", "DragonRule", "GrammarActivatorRule", "HooksActivationRule", "TransformersActivationRule"]
+DefaultRulesTobeExclsuive_className = ["Alphabet", "Navigation", "NavigationNon", "Numbers", "Punctuation", "CasterRule", "HardwareRule", "MouseAlternativesRule", "WindowManagementRule", "DouglasGridRule", "RainbowGridRule", "SudokuGridRule", "HMCRule", "HMCConfirmRule", "HMCDirectoryRule", "HMCHistoryRule", "HMCLaunchRule", "HMCSettingsRule", "HistoryRule", "ChainAlias", "Alias", "BringRule", "Again", "LegionGridRule", "DragonRule", "GrammarActivatorRule", "HooksActivationRule", "TransformersActivationRule"] + Rule_UniqMode_NonCCR
 
 #--- set of Rules that are alway needed, most of time.
 #--- ex.: Let say, Visual studio Code is the forground window, then the rules 'VSCodeCcrRule' and 'VSCodeNonCcrRule' are added to this list (RulesToBeAlwayExclusive_className)
 #--- TODO: maybe: let user the option to specify when he create the grammar? Especially for: "Alphabet", "Navigation", "NavigationNon", "Numbers", "Punctuation".
-RulesToBeAlwayExclusive_className = ["Alphabet", "Navigation", "NavigationNon", "Numbers", "Punctuation", "CasterRule", "HardwareRule", "MouseAlternativesRule", "WindowManagementRule", "DouglasGridRule", "RainbowGridRule", "SudokuGridRule", "HMCRule", "HMCConfirmRule", "HMCDirectoryRule", "HMCHistoryRule", "HMCLaunchRule", "HMCSettingsRule", "HistoryRule", "ChainAlias", "Alias", "BringRule", "Again", "LegionGridRule", "DragonRule", "GrammarActivatorRule", "HooksActivationRule", "TransformersActivationRule"]
-
+RulesToBeAlwayExclusive_className = ["Alphabet", "Navigation", "NavigationNon", "Numbers", "Punctuation", "CasterRule", "HardwareRule", "MouseAlternativesRule", "WindowManagementRule", "DouglasGridRule", "RainbowGridRule", "SudokuGridRule", "HMCRule", "HMCConfirmRule", "HMCDirectoryRule", "HMCHistoryRule", "HMCLaunchRule", "HMCSettingsRule", "HistoryRule", "ChainAlias", "Alias", "BringRule", "Again", "LegionGridRule", "DragonRule", "GrammarActivatorRule", "HooksActivationRule", "TransformersActivationRule"] + Rule_UniqMode_NonCCR
 # RulesToBeAlwayExclusive_className = ['GrammarActivatorRule','HooksActivationRule','TransformersActivationRule']
 
 

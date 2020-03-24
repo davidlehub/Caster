@@ -148,7 +148,7 @@ class GrammarManager(object):
 		#region--- (david)
 		#--- (Problem with The hook: only trigger the event fiew times (3). It supposed to triggue lots.
   		#--- Seems like not all the hooks are  registered yet at this point.
-    	#---  So, decide to not use Hook-Event here.)
+		#---  So, decide to not use Hook-Event here.)
 		# self._hooks_runner.execute(registerRule_ExclEvent(class_name=class_name, details=details)) #david
 
 		#region--- (Manualy trigguer a hook, bcz the 'self._hooks_runner.execute(registerRule_ExclEvent...', at line above, doesn't works as expected.)
@@ -252,8 +252,9 @@ class GrammarManager(object):
 
 	def _remerge_ccr_rules(self, enabled_rcns):
 		"""
-		:return: RulesEnabledDiff
+		:return: RulesEnabledDiff abledDif
 		"""
+		# print "\n", "ici20200324073513| enabled_rcns:", enabled_rcns, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 		# print "\n", "dbg20200322165804| _remerge_ccr_rules(..).",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 		# if the global ccr toggle was off, activating a ccr rule turns it back on
 		self._ccr_toggle.set_active(True)
@@ -262,7 +263,16 @@ class GrammarManager(object):
 		loaded_enabled_rcns = set(self._managed_rules.keys())
 		active_rule_class_names = [rcn for rcn in enabled_rcns if rcn in loaded_enabled_rcns]
 		active_mrs = [self._managed_rules[rcn] for rcn in active_rule_class_names]
+		
+
+		for mr in active_mrs:
+			Rinstance = mr.get_rule_instance()
+			print "\n", "ici202003244106| Rinstance:",Rinstance, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+			print "\n", "ici202003244107| Rinstance:",Rinstance.mapping, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 		active_ccr_mrs = [mr for mr in active_mrs if mr.get_details().declared_ccrtype is not None]
+		# print "\n", "ici202003244107| active_ccr_mrs:",active_ccr_mrs, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+		
+		
 		self._hooks_runner.execute(RulesLoadedEvent(active_mrs=active_mrs))
 		#region--- (david)
 		self._hooks_runner.execute(rules_loaded_exclEvent(active_mrs=active_mrs))
@@ -291,7 +301,7 @@ class GrammarManager(object):
 		merge_result = self._merger.merge_rules(active_ccr_mrs, sorter) #'merge_result' is type of <C:\Users\HP\Documents\Caster\castervoice\lib\merge\ccrmerging2\merge_result.py>
 		
 		#region--- (david)
-		print "\n", "20200319202237| merge_result.all_rule_class_names:", merge_result.all_rule_class_names, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+		# print "\n", "20200319202237| merge_result.all_rule_class_names:", merge_result.all_rule_class_names, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 		# self._hooks_runner.execute(remerge_ccr_rules_exclEvent(merge_result.all_rule_class_names))
 		self._hooks_runner.execute(remerge_ccr_rules_exclEvent(merge_result))
 		#endregion (david)		

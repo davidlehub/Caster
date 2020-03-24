@@ -418,6 +418,7 @@ class data_manager(object):
 		# else:
 		# 	return []
 
+
 	def restore_engineGrammars(self, aEngineGramToPutBack):
 			s1 = set(aEngineGramToPutBack).difference(set(get_engine().grammars))
 			# print "\n|~ici 20191216175523| s1:", s1, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
