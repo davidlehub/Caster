@@ -1,11 +1,13 @@
 from inspect import getframeinfo, stack, getframeinfo, currentframe
-from castervoice.lib.control import _NEXUS
 from castervoice.exclusiveness.globalVariable import GlobalV as gl
 from collections import OrderedDict
 from castervoice.exclusiveness.get_AllActiveRules import get_AllActiveRules
 
 
 def disableR(targetRules_className,aExceptR=[]):
+	
+	from castervoice.lib.control import _NEXUS
+
 	for targetRule_className in targetRules_className:
 
 		if targetRule_className in aExceptR:

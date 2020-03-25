@@ -6,7 +6,8 @@ from dragonfly.engines import (_default_engine)
 
 from dragonfly.grammar.grammar_base import Grammar
 
-def enableDNS(CompanionRules_clasName=[]):
+def enableDNS(CompanionRules_clasName=None):
+    """ if CompanionRules_clasName=None: Only exclusiveness is deactiavated: DNS vocabularies are available. (All rules (Caster's) currently been activate are idem) """
 
     print "\n", "(exclusiveness) is OFF."
 

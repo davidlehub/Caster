@@ -1,6 +1,5 @@
 from inspect import getframeinfo, stack, getframeinfo, currentframe
 from castervoice.exclusiveness.globalVariable import GlobalV as gl
-from castervoice.lib.control import _NEXUS
 from collections import OrderedDict
 from castervoice.exclusiveness.get_AllActiveRules import get_AllActiveRules
 
@@ -10,6 +9,8 @@ from castervoice.exclusiveness.get_AllActiveRules import get_AllActiveRules
 def enableR(targetRules_className):
 	""" Enables Rules so they gonna be part of exclusiveness """
 	 
+	from castervoice.lib.control import _NEXUS
+
 	for targetRule_className in targetRules_className:
 		if targetRule_className in gl.RbeenExclusive:
 			# print "\n", "20200316170549| skeep targetRule_className:", targetRule_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)

@@ -1,4 +1,6 @@
+#region--- (Import)
 from inspect import getframeinfo, stack, getframeinfo, currentframe
+from typing import Callable, Iterator, Union, Optional, List, Dict
 from dragonfly.engines import (_default_engine)
 from castervoice.exclusiveness.globalVariable import GlobalV as gl
 from castervoice.exclusiveness.globalVariable.Data_Manager import data, Exclusiveness,GramAndRules
@@ -6,6 +8,8 @@ from castervoice.exclusiveness.disableR import disableR
 from castervoice.exclusiveness.enableR import enableR
 from castervoice.exclusiveness.setGramToBeExclusive import setGramToBeExclusive
 from castervoice.exclusiveness.get_AllActiveRules import get_AllActiveRules
+
+#endregion (Import)
 
 #region--- (This is how you annotate a function definitio)
 # def f(num1, ListOfString, my_float=3.5):
@@ -15,10 +19,9 @@ from castervoice.exclusiveness.get_AllActiveRules import get_AllActiveRules
 #endregion (This is how you annotate a function definitio)
 
 # def Set_Exclusiveness_ForRules(Rule):
-def Set_Exclusiveness_ForRules(RulestoBeExclusive_className):
+def Set_Exclusiveness_ForRules(RulestoBeExclusive_className): 
     # type: (List[str]) -> None
     """  """
-
     #--- RulestoBeExclusive_className = list
     print "\n", "dbg20200317152040| Gonna set exclusiv for: @RulestoBeExclusive_className:", RulestoBeExclusive_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 

@@ -72,10 +72,11 @@ def createAndSetExclusiv_forCurrApp(CurrWindowData):
 		#--- Find out witch rule matched... id20200318101805
 		RulesRelatedToCurrWindow_className = get_RulesRelatedToAWindow(CurrWindowData)
 
-		#--- if the current windows don't have rule related to it, we use the default rules
+		#--- if the current windows don't have rule related to it (context rule), we use the default rules
 		if len(RulesRelatedToCurrWindow_className) == 0:
-			RulestoBeExclusive_className = DefaultRulesTobeExclsuive_className #use the setting >> default value, witch is same as the default of '_enabled_ordered' in rule.toml
-		else: 
+			RulestoBeExclusive_className = RulesToBeAlwayExclusive_className #use the setting >> default value, witch is same as the default of '_enabled_ordered' in rule.toml
+			# RulestoBeExclusive_className = DefaultRulesTobeExclsuive_className #use the setting >> default value, witch is same as the default of '_enabled_ordered' in rule.toml
+		else: #Current window have context rule(s)
 			#--- (Concatonate 2 list without duplicate element)
 			RulestoBeExclusive_className = list(OrderedDict.fromkeys(RulesToBeAlwayExclusive_className +  RulesRelatedToCurrWindow_className ))
 			# RulestoBeExclusive_className = list(OrderedDict.fromkeys(RulesToBeAlwayExclusive_className + RulesToBeAlwayExclusive_className + RulesRelatedToCurrWindow_className ))
