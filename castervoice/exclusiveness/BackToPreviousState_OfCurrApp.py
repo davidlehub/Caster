@@ -30,7 +30,8 @@ def BackToPreviousState_OfCurrApp():
 	#region 20191207150310: Back to previous state of exclusiveness.  
 	#--== Any UML layer?
 	# print "\n|~ici 20191207003726| data.count_UML_ofApp(data.currWindHndl):",data.count_UML_ofApp(data.currWindHndl) , " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-	if data.count_UML_ofApp(data.currWindHndl) > 0:
+	if bool(False): #for new Caster, no need this 'if'. So we jump to 'else' part.
+	# if data.count_UML_ofApp(data.currWindHndl) > 0:
 		#-- activate excluseveness the grammar of that UML
 		currUML = get_currUniqModeLayer_ofApp(data.currWindHndl)
 
@@ -38,11 +39,12 @@ def BackToPreviousState_OfCurrApp():
 		# print "\n|>0-20191218122310| Using a 'bogusPronun' to Trigger the merging process, to update merged things (eg.CCR rules).",":->In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s|%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 		# MergeRulePronun(bogusPronun, False, False)		
 
-		print "\n", "20200317223538| *** CODE is Not modified yet for new Caster", " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-		#region--- TODO: Modify for new Caster 
-		# print "\n|~ici 20191208170030| set back exclusiveness| currUML['thingsToBeUniq']:", currUML["thingsToBeUniq"], " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-		# SetThingzToBeExclusive(currUML["thingsToBeUniq"], [], [], "Back To PreviousState _Of CurrApp")
-		#endregion TODO:  Modify for new Caster
+		#____ restore exclusive state
+		restored_RbeenExclusive = list(currUML.RbeenExclusive_stored)
+		print "\n|dbg20191208170030| set back exclusiveness of UML| restored_RbeenExclusive",restored_RbeenExclusive,  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+		#__ 
+		Set_Exclusiveness_ForRules(restored_RbeenExclusive)
+
 
 	#--== 
 	else: #No any UML layer
@@ -51,7 +53,7 @@ def BackToPreviousState_OfCurrApp():
 		#--- for 'Normal' Grammars 
 		# enableR(data.restore_enablebRules_associatedWithApp(data.currWindHndl)) #not sure if this is ok with new Caster. Or the line below.
 		restoredRules_className = data.restore_enablebRules_associatedWithApp(data.currWindHndl)
-		print "\n", "dbg20200322135904| back to previoustate | restoredRules_className:",restoredRules_className,  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+		# print "\n", "dbg20200322135904| back to previoustate | restoredRules_className:",restoredRules_className,  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 		Set_Exclusiveness_ForRules(restoredRules_className)
 		

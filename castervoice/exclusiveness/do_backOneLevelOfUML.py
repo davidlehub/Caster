@@ -57,20 +57,16 @@ def do_backOneLevelOfUML(CurrUniqModeLayer):
 	# _NEXUS.merger.wipe() #20191128211839
 	#endregion (comments)
  
-	# #--== remove from history, and at same time put removed item in our target varibale.:
-	# CurrUniqModeLayer =  data.pop_UML_ofCurrApp()
-
-	retored_RbeenExclusive = CurrUniqModeLayer.RbeenExclusive_stored
+	#____ restore exclusive state
+	restored_RbeenExclusive = list(CurrUniqModeLayer.RbeenExclusive_stored)
 	# _NEXUS._grammar_manager._managed_rules = CurrUniqModeLayer["bkp_AllEnabledRule"].copy()
-
 	#__ 
-	Set_Exclusiveness_ForRules(retored_RbeenExclusive)
+	Set_Exclusiveness_ForRules(restored_RbeenExclusive)
 
-	#__ 
+	#____ Cleanup/reset/reinitialise 
 	# set_mapping_UniqMode_NonCCR({"!!!": None}) # some thing that will never speeched by user.
 	set_mapping_UniqMode_NonCCR({}) #
 	disableR([ct.UniqMode_NonCCR_className]) #have to, if not the spec is still available.
-
 	CurrUniqModeLayer = None
  
 	#--{20191128224442 vers 20191128204732
