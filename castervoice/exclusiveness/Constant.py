@@ -13,3 +13,4 @@
 
 default = 'default'
 uniqModeTitle_modifierHandle = "modifier handle"
+UniqMode_NonCCR_className = 'UniqMode_NonCCR'

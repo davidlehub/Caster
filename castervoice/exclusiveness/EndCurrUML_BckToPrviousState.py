@@ -1,8 +1,9 @@
 from inspect import getframeinfo, stack, getframeinfo, currentframe
 
 def EndCurrUML_BckToPrviousState(): #20191123223011
-    print "\n", "!!20200323233645| Not Implemented yet.",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-    return
+    
+    # print "\n", "!!20200323233645| Not Implemented yet.",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+    # return
     
     print "\n-->20181122065858| in def EndCurrUML_BckToPrviousState:"
 

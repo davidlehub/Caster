@@ -1,4 +1,5 @@
 from inspect import getframeinfo, stack, getframeinfo, currentframe
+from castervoice.lib.merge.mergerule import MergeRule
 
 
 # ,'CasterRule', 'HardwareRule','DragonRule'
@@ -47,3 +48,6 @@ all_Merge_result = None #'all_Merge_result' is type of <C:\Users\HP\Documents\Ca
 
 # all_MappingRulesLoaded_className = []
 #  all_MergeRulesLoaded_className = []
+
+#__ Uniq Mode
+UniqMode_NonCCR_ruleClass = None # type: MergeRule

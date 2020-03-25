@@ -6,7 +6,8 @@ from castervoice.lib.const import CCRType
 class UniqMode_NonCCR(MergeRule): # (note: this an exmple of using 'MergeRule' without making it been CCR)
 	name = ""
 	mapping = {
-		"!!!": {}
+		"!!!": None
+		# "!!!": {}
 	}
 def get_rule():
 	
