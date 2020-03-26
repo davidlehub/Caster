@@ -1,0 +1,13 @@
+@echo off
+echo Runnig DNS/DPI from Dragonfly CLI with Natlink.
+
+set currentpath=%~dp0
+
+TITLE Caster: Status Window
+<<<<<<< HEAD
+cmd /c python -m dragonfly load --engine natlink _*.py
+=======
+python -m dragonfly load --engine natlink _*.py --no-recobs-messages
+>>>>>>> 3be34fe99dfcd41cb5e803a0aafec42eedea3a6c
+
+pause 1

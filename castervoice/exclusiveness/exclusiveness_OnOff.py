@@ -13,7 +13,7 @@ def exclusiveness_OnOff(On):
         
         ExclusivMode.set_enabled(True)
         
-        Set_Exclusiveness_ForRules(gl.RbeenActive)
+        # Set_Exclusiveness_ForRules(gl.RbeenActive)
 
         for grammar in _default_engine.grammars:
             # if grammar.loaded:
