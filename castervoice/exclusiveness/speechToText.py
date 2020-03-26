@@ -1,5 +1,5 @@
 from inspect import getframeinfo, stack, getframeinfo, currentframe
-from castervoice.exclusiveness.enableDNS import enableDNS
+from castervoice.exclusiveness.enableDNS_byTurnOff_exclusiveness import enableDNS_byTurnOff_exclusiveness
 from castervoice.exclusiveness.set_UniqModeLayer import set_UniqModeLay
 from castervoice.exclusiveness.UniqModeLayer import UniqModeLayer
 from castervoice.exclusiveness.EndCurrUML_BckToPrviousState import EndCurrUML_BckToPrviousState
@@ -20,7 +20,7 @@ def speechToText(ending_cmd="",CompanionRules_clasName=[]):
 	""" """
 	print "\n", "20200324185910|  ending_cmd,CompanionRules_clasName:",  ending_cmd,CompanionRules_clasName, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 	return
-	enableDNS()
+	enableDNS_byTurnOff_exclusiveness()
 	
 
  

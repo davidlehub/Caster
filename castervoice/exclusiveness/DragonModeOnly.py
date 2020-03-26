@@ -2,7 +2,7 @@ from inspect import getframeinfo, stack, getframeinfo, currentframe
 from typing import Callable, Iterator, Union, Optional, List, Dict
 from castervoice.exclusiveness.ExclusivMode_class import ExclusivMode
 from castervoice.exclusiveness.globalVariable.Data_Manager import data
-from castervoice.exclusiveness.enableDNS import enableDNS
+from castervoice.exclusiveness.enableDNS_byTurnOff_exclusiveness import enableDNS_byTurnOff_exclusiveness
 
 #region--- (This is how you annotate a function definitio)
 # For mappings, we need the types of both keys and values
@@ -28,7 +28,7 @@ def DragonModeOnly(aEnableExclusiveMode=False):
 
 	RbeenExclusive = list(data.restore_enablebRules_associatedWithApp(data.currWindHndl))
 
-	enableDNS()
+	enableDNS_byTurnOff_exclusiveness()
 	# unsetExclusivenessForGram(data.restore_enablebRules_associatedWithApp(data.currWindHndl))
 
 	return RbeenExclusive
