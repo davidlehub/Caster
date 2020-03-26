@@ -10,14 +10,25 @@ from castervoice.exclusiveness.Set_Exclusiveness_ForRules import Set_Exclusivene
 def exclusiveness_OnOff(On):
 
     if On:
-        print "\n", "(exclusiveness) is ON."
         
         ExclusivMode.set_enabled(True)
         
         Set_Exclusiveness_ForRules(gl.RbeenActive)
-    else:
-        print "\n", "(exclusiveness) is OFF."
 
+        for grammar in _default_engine.grammars:
+            # if grammar.loaded:
+            #     grammar.set_exclusiveness(0)
+            #     print "\n", "20200323162038| grammar exclusive = 0:",grammar.name , " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+            
+            grammar.set_exclusiveness(1)
+            # print "\n", "20200323162037| grammar exclusive = 1:",grammar.name , " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+
+            if grammar not in gl.GbeenExclusive:
+                gl.GbeenExclusive.append(grammar)
+                
+        print "\n", "(exclusiveness) is ON."
+
+    else:
         #__  
         ExclusivMode.set_enabled(False)
         
@@ -40,6 +51,8 @@ def exclusiveness_OnOff(On):
             except:
                 pass
         # print "\n", "20200323162131b| After gl.GbeenExclusive:",[i.name for i in gl.GbeenExclusive], " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+
+        print "\n", "(exclusiveness) is OFF."
 
         # _NEXUS._grammar_manager._change_rule_enabled('Alphabet', True) #ok
         # _NEXUS._grammar_manager._change_rule_enabled('GrammarActivatorRule', True) 
