@@ -13,8 +13,6 @@ F = Function
 # class Dragon_Controler(MergeRule):
 class Dragon_Controler(MappingRule):
 
-	refStateBforeThisActivation = []
-
 	mapping = {
 		'micof': #turn off microphone (DNS).
 			R(Function(makeDragonHeard, pWords=[

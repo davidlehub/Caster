@@ -26,6 +26,4 @@ def set_mapping_UniqMode_NonCCR(mapping={}):
 
 	#__ Set "dynamically" the mapping
 	gl.UniqMode_NonCCR_ruleClass.mapping = mapping
- 
-	# gl.UniqMode_NonCCR_ruleClass.mapping = new_UniqModeLayer_instance.ending_cmd.copy()
-	print "\n", "ici20200324113228| gl.UniqMode_NonCCR_ruleClass.mapping:", gl.UniqMode_NonCCR_ruleClass.mapping, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+	# print "\n", "ici20200324113228| gl.UniqMode_NonCCR_ruleClass.mapping:", gl.UniqMode_NonCCR_ruleClass.mapping, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
