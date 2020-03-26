@@ -28,7 +28,7 @@ def DragonModeOnly(aEnableExclusiveMode=False):
 
 	RbeenExclusive = list(data.restore_enablebRules_associatedWithApp(data.currWindHndl))
 
-	exclusiveness_OnOff()
+	exclusiveness_OnOff(False)
 	# unsetExclusivenessForGram(data.restore_enablebRules_associatedWithApp(data.currWindHndl))
 
 	return RbeenExclusive

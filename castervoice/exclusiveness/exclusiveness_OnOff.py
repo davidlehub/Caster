@@ -14,7 +14,7 @@ def exclusiveness_OnOff(On):
         
         ExclusivMode.set_enabled(True)
         
-        Set_Exclusiveness_ForRules(gl.RbeenExclusive)
+        Set_Exclusiveness_ForRules(gl.RbeenActive)
     else:
         print "\n", "(exclusiveness) is OFF."
 

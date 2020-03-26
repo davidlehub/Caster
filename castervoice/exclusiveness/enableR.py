@@ -12,7 +12,7 @@ def enableR(targetRules_className):
 	from castervoice.lib.control import _NEXUS
 
 	for targetRule_className in targetRules_className:
-		if targetRule_className in gl.RbeenExclusive:
+		if targetRule_className in gl.RbeenActive:
 			# print "\n", "20200316170549| skeep targetRule_className:", targetRule_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 			continue
 
@@ -24,8 +24,8 @@ def enableR(targetRules_className):
 			# print "\n", "20200319185240| skeep to enable rule:", targetRule_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 			#--- (Add to the list, bcz that rule gonna be exclusive)
-			if targetRule_className not in gl.RbeenExclusive:
-				gl.RbeenExclusive.append(targetRule_className)
+			if targetRule_className not in gl.RbeenActive:
+				gl.RbeenActive.append(targetRule_className)
 
 			continue
 		#endregion Optimizing by not enable rule already loaded

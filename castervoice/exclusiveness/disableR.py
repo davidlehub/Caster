@@ -11,7 +11,7 @@ def disableR(targetRules_className,aExceptR=[]):
 	for targetRule_className in targetRules_className:
 
 		if targetRule_className in aExceptR:
-			# gl.RbeenExclusive.add(targetRule_className)
+			# gl.RbeenActive.add(targetRule_className)
 			continue
 
 		#region--- Optimizing by not disable rule not loaded
@@ -28,8 +28,8 @@ def disableR(targetRules_className,aExceptR=[]):
 
 			#--- (...)
 			try:
-				gl.RbeenExclusive.remove(targetRule_className) #not sure about this line. It got exception?
-				# print "\n", "dbg20200323123659| rule remove from 'gl.RbeenExclusive':", targetRule_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+				gl.RbeenActive.remove(targetRule_className) #not sure about this line. It got exception?
+				# print "\n", "dbg20200323123659| rule remove from 'gl.RbeenActive':", targetRule_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 			except :
 				pass			
