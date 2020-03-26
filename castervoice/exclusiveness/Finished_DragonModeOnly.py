@@ -20,8 +20,8 @@ from typing import Callable, Iterator, Union, Optional, List, Dict
 def Finished_DragonModeOnly(pStateToReturnBack):
 	# type: (List[str]) -> None
 	"""  """
-	
-	print "\n|~ici 20191207220001| Finished_DragonModeOnly, switch back exlcueness for gramms :", pStateToReturnBack, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+
+	# print "\n|~ici 20191207220001| Finished_DragonModeOnly, switch back exlcueness with rules  :", pStateToReturnBack, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 	ExclusivMode.set_enabled(True)
 	# ExclusivMode.set_enabled(True,"20181217224548| Finished dragon mode only.")
 	# _set_GramToBeExclusiInDefaultEngi(pStateToReturnBack,[],"Finished_DragonModeOnly. |20181130061428")

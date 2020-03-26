@@ -24,7 +24,7 @@ def makeDragonHeard(pWords, pTime=0.0):
 
 	StateBfore_DragonModeOnly = DragonModeOnly()
 	try:
-		print "\n|>--20191030105819| dragon should hear: ",pWords , " |=> In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+		print "\nMake the speech engine heard: ",pWords , " |=> In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 		Playback([(pWords, pTime)]).execute()
 		# Mimic([(pWords, pTime)]).execute()
 

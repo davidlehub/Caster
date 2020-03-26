@@ -23,7 +23,8 @@ def Set_Exclusiveness_ForRules(RulestoBeExclusive_className):
     # type: (List[str]) -> None
     """  """
     #--- RulestoBeExclusive_className = list
-    print "\n", "dbg20200317152040| Gonna set exclusiv for: @RulestoBeExclusive_className:", RulestoBeExclusive_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+    print "\n", "(exclusiveness) Gonna set exclusiv for:", RulestoBeExclusive_className
+    # print "\n", "(exclusiveness) Gonna set exclusiv for: @RulestoBeExclusive_className:", RulestoBeExclusive_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
     # print "\n", "20200112220615| New caster: exclusiveness for| RulestoBeExclusive_className:", RulestoBeExclusive_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
     #--- Disable all Rules, except those we want to be exclusive.
@@ -45,7 +46,7 @@ def Set_Exclusiveness_ForRules(RulestoBeExclusive_className):
     #--- Set ExclusiveHook = true. (in C:\Users\HP\AppData\Local\caster\settings\hooks.toml)
     # setGramToBeExclusive(_default_engine.grammars) #comment out, bcz: using ExclusiveHook	instead	
 
-    print "\n", "(exclusiveness) All Rules been Exclusive :", gl.RbeenExclusive, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-    # print "\n", "(exclusiveness) All Rules been Exclusive :", get_AllActiveRules(), " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+    print "\n", "(exclusiveness) All Rules been Exclusive :", gl.RbeenExclusive
+    # print "\n", "(exclusiveness) All Rules been Exclusive :", gl.RbeenExclusive, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 

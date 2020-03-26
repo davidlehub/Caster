@@ -7,7 +7,7 @@ from castervoice.exclusiveness.DragonModeOnly import DragonModeOnly
 from castervoice.exclusiveness.globalVariable import GlobalV as gl
 # from castervoice.lib.control import _NEXUS
 from castervoice.exclusiveness.Set_Exclusiveness_ForRules import Set_Exclusiveness_ForRules
-from castervoice.exclusiveness.globalVariable.ExclusivenessSetting import DefaultRulesTobeExclsuive_className, RulesToBeAlwayExclusive_className
+from castervoice.exclusiveness.globalVariable.ExclusivenessSetting import RulesToBeExclusive_everyWhere
 from collections import OrderedDict
 from castervoice.exclusiveness.get_RulesRelatedToAWindow import get_RulesRelatedToAWindow
 
@@ -74,12 +74,12 @@ def createAndSetExclusiv_forCurrApp(CurrWindowData):
 
 		#--- if the current windows don't have rule related to it (context rule), we use the default rules
 		if len(RulesRelatedToCurrWindow_className) == 0:
-			RulestoBeExclusive_className = RulesToBeAlwayExclusive_className #use the setting >> default value, witch is same as the default of '_enabled_ordered' in rule.toml
+			RulestoBeExclusive_className = RulesToBeExclusive_everyWhere #use the setting >> default value, witch is same as the default of '_enabled_ordered' in rule.toml
 			# RulestoBeExclusive_className = DefaultRulesTobeExclsuive_className #use the setting >> default value, witch is same as the default of '_enabled_ordered' in rule.toml
 		else: #Current window have context rule(s)
 			#--- (Concatonate 2 list without duplicate element)
-			RulestoBeExclusive_className = list(OrderedDict.fromkeys(RulesToBeAlwayExclusive_className +  RulesRelatedToCurrWindow_className ))
-			# RulestoBeExclusive_className = list(OrderedDict.fromkeys(RulesToBeAlwayExclusive_className + RulesToBeAlwayExclusive_className + RulesRelatedToCurrWindow_className ))
+			RulestoBeExclusive_className = list(OrderedDict.fromkeys(RulesToBeExclusive_everyWhere +  RulesRelatedToCurrWindow_className ))
+			# RulestoBeExclusive_className = list(OrderedDict.fromkeys(RulesToBeExclusive_everyWhere + RulesToBeExclusive_everyWhere + RulesRelatedToCurrWindow_className ))
 
 
 		# from castervoice.exclusiveness.logRulesInfo import logRulesInfo
