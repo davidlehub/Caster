@@ -153,9 +153,9 @@ store_AllEnabledRule_ofApp(ct.default, True)
 	
 # 	# def bt1(self, event_data): 
 # 	# 	# pass
-# 	# 	from castervoice.exclusiveness.enableDNS_byTurnOff_exclusiveness import enableDNS_byTurnOff_exclusiveness
+# 	# 	from castervoice.exclusiveness.exclusiveness_OnOff import exclusiveness_OnOff
 
-# 	# 	enableDNS_byTurnOff_exclusiveness()
+# 	# 	exclusiveness_OnOff()
 
 
 # 	# 	# print "\n", "Gui button 'Simulate bt1' pressed.",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)

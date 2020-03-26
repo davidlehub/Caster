@@ -3,8 +3,9 @@ from dragonfly import (Grammar, Playback, Key, Dictation, Function)
 from dragonfly import MappingRule
 from castervoice.lib.ctrl.mgr.rule_details import RuleDetails
 from castervoice.lib.merge.state.short import R
+
 #__ __
-from castervoice.exclusiveness.enableDNS_byTurnOff_exclusiveness import enableDNS_byTurnOff_exclusiveness
+from castervoice.exclusiveness.exclusiveness_OnOff import exclusiveness_OnOff
 
 # ---Constant------------------------------------------------------------
 K = Key
@@ -14,11 +15,11 @@ class Exclusive_Controler(MappingRule):
 
 	mapping = {
 		'turn off exclusive': 
-			R(Function(enableDNS_byTurnOff_exclusiveness)),
+			R(Function(exclusiveness_OnOff, On=False)),
 		'turn on exclusive': 
-			R(Function(enableDNS_byTurnOff_exclusiveness)),			
+			R(Function(exclusiveness_OnOff, On=True)),			
 	}
 
 # ---------------------------------------------------------------------------
 def get_rule():
-	return Exclusive_Controler, RuleDetails(name="Dragon Controler rule")
+	return Exclusive_Controler, RuleDetails(name="Exclusive Controler")

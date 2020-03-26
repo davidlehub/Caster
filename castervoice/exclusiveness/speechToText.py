@@ -1,5 +1,5 @@
 from inspect import getframeinfo, stack, getframeinfo, currentframe
-from castervoice.exclusiveness.enableDNS_byTurnOff_exclusiveness import enableDNS_byTurnOff_exclusiveness
+from castervoice.exclusiveness.exclusiveness_OnOff import exclusiveness_OnOff
 from castervoice.exclusiveness.set_UniqModeLayer import set_UniqModeLay
 from castervoice.exclusiveness.UniqModeLayer import UniqModeLayer
 from castervoice.exclusiveness.EndCurrUML_BckToPrviousState import EndCurrUML_BckToPrviousState
@@ -14,13 +14,14 @@ from castervoice.lib.actions import Text
 #     return num1 + my_float 
 #endregion (This is how you annotate a function definitio)
 
-# def speechToText(text="", ending_cmd="",CompanionRules_clasName=[]): 
-def speechToText(ending_cmd="",CompanionRules_clasName=[]): 
+# def speechToText(ending_cmd="",CompanionRules_clasName=[]): 
+def speechToText(text="", ending_cmd="",CompanionRules_clasName=[]): 
 	# type: (str, List[str]) -> float
 	""" """
 	print "\n", "20200324185910|  ending_cmd,CompanionRules_clasName:",  ending_cmd,CompanionRules_clasName, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 	return
-	enableDNS_byTurnOff_exclusiveness()
+
+	exclusiveness_OnOff(False)
 	
 
  
