@@ -11,7 +11,7 @@ from castervoice.exclusiveness.exclusiveness_OnOff import exclusiveness_OnOff
 K = Key
 F = Function
 
-class Exclusive_Controler(MappingRule):
+class Exclusive_Controller(MappingRule):
 
 	mapping = {
 		'turn off exclusive': 
@@ -22,4 +22,4 @@ class Exclusive_Controler(MappingRule):
 
 # ---------------------------------------------------------------------------
 def get_rule():
-	return Exclusive_Controler, RuleDetails(name="Exclusive Controler")
+	return Exclusive_Controller, RuleDetails(name="Exclusive Controller")

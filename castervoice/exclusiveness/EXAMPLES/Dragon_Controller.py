@@ -10,8 +10,8 @@ from castervoice.exclusiveness.makeDragonHeard import makeDragonHeard
 K = Key
 F = Function
 
-# class Dragon_Controler(MergeRule):
-class Dragon_Controler(MappingRule):
+# class Dragon_Controller(MergeRule):
+class Dragon_Controller(MappingRule):
 
 	mapping = {
 		'micof': #turn off microphone (DNS).
@@ -21,4 +21,4 @@ class Dragon_Controler(MappingRule):
 
 # ---------------------------------------------------------------------------
 def get_rule():
-	return Dragon_Controler, RuleDetails(name="Dragon Controler rule")
+	return Dragon_Controller, RuleDetails(name="Dragon Controller rule")

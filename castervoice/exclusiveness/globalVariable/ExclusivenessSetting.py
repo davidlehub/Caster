@@ -2,7 +2,7 @@
 from castervoice.exclusiveness import Constant as ct
 
 #__ 
-MyRules = ["Exclusive_Controler","Dragon_Controler", "Exclusive_UniqMode_test"]
+MyRules = ["Dragon_Controller","Dragon_Controller", "Exclusive_UniqMode_test"]
 # MyRules = []
 
 #__ Fundation Rules (caster alway needs)
