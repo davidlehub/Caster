@@ -6,7 +6,6 @@ from castervoice.exclusiveness.Finished_DragonModeOnly import Finished_DragonMod
 from castervoice.exclusiveness.ExclusivMode_class import ExclusivMode
 from castervoice.exclusiveness.Set_Exclusiveness_ForRules import Set_Exclusiveness_ForRules
 from castervoice.exclusiveness.exclusiveness_OnOff import exclusiveness_OnOff
-from castervoice.exclusiveness.globalVariable.Data_Manager import data
 
 
 #region--- (This is how you annotate a function definitio)
