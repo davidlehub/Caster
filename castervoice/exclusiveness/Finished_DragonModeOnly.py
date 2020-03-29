@@ -3,7 +3,8 @@ from typing import Callable, Iterator, Union, Optional, List, Dict
 # from castervoice.exclusiveness.ExclusivMode_class import ExclusivMode
 from castervoice.exclusiveness.Set_Exclusiveness_ForRules import Set_Exclusiveness_ForRules
 from typing import Callable, Iterator, Union, Optional, List, Dict
-from castervoice.exclusiveness.cls.DragonVocabulary_cls import DragonVocabulary
+from castervoice.exclusiveness.cls.DragonVocabulary_cls import enable_dragonVocabulary,disable_dragonVocabulary,dragonVocabulary_is_Disabled, dragonVocabulary_is_Enabled,enable_temporary_dragonVocabulary, disable_temporary_dragonVocabulary, dragonVocabulary_wasTemporary_disable, dragonVocabulary_wasTemporary_enabled, indicate_DragonVocabulary_is_Disabled
+
 
 
 #region--- (This is how you annotate a function definitio)
@@ -25,7 +26,10 @@ def Finished_DragonModeOnly(pStateToReturnBack):
 	# print "\n|~ici 20191207220001| Finished_DragonModeOnly, switch back exlcueness with rules  :", pStateToReturnBack, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 	Set_Exclusiveness_ForRules(pStateToReturnBack)
 
-	DragonVocabulary.enabled = False
+	#__ Note: No need to call: 'enable_dragonVocabulary()' here, bcz the it is take care by: 'exclusive' hook.
+	#__ But, we have to indicate: that the the Dragon vocabulary is Disable.
+	indicate_DragonVocabulary_is_Disabled()
+	# DragonVocabulary.enabled = False
 	# DragonVocabulary.enabled
 	# ExclusivMode.set_enabled(True)
 

@@ -9,7 +9,9 @@ import os, win32gui
 from castervoice.lib.utilities import get_active_window_path
 from castervoice.exclusiveness.Set_Exclusiveness_ForRules import Set_Exclusiveness_ForRules
 from castervoice.exclusiveness.CurrWindow_data import CurrWindow_data
-from castervoice.exclusiveness.cls.DragonVocabulary_cls import DragonVocabulary
+from castervoice.exclusiveness.cls.DragonVocabulary_cls import enable_dragonVocabulary,disable_dragonVocabulary,dragonVocabulary_is_Disabled, dragonVocabulary_is_Enabled,enable_temporary_dragonVocabulary, disable_temporary_dragonVocabulary, dragonVocabulary_wasTemporary_disable, dragonVocabulary_wasTemporary_enabled
+from castervoice.exclusiveness.micState_hasChanged import micState_hasChanged
+
 import natlink
 
 
@@ -19,23 +21,33 @@ def Notify_on_begin_fromDragonFly():
 
 	#____ Goal: disable Dragon Naturally Speaking (DNS) vocabulary
 
+	# region__{ Detect microphone state changed
+	if micState_hasChanged():
+		print "\n", "20200329111100| micState_hasChanged:",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+
+		pass
+
 	#__ skip
 	# mic_state = natlink.getMicState()
 	# print "\n|~ici 20200328235834| mic_state : ",mic_state, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+
 	if natlink.getMicState() == "sleeping":
 		return
-	# elif DragonVocabulary.temporaryEnabled:
+	# elif DragonVocabulary.temporary_Enabled:
 	# 	print("20200328223639 gonna 'DragonVocabulary.disable()' bcz it was enabled temporary")
 	# 	# DragonVocabulary.enable()
 	# 	DragonVocabulary.disable()
-	# 	# DragonVocabulary.temporaryDisabled = True
-	# 	DragonVocabulary.temporaryEnabled = False
+	# 	# DragonVocabulary.temporary_Disabled = True
+	# 	DragonVocabulary.temporary_Enabled = False
+
+	# endregion__} Detect microphone state changed
 
 
 	#__ (skip: if already disable)
 	# if not DragonVocabulary.enabled: #skip
-	if DragonVocabulary.enabled: #skip TODO: change to: if DnsVocabulary_is_enabled:
 	# if not ExclusivMode.enabled: #skip
+	# if DragonVocabulary.enabled: #skip TODO: change to: if DnsVocabulary_is_enabled:
+	if dragonVocabulary_is_Enabled():
 	# 	print "\n(Exclusive mode is off)."
 		return	
 

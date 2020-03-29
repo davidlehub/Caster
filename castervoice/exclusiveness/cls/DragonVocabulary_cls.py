@@ -26,29 +26,23 @@ class DragonVocabulary_cls(object):
      """
     _enabled = None  # type: bool
     def __init__(self):
-        self.temporaryDisabled = False
-        self.temporaryEnabled = False
+        self.temporary_Disabled = False
+        self.temporary_Enabled = False
         self.enabled = None  # type: bool
-
-    #region__
-    #endregion (This is how you annotate a function definitio)
-
-
-    # region Property
 
     # region__(decided: not really necessary to make property: just just attribute/field)
     # @property
-    # def temporaryDisabled(self):
+    # def temporary_Disabled(self):
     #     return self._temporaryDisabled
-    # @temporaryDisabled.setter
-    # def temporaryDisabled(self, value):
+    # @temporary_Disabled.setter
+    # def temporary_Disabled(self, value):
     #     self._temporaryDisabled = value
     #
     # @property
-    # def temporaryEnabled(self):
+    # def temporary_Enabled(self):
     #     return self._temporaryEnabled
-    # @temporaryEnabled.setter
-    # def temporaryEnabled(self, value):
+    # @temporary_Enabled.setter
+    # def temporary_Enabled(self, value):
     #     """
     #
     #     :type value: bool
@@ -133,4 +127,55 @@ class DragonVocabulary_cls(object):
 
     # endregion (Methode)
 
-DragonVocabulary = DragonVocabulary_cls()
+_DragonVocabulary = DragonVocabulary_cls()
+
+# __all__ = ['enable_dragonVocabulary', 'disable_dragonVocabulary']
+
+def enable_dragonVocabulary():
+    _DragonVocabulary.enable()
+
+def disable_dragonVocabulary():
+    _DragonVocabulary.disable()
+
+
+    # self.temporary_Disabled = False
+    # self.temporary_Enabled = False
+    # self.enabled = None  # type: bool
+def enable_temporary_dragonVocabulary():
+    _DragonVocabulary.enable()
+    _DragonVocabulary.temporary_Enabled = True
+
+def  dragonVocabulary_wasTemporary_enabled():
+    if _DragonVocabulary.temporary_Enabled:
+        return True
+    else:
+        return False
+
+def disable_temporary_dragonVocabulary():
+    _DragonVocabulary.disable()
+    _DragonVocabulary.temporary_Disabled = True
+
+def  dragonVocabulary_wasTemporary_disable():
+    if _DragonVocabulary.temporary_Enabled:
+        return True
+    else:
+        return False
+
+
+def dragonVocabulary_is_Enabled():
+    if _DragonVocabulary.enabled:
+        return True
+    else:
+        return False
+
+def dragonVocabulary_is_Disabled():
+    if _DragonVocabulary.enabled:
+        return False
+    else:
+        return True
+
+def indicate_DragonVocabulary_is_Disabled():
+    _DragonVocabulary.enabled = False
+
+def indicate_DragonVocabulary_is_Enabled():
+    _DragonVocabulary.enabled = True

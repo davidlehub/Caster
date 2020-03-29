@@ -55,14 +55,16 @@ from inspect import getframeinfo, stack, getframeinfo, currentframe
 from castervoice.exclusiveness.store_AllEnabledRule_ofApp import store_AllEnabledRule_ofApp
 from castervoice.exclusiveness import Constant as ct
 from castervoice.exclusiveness.Notify_on_begin_fromDragonFly import Notify_on_begin_fromDragonFly
-from castervoice.exclusiveness.cls.DragonVocabulary_cls import DragonVocabulary
+from castervoice.exclusiveness.cls.DragonVocabulary_cls import enable_dragonVocabulary,disable_dragonVocabulary,dragonVocabulary_is_Disabled, dragonVocabulary_is_Enabled,enable_temporary_dragonVocabulary, disable_temporary_dragonVocabulary, dragonVocabulary_wasTemporary_disable, dragonVocabulary_wasTemporary_enabled
+
 
 # #--- init
 # Data_Manager.init()
 store_AllEnabledRule_ofApp(ct.default, True)
 
 #__ Lets say that user want to start with exclusive mode (= disable DNS vocabulary)
-DragonVocabulary.disable()
+# DragonVocabulary.disable()
+disable_dragonVocabulary()
 
 #__
 Notify_on_begin_fromDragonFly() # To make it start into exclusive mode (if user wanted).

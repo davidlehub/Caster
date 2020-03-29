@@ -6,7 +6,7 @@ from castervoice.exclusiveness.Finished_DragonModeOnly import Finished_DragonMod
 # from castervoice.exclusiveness.ExclusivMode_class import ExclusivMode
 from castervoice.exclusiveness.Set_Exclusiveness_ForRules import Set_Exclusiveness_ForRules
 # from castervoice.exclusiveness.exclusiveness_OnOff import exclusiveness_OnOff
-from castervoice.exclusiveness.cls.DragonVocabulary_cls import DragonVocabulary
+from castervoice.exclusiveness.cls.DragonVocabulary_cls import enable_dragonVocabulary,disable_dragonVocabulary,dragonVocabulary_is_Disabled, dragonVocabulary_is_Enabled,enable_temporary_dragonVocabulary, disable_temporary_dragonVocabulary, dragonVocabulary_wasTemporary_disable, dragonVocabulary_wasTemporary_enabled,indicate_DragonVocabulary_is_Disabled
 
 
 #region--- (This is how you annotate a function definitio)
@@ -30,18 +30,21 @@ def makeDragonHeard(pWords, pTime=0.0):
 	# Exclusive_wasTemporaryTurnOff = False
 	# if  ExclusivMode.enabled:
 	# if  DragonVocabulary.enabled:
-	if  not DragonVocabulary.enabled:
+	# if  not DragonVocabulary.enabled:
+	if dragonVocabulary_is_Disabled():
 		# StateBfore_DragonModeOnly = DragonModeOnly()
 		# StateBfore_DragonModeOnly = list(data.restore_enablebRules_associatedWithApp(data.currWindHndl))
 
 		print "\n", "20200328224721| Gonna 'DragonVocabulary.enable()' temporary "
 
-		DragonVocabulary.enable()
+		enable_temporary_dragonVocabulary()
+		# enable_dragonVocabulary()
+		# DragonVocabulary.enable()
 		# DragonVocabulary.disable()
 		# exclusiveness_OnOff(False)
 
-		DragonVocabulary.temporaryEnabled = True
-		# DragonVocabulary.temporaryDisabled = True
+		# DragonVocabulary.temporary_Enabled = True
+		# DragonVocabulary.temporary_Disabled = True
 		# Exclusive_wasTemporaryTurnOff = True
 
 	#__ calling DNS command. (using 'Playback()')
@@ -58,16 +61,18 @@ def makeDragonHeard(pWords, pTime=0.0):
 
 	#__ Turn back exclusive to ON, If it was Temporary turn Off.
 	# if  Exclusive_wasTemporaryTurnOff:
-	# if  DragonVocabulary.temporaryDisabled:
-	if  DragonVocabulary.temporaryEnabled:
+	# if  DragonVocabulary.temporary_Disabled:
+	# if  DragonVocabulary.temporary_Enabled:
+	if dragonVocabulary_wasTemporary_enabled():
 
 		# Finished_DragonModeOnly(StateBfore_DragonModeOnly)
 
 		# ExclusivMode.set_enabled(True)
 		# Set_Exclusiveness_ForRules(StateBfore_DragonModeOnly)		
-		print "\n", "2020032824939| Gonna 'DragonVocabulary.disable()' bcz it was 'DragonVocabulary.temporaryEnabled' "
+		print "\n", "2020032824939| Gonna 'DragonVocabulary.disable()' bcz it was 'DragonVocabulary.temporary_Enabled' "
 
-		DragonVocabulary.disable()
+		disable_dragonVocabulary()
+		# DragonVocabulary.disable()
 		# DragonVocabulary.enable()
 		# exclusiveness_OnOff(True)
 

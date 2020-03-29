@@ -14,7 +14,7 @@ from castervoice.exclusiveness.get_AllActiveRules import get_AllActiveRules
 
 
 def init():
-	global data
+	global data #TODO: see vid 2020329093315
 	data = data_manager()
 
 class data_manager(object):

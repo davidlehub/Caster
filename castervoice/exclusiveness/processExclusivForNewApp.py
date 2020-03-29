@@ -7,7 +7,8 @@ from castervoice.exclusiveness._cleanupPreviousApp import _cleanupPreviousApp
 from castervoice.exclusiveness.BackToPreviousState_OfCurrApp import BackToPreviousState_OfCurrApp
 from castervoice.exclusiveness.createAndSetExclusiv_forCurrApp import createAndSetExclusiv_forCurrApp
 from castervoice.lib.utilities import get_active_window_path,get_active_window_title, get_window_by_title
-from castervoice.exclusiveness.cls.DragonVocabulary_cls import DragonVocabulary
+from castervoice.exclusiveness.cls.DragonVocabulary_cls import enable_dragonVocabulary,disable_dragonVocabulary,dragonVocabulary_is_Disabled, dragonVocabulary_is_Enabled,enable_temporary_dragonVocabulary, disable_temporary_dragonVocabulary, dragonVocabulary_wasTemporary_disable, dragonVocabulary_wasTemporary_enabled
+
 
 
 # def processExclusivForNewApp(aGram,aContext): #(deprecated for new caster)
@@ -16,9 +17,10 @@ def processExclusivForNewApp(CurrWindowData):
 	# return
 	# print "\n\n\n|~*** 20191202215108g| new app dected|wintitle,data.currWindHndl:", get_active_window_title(), data.currWindHndl, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)				
 
-	if  DragonVocabulary.enabled: #skip TODO: change to: if DnsVocabulary_is_enabled:
+	# if  DragonVocabulary.enabled: #skip
 	# if not DragonVocabulary.enabled: #skip
 	# if not ExclusivMode.enabled: #skip
+	if  dragonVocabulary_is_Enabled():
 		print "\n|~20191207214310| Exclusive mode is off, so not gonna change exclusiveness state.",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 		return				
 	else: pass
@@ -42,9 +44,7 @@ def processExclusivForNewApp(CurrWindowData):
 	# print "\n", "dbg20200322140745| data.currWindHndl:", data.currWindHndl, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 	if data.appExclusiveness.has_key(data.currWindHndl): 
-
-
-		BackToPreviousState_OfCurrApp() 
+		BackToPreviousState_OfCurrApp()
 
 	# #region--- Case: 'dragon dictatation box' is the forgrounde window.
 	# #-- A. no exclusiveness, bcz we want normal dragon vovabulary.

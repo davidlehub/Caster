@@ -2,7 +2,8 @@ from castervoice.lib import settings, textformat
 from castervoice.lib.merge.ccrmerging2.hooks.base_hook import BaseHook
 from castervoice.lib.merge.ccrmerging2.hooks.events.event_types import EventType
 from castervoice.lib import printer
-from castervoice.exclusiveness.cls.DragonVocabulary_cls import DragonVocabulary
+from castervoice.exclusiveness.cls.DragonVocabulary_cls import enable_dragonVocabulary,disable_dragonVocabulary,dragonVocabulary_is_Disabled, dragonVocabulary_is_Enabled,enable_temporary_dragonVocabulary, disable_temporary_dragonVocabulary, dragonVocabulary_wasTemporary_disable, dragonVocabulary_wasTemporary_enabled
+
 
 #region--- (david)
 from inspect import getframeinfo, stack, getframeinfo, currentframe
@@ -15,7 +16,8 @@ from castervoice.exclusiveness.globalVariable import GlobalV as gl
 
 def _apply_exclusiveness(grammar):
     #region--- (david)
-    if  DragonVocabulary.enabled: return
+    if dragonVocabulary_is_Enabled(): return
+    # if DragonVocabulary.enabled: return
     # if not DragonVocabulary.enabled: return
     # if not ExclusivMode.enabled: return
     #endregion (david)
