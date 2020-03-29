@@ -16,12 +16,13 @@ def processExclusivForNewApp(CurrWindowData):
 	# return
 	# print "\n\n\n|~*** 20191202215108g| new app dected|wintitle,data.currWindHndl:", get_active_window_title(), data.currWindHndl, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)				
 
-	#region--- (TODO: uncomment after quick test)
-	if not DragonVocabulary.enabled: #skeep
+	if  DragonVocabulary.enabled: #skeep TODO: change to: if DnsVocabulary_is_enabled:
+	# if not DragonVocabulary.enabled: #skeep
 	# if not ExclusivMode.enabled: #skeep
 		print "\n|~20191207214310| Exclusive mode is off, so not gonna change exclusiveness state.",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 		return				
-		
+	else: pass
+
 	# gl.currAppContext = aContext #(deprecated for new caster)
 
 	#--- Backup Grammars and rules of previous app, before restoring/cleanup.
@@ -57,7 +58,6 @@ def processExclusivForNewApp(CurrWindowData):
 	# 	# print "\n", gl.dbgInd["childs"],"20181202211810| gl.State_BforeCalng_DgnDictationBox: ",gl.State_BforeCalng_DgnDictationBox , " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 	# #endregion
-	#endregion (TODO: uncomment after quick test)
 
 	# #--== ** Ceate and set exclusiveness for current app.
 	# createAndSetExclusiv_forCurrApp(aGram, aContext) #(deprecated for new caster)

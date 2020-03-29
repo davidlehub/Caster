@@ -29,14 +29,19 @@ def makeDragonHeard(pWords, pTime=0.0):
 	#__ if excllusive is ON(enabled), TEMPORARY turn it Off: to make DNS vocabulary available.
 	# Exclusive_wasTemporaryTurnOff = False
 	# if  ExclusivMode.enabled:
-	if  DragonVocabulary.enabled:
+	# if  DragonVocabulary.enabled:
+	if  not DragonVocabulary.enabled:
 		# StateBfore_DragonModeOnly = DragonModeOnly()
 		# StateBfore_DragonModeOnly = list(data.restore_enablebRules_associatedWithApp(data.currWindHndl))
 
-		DragonVocabulary.disable()
+		print "\n", "20200328224721| Gonna 'DragonVocabulary.enable()' temporary "
+
+		DragonVocabulary.enable()
+		# DragonVocabulary.disable()
 		# exclusiveness_OnOff(False)
 
-		DragonVocabulary.temporaryDisabled = True
+		DragonVocabulary.temporaryEnabled = True
+		# DragonVocabulary.temporaryDisabled = True
 		# Exclusive_wasTemporaryTurnOff = True
 
 	#__ calling DNS command. (using 'Playback()')
@@ -53,14 +58,17 @@ def makeDragonHeard(pWords, pTime=0.0):
 
 	#__ Turn back exclusive to ON, If it was Temporary turn Off.
 	# if  Exclusive_wasTemporaryTurnOff:
-	if  DragonVocabulary.temporaryDisabled:
+	# if  DragonVocabulary.temporaryDisabled:
+	if  DragonVocabulary.temporaryEnabled:
 
 		# Finished_DragonModeOnly(StateBfore_DragonModeOnly)
 
 		# ExclusivMode.set_enabled(True)
 		# Set_Exclusiveness_ForRules(StateBfore_DragonModeOnly)		
+		print "\n", "2020032824939| Gonna 'DragonVocabulary.disable()' bcz it was 'DragonVocabulary.temporaryEnabled' "
 
-		DragonVocabulary.enable()
+		DragonVocabulary.disable()
+		# DragonVocabulary.enable()
 		# exclusiveness_OnOff(True)
 
 

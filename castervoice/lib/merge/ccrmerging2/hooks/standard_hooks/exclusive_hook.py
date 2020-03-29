@@ -15,7 +15,8 @@ from castervoice.exclusiveness.globalVariable import GlobalV as gl
 
 def _apply_exclusiveness(grammar):
     #region--- (david)
-    if not DragonVocabulary.enabled: return
+    if  DragonVocabulary.enabled: return
+    # if not DragonVocabulary.enabled: return
     # if not ExclusivMode.enabled: return
     #endregion (david)
     

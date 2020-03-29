@@ -72,14 +72,17 @@ class DragonVocabulary_cls(object):
     # endregion (decided: not really necessary to make property:)
 
     # region__(Methode)
-    def enable(self):
+    # def enable(self):
+    def disable(self):
+
         """
 
         :rtype: None
         """
         # DragonVocabulary.enable()
         # ExclusivMode.set_enabled(True) #TODO: to remove
-        self.enabled = True
+        # self.enabled = True
+        self.enabled = False
 
         # Set_Exclusiveness_ForRules(gl.RbeenActive)
 
@@ -94,15 +97,19 @@ class DragonVocabulary_cls(object):
             if grammar not in gl.GbeenExclusive:
                 gl.GbeenExclusive.append(grammar)
 
+        # print "\n", "(exclusiveness) is OFF."
         print "\n", "(exclusiveness) is ON."
 
-    def disable(self):
+    # def disable(self):
+    def enable(self):
+
         # type: () -> None
 
         # DragonVocabulary.disable()
         # __
         # ExclusivMode.set_enabled(False) #TODO: to remove
-        self.enabled = False
+        # self.enabled = False
+        self.enabled = True
 
         # print "\n", "20200323162131a| Before gl.GbeenExclusive:",_NEXUS._grammar_manager._grammars_container._ccr_grammars, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
         # print "\n", "20200323162131b| Before gl.GbeenExclusive:",_NEXUS._grammar_manager._grammars_container._non_ccr_grammars, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
@@ -120,6 +127,7 @@ class DragonVocabulary_cls(object):
             except:
                 pass
 
+        # print "\n", "(exclusiveness) is ON."
         print "\n", "(exclusiveness) is OFF."
 
 

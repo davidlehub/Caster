@@ -25,7 +25,8 @@ def Finished_DragonModeOnly(pStateToReturnBack):
 	# print "\n|~ici 20191207220001| Finished_DragonModeOnly, switch back exlcueness with rules  :", pStateToReturnBack, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 	Set_Exclusiveness_ForRules(pStateToReturnBack)
 
-	DragonVocabulary.enabled
+	DragonVocabulary.enabled = False
+	# DragonVocabulary.enabled
 	# ExclusivMode.set_enabled(True)
 
 

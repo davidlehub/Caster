@@ -15,10 +15,24 @@ from castervoice.exclusiveness.cls.DragonVocabulary_cls import DragonVocabulary
 # def Notify_process_begin_GramBase(aGram, aExecutable, aTitle, aWindHndl):
 def Notify_on_begin_fromDragonFly():
 	# print "\n|~ici 20191215145726| in def Notify_process_begin_GramBase | ", " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-	if not DragonVocabulary.enabled: #skeep
+
+	#____ Goal: disable Dragon Naturally Speaking (DNS) vocabulary
+
+	#__ (skeep: if already disable)
+	# if not DragonVocabulary.enabled: #skeep
+	if DragonVocabulary.enabled: #skeep TODO: change to: if DnsVocabulary_is_enabled:
 	# if not ExclusivMode.enabled: #skeep
 	# 	print "\n(Exclusive mode is off)."
 		return	
+
+	#__ ...
+	if DragonVocabulary.temporaryEnabled:
+		print("20200328223639 gonna 'DragonVocabulary.disable()' bcz it was enabled temporary")
+		# DragonVocabulary.enable()
+		DragonVocabulary.disable()
+		# DragonVocabulary.temporaryDisabled = True
+		DragonVocabulary.temporaryEnabled = False
+
 
 	data.currWindHndl =  Window.get_foreground().handle
 	# data.currWindHndl =  aWindHndl
