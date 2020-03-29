@@ -2,7 +2,7 @@
 from castervoice.exclusiveness import Constant as ct
 
 #__ 
-MyRules = ["Dragon_Controller","Dragon_Controller", "Exclusive_UniqMode_test"]
+MyRules = ["Exclusive_Controller","Dragon_Controller","Dragon_Controller", "Exclusive_UniqMode_test"]
 # MyRules = []
 
 #__ Fundation Rules (caster alway needs)
@@ -24,15 +24,15 @@ RulesToBeExclusive_everyWhere = ["Alphabet", "Navigation", "NavigationNon", "Num
 
 
 #region--- (old caster)
-#-- make is = False if we wannt use normal caster, as if we use caster normaly, without my modification adding exclusivity to grammars.
-exClusiveMode = True #- System Exclusiveness mode activated or not. Gonna be = False in 'grammExclusivenessCtrler.py' >> 'normal_caster_mode()'.
+# #-- make is = False if we wannt use normal caster, as if we use caster normaly, without my modification adding exclusivity to grammars.
+# exClusiveMode = True #- System Exclusiveness mode activated or not. Gonna be = False in 'grammExclusivenessCtrler.py' >> 'normal_caster_mode()'.
 
- ##\ True: if we dont wanna use dragon vocabulary, only caster/natlink grammar.
-# StartGrammarInExclusiveMode = False
-StartGrammarInExclusiveMode = True
+#  ##\ True: if we dont wanna use dragon vocabulary, only caster/natlink grammar.
+# # StartGrammarInExclusiveMode = False
+# StartGrammarInExclusiveMode = True
 
-##\ True: in case we want to disable all grammar, bcz we want to test only one grammar.
-##\ expl20170221102005
-DisableAllGrammar = False # True: in case we want to disable all grammar, bcz we want to test only one grammar.
-# DisableAllGrammar = True
+# ##\ True: in case we want to disable all grammar, bcz we want to test only one grammar.
+# ##\ expl20170221102005
+# DisableAllGrammar = False # True: in case we want to disable all grammar, bcz we want to test only one grammar.
+# # DisableAllGrammar = True
 #endregion (old caster)

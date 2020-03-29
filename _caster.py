@@ -52,13 +52,15 @@ print("\n*- Starting " + settings.SOFTWARE_NAME + " -*")
 
 #region---=== David
 from inspect import getframeinfo, stack, getframeinfo, currentframe
-# from castervoice.exclusiveness.globalVariable import Data_Manager
+from castervoice.exclusiveness.store_AllEnabledRule_ofApp import store_AllEnabledRule_ofApp
 from castervoice.exclusiveness import Constant as ct
+from castervoice.exclusiveness.Notify_on_begin_fromDragonFly import Notify_on_begin_fromDragonFly
 
 # #--- init
 # Data_Manager.init()
-from castervoice.exclusiveness.store_AllEnabledRule_ofApp import store_AllEnabledRule_ofApp
 store_AllEnabledRule_ofApp(ct.default, True)
+Notify_on_begin_fromDragonFly() # To make it go into exclusive mode (if user wanted)
+
 # from castervoice.exclusiveness.globalVariable.Data_Manager import data,GramAndRules
 # data.appGramAndRules[ct.default] = GramAndRules()
 
