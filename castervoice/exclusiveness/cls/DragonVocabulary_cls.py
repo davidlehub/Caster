@@ -78,7 +78,7 @@ class DragonVocabulary_cls(object):
         :rtype: None
         """
         # DragonVocabulary.enable()
-        ExclusivMode.set_enabled(True)
+        # ExclusivMode.set_enabled(True) #TODO: to remove
         self.enabled = True
 
         # Set_Exclusiveness_ForRules(gl.RbeenActive)
@@ -101,7 +101,7 @@ class DragonVocabulary_cls(object):
 
         # DragonVocabulary.disable()
         # __
-        ExclusivMode.set_enabled(False)
+        # ExclusivMode.set_enabled(False) #TODO: to remove
         self.enabled = False
 
         # print "\n", "20200323162131a| Before gl.GbeenExclusive:",_NEXUS._grammar_manager._grammars_container._ccr_grammars, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)

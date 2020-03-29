@@ -3,6 +3,7 @@ from typing import Callable, Iterator, Union, Optional, List, Dict
 from castervoice.exclusiveness.ExclusivMode_class import ExclusivMode
 from castervoice.exclusiveness.Set_Exclusiveness_ForRules import Set_Exclusiveness_ForRules
 from typing import Callable, Iterator, Union, Optional, List, Dict
+from castervoice.exclusiveness.cls.DragonVocabulary_cls import DragonVocabulary
 
 
 #region--- (This is how you annotate a function definitio)
@@ -23,7 +24,10 @@ def Finished_DragonModeOnly(pStateToReturnBack):
 
 	# print "\n|~ici 20191207220001| Finished_DragonModeOnly, switch back exlcueness with rules  :", pStateToReturnBack, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 	Set_Exclusiveness_ForRules(pStateToReturnBack)
-	ExclusivMode.set_enabled(True)
+
+	DragonVocabulary.enabled
+	# ExclusivMode.set_enabled(True)
+
 
 	# # print "\n|~ici 20191207220001| Finished_DragonModeOnly, switch back exlcueness with rules  :", pStateToReturnBack, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 	# ExclusivMode.set_enabled(True)

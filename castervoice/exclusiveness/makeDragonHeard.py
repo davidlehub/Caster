@@ -1,11 +1,12 @@
 from inspect import getframeinfo, stack, getframeinfo, currentframe
 from typing import Callable, Iterator, Union, Optional, List, Dict
-from castervoice.exclusiveness.DragonModeOnly import DragonModeOnly
+# from castervoice.exclusiveness.DragonModeOnly import DragonModeOnly
 from dragonfly import Playback 
 from castervoice.exclusiveness.Finished_DragonModeOnly import Finished_DragonModeOnly
 from castervoice.exclusiveness.ExclusivMode_class import ExclusivMode
 from castervoice.exclusiveness.Set_Exclusiveness_ForRules import Set_Exclusiveness_ForRules
-from castervoice.exclusiveness.exclusiveness_OnOff import exclusiveness_OnOff
+# from castervoice.exclusiveness.exclusiveness_OnOff import exclusiveness_OnOff
+from castervoice.exclusiveness.cls.DragonVocabulary_cls import DragonVocabulary
 
 
 #region--- (This is how you annotate a function definitio)
@@ -26,12 +27,17 @@ def makeDragonHeard(pWords, pTime=0.0):
 	# print "\n|>--00000000000000| in makeDragonHeard" , " |=> In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 	#__ if excllusive is ON(enabled), TEMPORARY turn it Off: to make DNS vocabulary available.
-	Exclusive_wasTemporaryTurnOff = False
-	if  ExclusivMode.enabled:
+	# Exclusive_wasTemporaryTurnOff = False
+	# if  ExclusivMode.enabled:
+	if  DragonVocabulary.enabled:
 		# StateBfore_DragonModeOnly = DragonModeOnly()
 		# StateBfore_DragonModeOnly = list(data.restore_enablebRules_associatedWithApp(data.currWindHndl))
-		exclusiveness_OnOff(False)
-		Exclusive_wasTemporaryTurnOff = True
+
+		DragonVocabulary.disable()
+		# exclusiveness_OnOff(False)
+
+		DragonVocabulary.temporaryDisabled = True
+		# Exclusive_wasTemporaryTurnOff = True
 
 	#__ calling DNS command. (using 'Playback()')
 	try:
@@ -46,13 +52,16 @@ def makeDragonHeard(pWords, pTime=0.0):
 	# if  StateBfore_DragonModeOnly: 
 
 	#__ Turn back exclusive to ON, If it was Temporary turn Off.
-	if  Exclusive_wasTemporaryTurnOff: 
-		
+	# if  Exclusive_wasTemporaryTurnOff:
+	if  DragonVocabulary.temporaryDisabled:
+
 		# Finished_DragonModeOnly(StateBfore_DragonModeOnly)
 
 		# ExclusivMode.set_enabled(True)
 		# Set_Exclusiveness_ForRules(StateBfore_DragonModeOnly)		
-		exclusiveness_OnOff(True)		
+
+		DragonVocabulary.enable()
+		# exclusiveness_OnOff(True)
 
 
 	# if  StateBfore_DragonModeOnly: 

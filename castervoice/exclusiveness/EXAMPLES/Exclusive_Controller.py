@@ -5,19 +5,28 @@ from castervoice.lib.ctrl.mgr.rule_details import RuleDetails
 from castervoice.lib.merge.state.short import R
 
 #__ __
-from castervoice.exclusiveness.exclusiveness_OnOff import exclusiveness_OnOff
+from castervoice.exclusiveness.cls.DragonVocabulary_cls import DragonVocabulary
 
 # ---Constant------------------------------------------------------------
 K = Key
 F = Function
 
+def DragonVocabulary_disable():
+	DragonVocabulary.disable()
+def DragonVocabulary_enable():
+	DragonVocabulary.enable()
+
 class Exclusive_Controller(MappingRule):
 
 	mapping = {
 		'turn off exclusive': 
-			R(Function(exclusiveness_OnOff, On=False)),
-		'turn on exclusive': 
-			R(Function(exclusiveness_OnOff, On=True)),			
+			R(Function( DragonVocabulary_disable )),
+			# R(Function( DragonVocabulary.disable() )),
+			# R(Function(exclusiveness_OnOff, On=False)),
+		'turn on exclusive':
+			R(Function( DragonVocabulary_enable )),
+			# R(Function( DragonVocabulary.enable() )),
+			# R(Function(exclusiveness_OnOff, On=True)),
 	}
 
 # ---------------------------------------------------------------------------
