@@ -30,17 +30,17 @@ def setDragonMicState_sleep():
 	#__
 	makeDragonHeard(["go", "to", "sleep"])
 
-	#__ When going to sleep, Dragon vocabulary must be enabled: because if not,
-	#__ the system is still hearing everything and react as if it is not in sleep mode!
-	# DragonVocabulary.temporary_Disabled = False
-	# if  DragonVocabulary.enabled
-	# if not DragonVocabulary.enabled:
-	if dragonVocabulary_is_Disabled():
-		print("20200328194934 gonna 'DragonVocabulary.enable()' temporary, bcz it going to sleep")
-		# DragonVocabulary.enable()
-		# enable_dragonVocabulary()
-		enable_temporary_dragonVocabulary()
-		# DragonVocabulary.temporary_Disabled = True
-		# DragonVocabulary.temporary_Enabled = True
-
-	# print("20200328230205 |'DragonVocabulary.enabled':" , DragonVocabulary.enabled)
+	# #__ When going to sleep, Dragon vocabulary must be enabled: because if not,
+	# #__ the system is still hearing everything and react as if it is not in sleep mode!
+	# # DragonVocabulary.temporary_Disabled = False
+	# # if  DragonVocabulary.enabled
+	# # if not DragonVocabulary.enabled:
+	# if dragonVocabulary_is_Disabled():
+	# 	print("20200328194934 gonna 'DragonVocabulary.enable()' temporary, bcz it going to sleep")
+	# 	# DragonVocabulary.enable()
+	# 	# enable_dragonVocabulary()
+	# 	enable_temporary_dragonVocabulary()
+	# 	# DragonVocabulary.temporary_Disabled = True
+	# 	# DragonVocabulary.temporary_Enabled = True
+	#
+	# # print("20200328230205 |'DragonVocabulary.enabled':" , DragonVocabulary.enabled)

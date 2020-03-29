@@ -22,17 +22,29 @@ def Notify_on_begin_fromDragonFly():
 	#____ Goal: disable Dragon Naturally Speaking (DNS) vocabulary
 
 	# region__{ Detect microphone state changed
-	if micState_hasChanged():
-		print "\n", "20200329111100| micState_hasChanged:",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-
+	curr_micState = natlink.getMicState()
+	if micState_hasChanged(curr_micState):
+		print "\n", "20200329120117| micState_hasChanged." " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+		#__ Make sure that when the microphone is in 'sleeping' state:
+		#__ the dragon vocabulary must be enabled: because if not,
+		#__ the system is still hearing everything and react as if it is not in sleep mode!
+		# if (curr_micState == "on") and (dragonVocabulary_wasTemporary_enabled()):
+		# if curr_micState == "sleeping":
+		if curr_micState == "sleeping" and dragonVocabulary_wasTemporary_disable():
+			print "\n", "(Needed to: temporary enable Dragon vocabulary for: sleeping state)"
+			enable_temporary_dragonVocabulary()
+		elif dragonVocabulary_wasTemporary_enabled():
+			print "\n", "(Disable Dragon vocabulary, bcz it was temporary enable)"
+			disable_dragonVocabulary()
+	else:
 		pass
 
 	#__ skip
-	# mic_state = natlink.getMicState()
-	# print "\n|~ici 20200328235834| mic_state : ",mic_state, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+	# if curr_micState == "sleeping":
+    #     print "\n", "20200329120605| skip bcz mic is in sleeping" , " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+	# 	return
 
-	if natlink.getMicState() == "sleeping":
-		return
+
 	# elif DragonVocabulary.temporary_Enabled:
 	# 	print("20200328223639 gonna 'DragonVocabulary.disable()' bcz it was enabled temporary")
 	# 	# DragonVocabulary.enable()
@@ -44,15 +56,16 @@ def Notify_on_begin_fromDragonFly():
 
 
 	#__ (skip: if already disable)
-	# if not DragonVocabulary.enabled: #skip
 	# if not ExclusivMode.enabled: #skip
-	# if DragonVocabulary.enabled: #skip TODO: change to: if DnsVocabulary_is_enabled:
-	if dragonVocabulary_is_Enabled():
+	# if not DragonVocabulary.enabled: #skip
+	# if DragonVocabulary.enabled: #skip
+	if dragonVocabulary_is_Enabled(): #TODO: make a setting, then if user set not enable Dragon vocab: we skip.
 	# 	print "\n(Exclusive mode is off)."
 		return	
 
 	#__ ...
 
+	print "\n", "20200329120736| Gonna try to DISABLE Dragon vocab, if is not already disabled", " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 	data.currWindHndl =  Window.get_foreground().handle
 	# data.currWindHndl =  aWindHndl

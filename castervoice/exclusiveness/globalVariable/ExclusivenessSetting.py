@@ -1,5 +1,12 @@
 ﻿
-from castervoice.exclusiveness import Constant as ct
+#region--- (Import)
+from inspect import getframeinfo, stack, getframeinfo, currentframe
+from typing import Callable, Iterator, Union, Optional, List, Dict
+
+#endregion (Import)
+
+#__ Here set enable or not the: exclusive system (that enable or not the: Dragon vocabulary)
+ExclusiveFeature_isEnabled = True
 
 #__ 
 MyRules = ["Exclusive_Controller","Dragon_Controller","Dragon_Controller", "Exclusive_UniqMode_test"]
