@@ -285,7 +285,7 @@ class data_manager(object):
 		from castervoice.exclusiveness.isMergedGram import isMergedGram
 
 		for iG in aGram:
-			#-- Reject/skeep Merged Grammar
+			#-- Reject/skip Merged Grammar
 			# if TamFc.isMergedGram(iG):
 			if isMergedGram(iG):
 				continue

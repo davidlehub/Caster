@@ -40,4 +40,4 @@ def setDragonMicState_sleep():
 		# DragonVocabulary.temporaryDisabled = True
 		DragonVocabulary.temporaryEnabled = True
 
-	print("20200328230205 |'DragonVocabulary.enabled':" , DragonVocabulary.enabled)
+	# print("20200328230205 |'DragonVocabulary.enabled':" , DragonVocabulary.enabled)

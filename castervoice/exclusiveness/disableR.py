@@ -24,7 +24,7 @@ def disableR(targetRules_className,aExceptR=[]):
 
 		# if targetRule_className not in all_loadedRule_class_Name:
 		if targetRule_className not in get_AllActiveRules():
-			# print "\n", "ici20200319091146| skeep to disable rule:", targetRule_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+			# print "\n", "ici20200319091146| skip to disable rule:", targetRule_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 			#--- (...)
 			try:

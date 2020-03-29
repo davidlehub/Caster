@@ -10,6 +10,7 @@ from castervoice.lib.utilities import get_active_window_path
 from castervoice.exclusiveness.Set_Exclusiveness_ForRules import Set_Exclusiveness_ForRules
 from castervoice.exclusiveness.CurrWindow_data import CurrWindow_data
 from castervoice.exclusiveness.cls.DragonVocabulary_cls import DragonVocabulary
+import natlink
 
 
 # def Notify_process_begin_GramBase(aGram, aExecutable, aTitle, aWindHndl):
@@ -18,20 +19,27 @@ def Notify_on_begin_fromDragonFly():
 
 	#____ Goal: disable Dragon Naturally Speaking (DNS) vocabulary
 
-	#__ (skeep: if already disable)
-	# if not DragonVocabulary.enabled: #skeep
-	if DragonVocabulary.enabled: #skeep TODO: change to: if DnsVocabulary_is_enabled:
-	# if not ExclusivMode.enabled: #skeep
+	#__ skip
+	# mic_state = natlink.getMicState()
+	# print "\n|~ici 20200328235834| mic_state : ",mic_state, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+	if natlink.getMicState() == "sleeping":
+		return
+	# elif DragonVocabulary.temporaryEnabled:
+	# 	print("20200328223639 gonna 'DragonVocabulary.disable()' bcz it was enabled temporary")
+	# 	# DragonVocabulary.enable()
+	# 	DragonVocabulary.disable()
+	# 	# DragonVocabulary.temporaryDisabled = True
+	# 	DragonVocabulary.temporaryEnabled = False
+
+
+	#__ (skip: if already disable)
+	# if not DragonVocabulary.enabled: #skip
+	if DragonVocabulary.enabled: #skip TODO: change to: if DnsVocabulary_is_enabled:
+	# if not ExclusivMode.enabled: #skip
 	# 	print "\n(Exclusive mode is off)."
 		return	
 
 	#__ ...
-	if DragonVocabulary.temporaryEnabled:
-		print("20200328223639 gonna 'DragonVocabulary.disable()' bcz it was enabled temporary")
-		# DragonVocabulary.enable()
-		DragonVocabulary.disable()
-		# DragonVocabulary.temporaryDisabled = True
-		DragonVocabulary.temporaryEnabled = False
 
 
 	data.currWindHndl =  Window.get_foreground().handle

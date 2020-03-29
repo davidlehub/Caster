@@ -13,7 +13,7 @@ def enableR(targetRules_className):
 
 	for targetRule_className in targetRules_className:
 		if targetRule_className in gl.RbeenActive:
-			# print "\n", "20200316170549| skeep targetRule_className:", targetRule_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+			# print "\n", "20200316170549| skip targetRule_className:", targetRule_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 			continue
 
 		#region--- Optimizing by not enable rule already loaded/active
@@ -21,7 +21,7 @@ def enableR(targetRules_className):
 		# all_loadedRule_class_Name =  list(OrderedDict.fromkeys(gl.all_Merge_result.all_rule_class_names + [i.get_rule_class_name() for i in gl.all_loadedRule_mappingRule]))
 		# if targetRule_className in all_loadedRule_class_Name:
 		if targetRule_className in get_AllActiveRules():
-			# print "\n", "20200319185240| skeep to enable rule:", targetRule_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+			# print "\n", "20200319185240| skip to enable rule:", targetRule_className, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 			#--- (Add to the list, bcz that rule gonna be exclusive)
 			if targetRule_className not in gl.RbeenActive:

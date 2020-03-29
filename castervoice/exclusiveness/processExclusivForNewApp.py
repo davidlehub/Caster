@@ -16,9 +16,9 @@ def processExclusivForNewApp(CurrWindowData):
 	# return
 	# print "\n\n\n|~*** 20191202215108g| new app dected|wintitle,data.currWindHndl:", get_active_window_title(), data.currWindHndl, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)				
 
-	if  DragonVocabulary.enabled: #skeep TODO: change to: if DnsVocabulary_is_enabled:
-	# if not DragonVocabulary.enabled: #skeep
-	# if not ExclusivMode.enabled: #skeep
+	if  DragonVocabulary.enabled: #skip TODO: change to: if DnsVocabulary_is_enabled:
+	# if not DragonVocabulary.enabled: #skip
+	# if not ExclusivMode.enabled: #skip
 		print "\n|~20191207214310| Exclusive mode is off, so not gonna change exclusiveness state.",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 		return				
 	else: pass
