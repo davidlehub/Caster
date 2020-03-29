@@ -56,6 +56,7 @@ from castervoice.exclusiveness.store_AllEnabledRule_ofApp import store_AllEnable
 from castervoice.exclusiveness import Constant as ct
 from castervoice.exclusiveness.Notify_on_begin_fromDragonFly import Notify_on_begin_fromDragonFly
 from castervoice.exclusiveness.cls.DragonVocabulary_cls import enable_dragonVocabulary,disable_dragonVocabulary,dragonVocabulary_is_Disabled, dragonVocabulary_is_Enabled,enable_temporary_dragonVocabulary, disable_temporary_dragonVocabulary, dragonVocabulary_wasTemporary_disable, dragonVocabulary_wasTemporary_enabled
+from castervoice.exclusiveness.globalVariable.ExclusivenessSetting import use_ExclusiveFeature
 
 
 # #--- init
@@ -63,8 +64,9 @@ from castervoice.exclusiveness.cls.DragonVocabulary_cls import enable_dragonVoca
 store_AllEnabledRule_ofApp(ct.default, True)
 
 #__ Lets say that user want to start with exclusive mode (= disable DNS vocabulary)
-# DragonVocabulary.disable()
-disable_dragonVocabulary()
+if use_ExclusiveFeature:
+	# DragonVocabulary.disable()
+	disable_dragonVocabulary()
 
 #__
 Notify_on_begin_fromDragonFly() # To make it start into exclusive mode (if user wanted).

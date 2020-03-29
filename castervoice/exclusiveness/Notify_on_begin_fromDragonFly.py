@@ -11,6 +11,7 @@ from castervoice.exclusiveness.Set_Exclusiveness_ForRules import Set_Exclusivene
 from castervoice.exclusiveness.CurrWindow_data import CurrWindow_data
 from castervoice.exclusiveness.cls.DragonVocabulary_cls import enable_dragonVocabulary,disable_dragonVocabulary,dragonVocabulary_is_Disabled, dragonVocabulary_is_Enabled,enable_temporary_dragonVocabulary, disable_temporary_dragonVocabulary, dragonVocabulary_wasTemporary_disable, dragonVocabulary_wasTemporary_enabled
 from castervoice.exclusiveness.micState_hasChanged import micState_hasChanged
+from castervoice.exclusiveness.globalVariable.ExclusivenessSetting import use_ExclusiveFeature
 
 import natlink
 
@@ -55,13 +56,15 @@ def Notify_on_begin_fromDragonFly():
 	# endregion__} Detect microphone state changed
 
 
-	#__ (skip: if already disable)
+	#__ if user don't wat to use_ExclusiveFeature, we skep.
 	# if not ExclusivMode.enabled: #skip
 	# if not DragonVocabulary.enabled: #skip
 	# if DragonVocabulary.enabled: #skip
-	if dragonVocabulary_is_Enabled(): #TODO: make a setting, then if user set not enable Dragon vocab: we skip.
-	# 	print "\n(Exclusive mode is off)."
-		return	
+	# if dragonVocabulary_is_Enabled():
+	if not use_ExclusiveFeature:
+		# print "\n(Exclusive mode is off)."
+		return
+	else:pass
 
 	#__ ...
 
