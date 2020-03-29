@@ -1,7 +1,7 @@
 #region--- (Import)
 from inspect import getframeinfo, stack, getframeinfo, currentframe
 from typing import Callable, Iterator, Union, Optional, List, Dict
-from castervoice.exclusiveness.ExclusivMode_class import ExclusivMode
+# from castervoice.exclusiveness.ExclusivMode_class import ExclusivMode
 from castervoice.exclusiveness.globalVariable import GlobalV as gl
 from dragonfly.engines import (_default_engine)
 # from castervoice.exclusiveness.makeDragonHeard import makeDragonHeard

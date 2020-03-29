@@ -1,6 +1,6 @@
 from inspect import getframeinfo, stack, getframeinfo, currentframe
 from typing import Callable, Iterator, Union, Optional, List, Dict
-from castervoice.exclusiveness.ExclusivMode_class import ExclusivMode
+# from castervoice.exclusiveness.ExclusivMode_class import ExclusivMode
 from castervoice.exclusiveness.Set_Exclusiveness_ForRules import Set_Exclusiveness_ForRules
 from typing import Callable, Iterator, Union, Optional, List, Dict
 from castervoice.exclusiveness.cls.DragonVocabulary_cls import DragonVocabulary

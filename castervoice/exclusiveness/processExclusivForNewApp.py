@@ -1,5 +1,5 @@
 from inspect import getframeinfo, stack, getframeinfo, currentframe
-from castervoice.exclusiveness.ExclusivMode_class import ExclusivMode
+# from castervoice.exclusiveness.ExclusivMode_class import ExclusivMode
 from castervoice.exclusiveness.globalVariable import GlobalV as gl
 from castervoice.exclusiveness.store_AllEnabledRule_ofApp import store_AllEnabledRule_ofApp
 from castervoice.exclusiveness.globalVariable.Data_Manager import data
@@ -7,6 +7,7 @@ from castervoice.exclusiveness._cleanupPreviousApp import _cleanupPreviousApp
 from castervoice.exclusiveness.BackToPreviousState_OfCurrApp import BackToPreviousState_OfCurrApp
 from castervoice.exclusiveness.createAndSetExclusiv_forCurrApp import createAndSetExclusiv_forCurrApp
 from castervoice.lib.utilities import get_active_window_path,get_active_window_title, get_window_by_title
+from castervoice.exclusiveness.cls.DragonVocabulary_cls import DragonVocabulary
 
 
 # def processExclusivForNewApp(aGram,aContext): #(deprecated for new caster)
@@ -16,7 +17,8 @@ def processExclusivForNewApp(CurrWindowData):
 	# print "\n\n\n|~*** 20191202215108g| new app dected|wintitle,data.currWindHndl:", get_active_window_title(), data.currWindHndl, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)				
 
 	#region--- (TODO: uncomment after quick test)
-	if not ExclusivMode.enabled: #skeep
+	if not DragonVocabulary.enabled: #skeep
+	# if not ExclusivMode.enabled: #skeep
 		print "\n|~20191207214310| Exclusive mode is off, so not gonna change exclusiveness state.",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 		return				
 		

@@ -2,7 +2,7 @@
 from inspect import getframeinfo, stack, getframeinfo, currentframe
 from typing import Callable, Iterator, Union, Optional, List, Dict
 from castervoice.exclusiveness.makeDragonHeard import makeDragonHeard
-from castervoice.exclusiveness.ExclusivMode_class import ExclusivMode
+# from castervoice.exclusiveness.ExclusivMode_class import ExclusivMode
 import natlink
 from castervoice.exclusiveness.cls.DragonVocabulary_cls import DragonVocabulary
 

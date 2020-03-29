@@ -3,7 +3,7 @@ from typing import Callable, Iterator, Union, Optional, List, Dict
 # from castervoice.exclusiveness.DragonModeOnly import DragonModeOnly
 from dragonfly import Playback 
 from castervoice.exclusiveness.Finished_DragonModeOnly import Finished_DragonModeOnly
-from castervoice.exclusiveness.ExclusivMode_class import ExclusivMode
+# from castervoice.exclusiveness.ExclusivMode_class import ExclusivMode
 from castervoice.exclusiveness.Set_Exclusiveness_ForRules import Set_Exclusiveness_ForRules
 # from castervoice.exclusiveness.exclusiveness_OnOff import exclusiveness_OnOff
 from castervoice.exclusiveness.cls.DragonVocabulary_cls import DragonVocabulary
