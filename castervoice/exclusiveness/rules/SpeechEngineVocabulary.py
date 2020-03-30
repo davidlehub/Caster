@@ -4,6 +4,7 @@ from typing import Callable, Iterator, Union, Optional, List, Dict
 from dragonfly.grammar.grammar_base import Grammar
 from dragonfly import MappingRule
 from castervoice.lib.ctrl.mgr.rule_details import RuleDetails
+from castervoice.exclusiveness.Notify_on_begin_fromDragonFly import Notify_on_begin_fromDragonFly
 
 #endregion (Import)
 
@@ -37,6 +38,7 @@ class SpeechEngineVocabulary(MappingRule):
     # def _process_begin(self, executable, title, handle):
     def _process_begin(self):
         print "\n", "20200329073811| ici process begin.",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+        Notify_on_begin_fromDragonFly()
 
 
 
