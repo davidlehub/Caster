@@ -2,6 +2,8 @@ from dragonfly import Choice
 
 from castervoice.lib.actions import Key, Text
 
+from inspect import getframeinfo, stack, getframeinfo, currentframe
+print "\n", "20200330164242| :",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 def caster_alphabet():
     return {
@@ -36,7 +38,6 @@ def caster_alphabet():
 
 def get_alphabet_choice(spec):
     return Choice(spec, caster_alphabet())
-
 
 def letters(big, dict1, dict2, letter):
     '''used with alphabet.txt'''
