@@ -31,7 +31,8 @@ def Notify_on_begin_fromDragonFly():
 		#__ the system is still hearing everything and react as if it is not in sleep mode!
 		# if (curr_micState == "on") and (dragonVocabulary_wasTemporary_enabled()):
 		# if curr_micState == "sleeping":
-		if curr_micState == "sleeping" and dragonVocabulary_wasTemporary_disable():
+		# if curr_micState == "sleeping" and dragonVocabulary_wasTemporary_disable():
+		if curr_micState == "sleeping" and dragonVocabulary_is_Disabled():
 			print "\n", "(Needed to: temporary enable Dragon vocabulary for: sleeping state)"
 			enable_temporary_dragonVocabulary()
 		elif dragonVocabulary_wasTemporary_enabled():

@@ -9,7 +9,7 @@ from typing import Callable, Iterator, Union, Optional, List, Dict
 use_ExclusiveFeature = True
 
 #__ 
-MyRules = ["Exclusive_Controller","Dragon_Controller","Dragon_Controller", "Exclusive_UniqMode_test"]
+MyRules = ["SpeechEngineVocabulary","Exclusive_Controller","Dragon_Controller","Dragon_Controller", "Exclusive_UniqMode_test"]
 # MyRules = []
 
 #__ Fundation Rules (caster alway needs)
