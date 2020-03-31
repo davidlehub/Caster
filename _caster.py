@@ -61,7 +61,7 @@ from castervoice.exclusiveness.globalVariable.ExclusivenessSetting import use_Ex
 
 # #--- init
 # Data_Manager.init()
-store_AllEnabledRule_ofApp(ct.default, True)
+store_AllEnabledRule_ofApp(ct.default, True) #TODO: still needed?
 
 # #__ Lets say that user want to start with exclusive mode (= disable DNS vocabulary)
 # if use_ExclusiveFeature:

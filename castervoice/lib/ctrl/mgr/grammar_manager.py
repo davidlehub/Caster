@@ -19,12 +19,14 @@ from castervoice.lib.util.ordered_set import OrderedSet
 
 #region--- (david)
 from inspect import getframeinfo, stack, getframeinfo, currentframe
-
 from castervoice.lib.merge.ccrmerging2.hooks.events.rules_loaded_exclEvent import rules_loaded_exclEvent
-from castervoice.lib.merge.ccrmerging2.hooks.events.registerRule_ExclEvent import registerRule_ExclEvent
 from castervoice.lib.merge.ccrmerging2.hooks.events.remerge_ccr_rules_exclEvent import remerge_ccr_rules_exclEvent
 from castervoice.lib.merge.ccrmerging2.hooks.standard_hooks.storeAll_registeredRule_hook import storeAll_registeredRule
-#endregion 
+from castervoice.exclusiveness.detect_SpeechEngineVocabulary_activation import detect_SpeechEngineVocabulary_activation
+from castervoice.exclusiveness.apply_exclusiveness import apply_exclusiveness
+
+
+#endregion
 
 class GrammarManager(object):
 
@@ -174,6 +176,11 @@ class GrammarManager(object):
 		# run activation hooks
 		self._hooks_runner.execute(RuleActivationEvent(class_name, enabled))
 
+		# region__{ david: ...
+		detect_SpeechEngineVocabulary_activation(class_name, enabled)
+
+		# endregion__} david: ...
+
 		if tail:
 			enabled_diff = self._handle_companion_rules(enabled_diff)
 			self._rewrite_config_file(enabled_diff)
@@ -311,6 +318,11 @@ class GrammarManager(object):
 			grammar.load()
 			self._hooks_runner.execute(PostGrammersLoadedEvent(grammar))
 
+			# TODO: delete the line above (all things related to it: hook, event): 'self._hooks_runner.execute(PostGrammersLoadedEvent(grammar))'
+			# region__{ david ... decided to not using hook, bcz not necessary: 'exclusiveness' is now using rule: 'SpeechEngineVocabulary'. So say 'disable' or 'enable' 'speech engine vocabulary'.
+			apply_exclusiveness(grammar)
+			# endregion__} david ... decided to not using hook, bcz not necessary: 'exclusiveness' is now using rule: 'SpeechEngineVocabulary'. So say 'disable' or 'enable' 'speech engine vocabulary'.
+
 		return merge_result.rules_enabled_diff
 
 	def _enable_non_ccr_rule(self, managed_rule, enabled):
@@ -331,6 +343,12 @@ class GrammarManager(object):
 			#endregion 
 			grammar.load()
 			self._hooks_runner.execute(PostGrammersLoadedEvent(grammar))
+
+			# TODO: delete the line above (all things related to it: hook, event): 'self._hooks_runner.execute(PostGrammersLoadedEvent(grammar))'
+			# region__{ david: decided to not using hook, bcz not necessary: 'exclusiveness' is now using rule: 'SpeechEngineVocabulary'. So say 'disable' or 'enable' that rule, like any other rule.
+			apply_exclusiveness(grammar)
+			# endregion__} david: decided to not using hook, bcz not necessary: 'exclusiveness' is now using rule: 'SpeechEngineVocabulary'. So say 'disable' or 'enable' that rule, like any other rule.
+
 			return RulesEnabledDiff([rcn], frozenset())
 		else:
 			#region--- (david)

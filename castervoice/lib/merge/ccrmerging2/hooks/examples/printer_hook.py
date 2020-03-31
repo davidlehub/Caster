@@ -40,6 +40,7 @@ class PrinterHook(BaseHook):
   			we want the 'gl.RbeenActive' to be uptodate. 
 		"""  
 		Update_RbeenExclusive(event.rule_class_name, event.active)
+		# detect_SpeechEngineVocabulary_activation(event.rule_class_name, event.active) 
 		#endregion (david)
 		
 
