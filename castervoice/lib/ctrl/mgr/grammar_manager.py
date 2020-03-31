@@ -319,9 +319,9 @@ class GrammarManager(object):
 			self._hooks_runner.execute(PostGrammersLoadedEvent(grammar))
 
 			# TODO: delete the line above (all things related to it: hook, event): 'self._hooks_runner.execute(PostGrammersLoadedEvent(grammar))'
-			# region__{ david ... decided to not using hook, bcz not necessary: 'exclusiveness' is now using rule: 'SpeechEngineVocabulary'. So say 'disable' or 'enable' 'speech engine vocabulary'.
+			# region__{ david ... decided to not using hook, bcz not necessary: 'exclusiveness' is now using rule: 'SpeedEngineExclusion'. So say 'disable' or 'enable' 'speech engine vocabulary'.
 			apply_exclusiveness(grammar)
-			# endregion__} david ... decided to not using hook, bcz not necessary: 'exclusiveness' is now using rule: 'SpeechEngineVocabulary'. So say 'disable' or 'enable' 'speech engine vocabulary'.
+			# endregion__} david ... decided to not using hook, bcz not necessary: 'exclusiveness' is now using rule: 'SpeedEngineExclusion'. So say 'disable' or 'enable' 'speech engine vocabulary'.
 
 		return merge_result.rules_enabled_diff
 
@@ -345,9 +345,9 @@ class GrammarManager(object):
 			self._hooks_runner.execute(PostGrammersLoadedEvent(grammar))
 
 			# TODO: delete the line above (all things related to it: hook, event): 'self._hooks_runner.execute(PostGrammersLoadedEvent(grammar))'
-			# region__{ david: decided to not using hook, bcz not necessary: 'exclusiveness' is now using rule: 'SpeechEngineVocabulary'. So say 'disable' or 'enable' that rule, like any other rule.
+			# region__{ david: decided to not using hook, bcz not necessary: 'exclusiveness' is now using rule: 'SpeedEngineExclusion'. So say 'disable' or 'enable' that rule, like any other rule.
 			apply_exclusiveness(grammar)
-			# endregion__} david: decided to not using hook, bcz not necessary: 'exclusiveness' is now using rule: 'SpeechEngineVocabulary'. So say 'disable' or 'enable' that rule, like any other rule.
+			# endregion__} david: decided to not using hook, bcz not necessary: 'exclusiveness' is now using rule: 'SpeedEngineExclusion'. So say 'disable' or 'enable' that rule, like any other rule.
 
 			return RulesEnabledDiff([rcn], frozenset())
 		else:

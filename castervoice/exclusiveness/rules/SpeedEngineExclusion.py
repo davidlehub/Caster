@@ -21,7 +21,7 @@ from castervoice.exclusiveness.Notify_on_begin_fromDragonFly import Notify_on_be
 # x = f  # type: Callable[[int, float], float]
 #endregion (This is how you annotate a function definitio)
 
-class SpeechEngineVocabulary(MappingRule):
+class SpeedEngineExclusion(MappingRule):
 
     mapping = {
 
@@ -45,4 +45,4 @@ class SpeechEngineVocabulary(MappingRule):
 
 # ---------------------------------------------------------------------------
 def get_rule():
-    return SpeechEngineVocabulary, RuleDetails(name="Speech Engine Vocabulary")
+    return SpeedEngineExclusion, RuleDetails(name="Speed Engine exclusion")

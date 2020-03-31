@@ -20,16 +20,16 @@ from castervoice.exclusiveness.cls.DragonVocabulary_cls import enable_dragonVoca
 #endregion (This is how you annotate a function definitio)
 
 def detect_SpeechEngineVocabulary_activation(class_name, enabled):
-	from castervoice.exclusiveness.rules.SpeechEngineVocabulary import SpeechEngineVocabulary
+	from castervoice.exclusiveness.rules.SpeedEngineExclusion import SpeedEngineExclusion
 
-	# print "\n|-- SpeechEngineVocabulary.__name__:", SpeechEngineVocabulary.__name__,  "--| 20200330084738 |{ In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno), "}|"
+	# print "\n|-- SpeedEngineExclusion.__name__:", SpeedEngineExclusion.__name__,  "--| 20200330084738 |{ In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno), "}|"
 
-	#__ make sure to enable_dragonVocabulary, when 'SpeechEngineVocabulary' rule is disable.
-	if class_name == SpeechEngineVocabulary.__name__ and not enabled:
+	#__ make sure to enable_dragonVocabulary, when 'SpeedEngineExclusion' rule is disable.
+	if class_name == SpeedEngineExclusion.__name__ and not enabled:
 		# print "\n|-- Ok gonna enable_dragonVocabulary:",   "--| 20200330090213 |{ In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno), "}|"
 		enable_dragonVocabulary()
 
-	# __ make sure to disable_dragonVocabulary, when 'SpeechEngineVocabulary' rule is enable.
-	elif class_name == SpeechEngineVocabulary.__name__ and enabled:
+	# __ make sure to disable_dragonVocabulary, when 'SpeedEngineExclusion' rule is enable.
+	elif class_name == SpeedEngineExclusion.__name__ and enabled:
 		disable_dragonVocabulary()
 
