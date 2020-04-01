@@ -1,4 +1,5 @@
 #region--- (Import)
+import time
 from inspect import getframeinfo, stack, getframeinfo, currentframe
 from typing import Callable, Iterator, Union, Optional, List, Dict
 from castervoice.lib.merge.mergerule import MergeRule
@@ -29,6 +30,46 @@ F = Function
 # # This is how you annotate a callable (function) value
 # x = f  # type: Callable[[int, float], float]
 #endregion (This is how you annotate a function definitio)
+
+# region__{ Timer (from https://stackoverflow.com/questions/12435211/python-threading-timer-repeat-function-every-n-seconds
+from threading import Timer, Event, Thread
+
+
+# class RepeatTimer(Timer):
+#     def run(self):
+#         while not self.finished.wait(self.interval):
+#             self.function(*self.args, **self.kwargs)
+# def dummyfn(msg="foo"):
+#     print(msg)
+#
+# timer = RepeatTimer(1, dummyfn)
+# timer.start()
+# time.sleep(5)
+# timer.cancel()
+
+# timer = RepeatTimer(1, dummyfn, args=("bar",))
+# timer.start()
+# time.sleep(5)
+# timer.cancel()
+
+
+# class MyThread(Thread):
+#     def __init__(self, event):
+#         Thread.__init__(self)
+#         self.stopped = event
+#
+#     def run(self):
+#         while not self.stopped.wait(0.5):
+#             print("my thread 2000401001036")
+#             # call a function
+# stopFlag = Event()
+# thread = MyThread(stopFlag)
+# thread.start()
+# # time.sleep(5)
+# # this will stop the timer
+# stopFlag.set()
+
+# endregion__} Timer (from https://stackoverflow.com/questions/12435211/python-threading-timer-repeat-function-every-n-seconds
 
 from castervoice.exclusiveness.makeDragonHeard import makeDragonHeard
 def makeDragonHeard_contextSeek(p):
@@ -61,15 +102,32 @@ def queuing_spoken2():
     #
     # makeDragonHeard_contextSeek([["then"], 0.0])
 
-class UntilCancelled2(AsynchronousAction):
-    def __init__(self, action, t=3):
-        # AsynchronousAction.__init__(self, [L(S(["cancel"], action))], t, 100, "UC", False,
-        AsynchronousAction.__init__(self, [L(S(["cancel"], action))], t, 10, "UC", False,
-                                    Text("fnished 20200331164105")) #ok it print out
-                                    # None)
-        self.show = True
-        print "\n|-- ici",   "--| 20200331043832 |"
-        AsynchronousAction.hmc_complete(None)
+# class UntilCancelled3(AsynchronousAction):
+class UntilCancelled3(ActionBase):
+    def __init__(self, *words, **kwargs):
+        #__ |-- words,kwargs: ([u'char'],) {} --|
+        # print "\n|-- words,kwargs:", words, kwargs,  "--| 20200401083256 |{ In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno), "}|"
+
+        ActionBase.__init__(self)
+        self._words = tuple(words)
+        #__ *** |-- self._words: ([u'char', u'arch'],) --|
+        # print "\n|-- self._words:", self._words,  "--| 20200401110002 |{ In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno), "}|"
+
+        if "extra" in kwargs:
+            self._extra = kwargs.pop("extra")
+        else:
+            self._extra = None
+
+        # Set pretty printing string used by __str__ and __unicode__.
+        self._str = u", ".join(repr(w) for w in self._words)
+
+        # # Make sure that all keyword arguments have been consumed.
+        # if kwargs:
+        #     raise ActionError("Invalid arguments: %r"
+        #                       % ", ".join(list(kwargs.keys())))
+
+    def _execute(self, data=None):
+        print_params_to_console(" excute of UntilCancelled3|20200401105354")
 
 spoken_queue = []
 # def queuing_spoken(params):
@@ -77,18 +135,23 @@ spoken_queue = []
 # def makeDragonHeard_contextSeek(p):
 	# makeDragonHeard(pWords = p[0], pTime=p[1])
 
+been_CheckingforWindowExist = False
 def queuing_spoken(params=None):
-    print "\n|-- params:", params,  "--| 20200331085920 |"
+    global  been_CheckingforWindowExist
     global spoken_queue
     spoken_queue.append(params)
     print "\n|-- spoken_queue:", spoken_queue,  "--| 20200331061848 |"
     # return True
 
-    # # an if : inside call only one: is triguer is not met.
-    # UntilCancelled(
-    #     checkFowWindowExist(*filter(lambda s: s != "then", params)), 1).execute()
+    # an if : inside call only one: if triguer is not met ...
+    if not been_CheckingforWindowExist:
+        UntilCancelled( checkFowWindowExist(*filter(lambda s: s != "then", params)), 1 ).execute()
+        been_CheckingforWindowExist = True
+    else:
+        print "\n|-- (skip calling Asynchornous to check if window exit",   "--| 20200401082031 |"
 
-    # makeDragonHeard(["len"])
+    #__ to keep catching spoken
+    makeDragonHeard(["then"])
 
     # region__{
     # # checkFowWindowExist()
@@ -138,8 +201,8 @@ class UntilCancelled(AsynchronousAction):
     # def __init__(self, action, t=float("0.1")):
     def __init__(self, action, t=1):
         print "\n|-- action,t:", action, t, "--| 20200331103436 |"
-        AsynchronousAction.__init__(self, [L(S(["cancel"], action))], t, 10, "UC", True,
-        # AsynchronousAction.__init__(self, [L(S(["cancel"], action))], t, 10, "UC", False,
+        # AsynchronousAction.__init__(self, [L(S(["cancel"], action))], t, 10, "UC", True, # blocking ...
+        AsynchronousAction.__init__(self, [L(S(["cancel"], action))], t, 10, "UC", False, #no blocking...
         # AsynchronousAction.__init__(self, [L(S(["cancel"], action))], float(t), 10, "UC", False,
                                     Text("fnished 20200331164105"))
         #                             None)
@@ -164,13 +227,31 @@ class checkFowWindowExist(ActionBase):
         #                       % ", ".join(list(kwargs.keys())))
 
     def _execute(self, data=None):
-        print_params_to_console("blabl 20200331110042")
-        return True
+        print_params_to_console("checking for window xx |20200401081906")
+        # return True
 
         # global _TEMP
         # _, orig = context.read_selected_without_altering_clipboard(False)
         # text = orig.replace(" ", self.space) if orig else ""
         # _TEMP = text.replace("\n", "") if self.remove_cr else text
+        # return True
+
+class storeSpoken_DragonflyAction(ActionBase):
+    def __init__(self, *words, **kwargs):
+        print "\n|-- words,kwargs:", words, kwargs,  "--| 20200401083256 |{ In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno), "}|"
+        ActionBase.__init__(self)
+        self._words = tuple(words)
+        if "extra" in kwargs:
+            self._extra = kwargs.pop("extra")
+        else:
+            self._extra = None
+
+        # Set pretty printing string used by __str__ and __unicode__.
+        self._str = u", ".join(repr(w) for w in self._words)
+
+
+    def _execute(self, data=None):
+        print_params_to_console("checking for window xx |20200401081906")
         # return True
 
 ''' template:
@@ -198,33 +279,49 @@ class queuingTrigger(MergeRule):
         "midnight": R(Text("midnight"), rspec="midnight"),
         # "wait for": ContextSeeker(forward=[L(  # works
 
+        # region__ ok: orig
         # "then": ContextSeeker(forward=[L(  # works
         #     # S(["no time"], makeDragonHeard_contextSeek, parameters=[["then"], 0.0]), #ok
         #     # S(["!!!"], queuing_spoken, use_spoken=True), #err
-        #     S(["no time"], queuing_spoken, use_spoken=True),
         #     S(["cancel"], NullAction()),
         #     # S(["noon"], print_params_to_console, parameters=["some parameters"]),
         #     S(["evening"], print_params_to_console, use_spoken=True),
         #     S(["midnight"], print_params_to_console, use_rspec=True),
-        # )
-        # ]
-        # ),
 
-        # "then": AsynchronousAction([L(S(["!"], repeat_me))]), #orig ok
-        # "then": AsynchronousAction([L(S(["!"], repeat_me, use_spoken=True))]), #KeyError: 0
-        # "then": AsynchronousAction([L(S(["!"], queuing_spoken ))]), #ok
-        # "then": AsynchronousAction([L(S(["!"], queuing_spoken, parameters=["some parameters"] ))]), #ok
-        # "then": AsynchronousAction([L(S(["!"], queuing_spoken, use_rspec=True ))]),
-        # "then": AsynchronousAction([L(S(["!"], queuing_spoken, params=["sdf"]))]), #KeyError: 0
+        # endregion__ ok: orig
 
-        "then": AsynchronousAction([L(S(["!"], queuing_spoken, use_spoken=True))]),
-        # "then": AsynchronousAction([L(S(["evening"], print_params_to_console, use_spoken=True))]),
-        #     S(["evening"], print_params_to_console, use_spoken=True),
+        # region__  ok, catching spoken |20200401110749
+        "then": ContextSeeker(forward=[L(  # works
+            S(["no time"], queuing_spoken, use_spoken=True),
+        )
+        ]
+        ),
 
-        # "then": AsynchronousAction([L(S(["!"], queuing_spoken(), parameters=["some parameters"] ))]), #??
-        # "then": AsynchronousAction([L(S(["!"], queuing_spoken(["sdfsdf"]) ))]),
-        # "then": AsynchronousAction([L(S(["no time"], queuing_spoken, use_spoken=True))]), #no
+        # endregion }__
 
+        # region__ great! Also, catching spoken. But lets use the 20200401110749
+        # "then":
+        #     ContextSeeker(forward=[
+        #         L(
+        #             # S(["!!"],  print_params_to_console, parameters=["some parameters"]),
+        #
+        #             S(["cancel"], lambda: None),
+        #             S(["*"],
+        #               # lambda fnparams: UntilCancelled(
+        #               # lambda fnparams: UntilCancelled2( #modify this UntilCancelled2 to: catch spoken and store them in array.
+        #               lambda fnparams: UntilCancelled3( #modify this UntilCancelled2 to: catch spoken and store them in array.
+        #                   # Mimic(*filter(lambda s: s != "periodic", fnparams)), 1).execute(
+        #                   #__ Instead of Mimic...: create my own DragonFly action that: store spoken
+        #                   # storeSpoken_DragonflyAction(*filter(lambda s: s != "then", fnparams)), 1).execute(
+        #                   # *filter(lambda s: s != "then", fnparams)).execute(
+        #                   filter(lambda s: s != "then", fnparams)).execute(
+        #               ),
+        #               use_spoken=True))
+        #     ]),
+
+        # endregion }__ trying 20200401082616
+
+        # region__ ok, but not for this use case
         # "then": #ok
         #     ContextSeeker(forward=[
         #         L(
@@ -238,6 +335,32 @@ class queuingTrigger(MergeRule):
         #               ),
         #               use_spoken=True))
         #     ]),
+        # endregion }__ ok, but not for this use case
+
+        # region__ ok
+        # "then": AsynchronousAction([L(S(["!"], queuing_spoken, parameters=["some parameters"]))]),
+        # endregion__} ok
+
+        # region__ Essay error
+        #__
+        # "then": AsynchronousAction([L(S(["!"], repeat_me))]), #orig ok
+        # "then": AsynchronousAction([L(S(["!"], repeat_me, use_spoken=True))]), #KeyError: 0
+        # "then": AsynchronousAction([L(S(["!"], queuing_spoken ))]), #ok
+        # "then": AsynchronousAction([L(S(["!"], queuing_spoken, parameters=["some parameters"] ))]), #ok
+        # "then": AsynchronousAction([L(S(["!"], queuing_spoken, use_rspec=True ))]),
+        # "then": AsynchronousAction([L(S(["!"], queuing_spoken, params=["sdf"]))]), #KeyError: 0
+
+        # S(["*"], lambda fnparams: UntilCancelled(
+        #       Mimic(*filter(lambda s: s != "then", fnparams)), 1).execute()
+
+        # "then": AsynchronousAction([L(S(["!"], queuing_spoken, use_spoken=True))]),
+        # "then": AsynchronousAction([L(S(["evening"], print_params_to_console, use_spoken=True))]),
+        #     S(["evening"], print_params_to_console, use_spoken=True),
+
+        # "then": AsynchronousAction([L(S(["!"], queuing_spoken(), parameters=["some parameters"] ))]), #??
+        # "then": AsynchronousAction([L(S(["!"], queuing_spoken(["sdfsdf"]) ))]),
+        # "then": AsynchronousAction([L(S(["no time"], queuing_spoken, use_spoken=True))]), #no
+
 
 
         # "then":
@@ -259,8 +382,7 @@ class queuingTrigger(MergeRule):
 
         # "then": AsynchronousAction([L(S(["!"], queuing_spoken2,use_spoken=True))]), #no
         # "then": AsynchronousAction([L(S(["!"], queuing_spoken2))]), #ok
-
-
+        # endregion__} Essay error
 
     }
 
