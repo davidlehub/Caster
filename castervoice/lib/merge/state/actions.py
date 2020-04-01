@@ -67,6 +67,7 @@ class AsynchronousAction(ContextSeeker):
     def __init__(self,
                  forward,
                  time_in_seconds=1,
+                 # time_in_seconds=0.1,
                  repetitions=0,
                  rdescript="unnamed command (A)",
                  blocking=True,
@@ -98,6 +99,7 @@ class AsynchronousAction(ContextSeeker):
         will be called by AsynchronousAction's timer repeatedly,
         to see if the data is available yet'''
 
+        print "\n|-- data_function:", data_function,  "--| 20200331043403 |"
         def check_complete():
             data = None
             try:

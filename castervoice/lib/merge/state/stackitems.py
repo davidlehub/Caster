@@ -107,8 +107,12 @@ class StackItemSeeker(StackItemRegisteredAction):
             level = context_level.index
             fnparams = context_level.result.parameters
             if context_level.result.use_spoken:
-                fnparams = self.param_spoken[level]
-            if context_level.result.use_rspec:
+                print "\n|-- level:", level,  "--| 20200331090847 |"
+                print "|-- param_spoken:", self.param_spoken,  "--| 20200331211118 |"
+                if len(self.param_spoken) > 0:
+                    fnparams = self.param_spoken[level]
+                # fnparams = self.param_spoken[level]
+            if context_level.result.use_rspec: # orig
                 fnparams = self.param_rspec[level]
             if fnparams is None:
                 return action()

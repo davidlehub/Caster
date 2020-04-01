@@ -37,7 +37,7 @@ class SpeedEngineExclusion(MappingRule):
 
     # def _process_begin(self, executable, title, handle):
     def _process_begin(self):
-        print "\n|- ici process begin.",   "-| {20200329095845| In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno), "}|"
+        # print "\n|- ici process begin.",   "-| {20200329095845| In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno), "}|"
         Notify_on_begin_fromDragonFly()
 
 
