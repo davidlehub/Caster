@@ -130,15 +130,11 @@ class UntilCancelled3(ActionBase):
         print_params_to_console(" excute of UntilCancelled3|20200401105354")
 
 spoken_queue = []
-# def queuing_spoken(params):
-# def queuing_spoken(params=None):
-# def makeDragonHeard_contextSeek(p):
-	# makeDragonHeard(pWords = p[0], pTime=p[1])
-
 been_CheckingforWindowExist = False
+triggerMet_StartQueuingSequences = False
 def queuing_spoken(params=None):
     global  been_CheckingforWindowExist
-    global spoken_queue
+    global spoken_queue, triggerMet_StartQueuingSequences
     spoken_queue.append(params)
     print "\n|-- spoken_queue:", spoken_queue,  "--| 20200331061848 |"
     # return True
@@ -148,10 +144,16 @@ def queuing_spoken(params=None):
         UntilCancelled( checkFowWindowExist(*filter(lambda s: s != "then", params)), 1 ).execute()
         been_CheckingforWindowExist = True
     else:
-        print "\n|-- (skip calling Asynchornous to check if window exit",   "--| 20200401082031 |"
+        print "\n|-- (skip calling Asynchornous (that check if window exit).",   "--| 20200401082031 |"
 
     #__ to keep catching spoken
-    makeDragonHeard(["then"])
+    if not triggerMet_StartQueuingSequences:
+        makeDragonHeard(["then"])
+    else:
+        print "\n|-- stop getting spoken, bcz: triggerMet_StartQueuingSequences:", triggerMet_StartQueuingSequences,  "--| 20200401114138 |"
+        # print "\n|-- stop getting spoken, bcz: triggerMet_StartQueuingSequences.",   "--| 20200401114138 |"
+        Mimic(AsynchronousAction_Stoping_spec).execute()
+        # makeDragonHeard([AsynchronousAction_Stoping_spec])
 
     # region__{
     # # checkFowWindowExist()
@@ -194,7 +196,7 @@ def repeat_me():
         return True
     return False
 
-
+AsynchronousAction_Stoping_spec = "cancel"
 class UntilCancelled(AsynchronousAction):
     # def __init__(self, action, t=3):
     # def __init__(self, action, t=0.1):
@@ -202,13 +204,18 @@ class UntilCancelled(AsynchronousAction):
     def __init__(self, action, t=1):
         print "\n|-- action,t:", action, t, "--| 20200331103436 |"
         # AsynchronousAction.__init__(self, [L(S(["cancel"], action))], t, 10, "UC", True, # blocking ...
-        AsynchronousAction.__init__(self, [L(S(["cancel"], action))], t, 10, "UC", False, #no blocking...
+        # AsynchronousAction.__init__(self, [L(S(["cancel"], action))], t, 10, "UC", False, #no blocking...
+        # # AsynchronousAction.__init__(self, [L(S(["cancel"], action))], float(t), 10, "UC", False,
+        AsynchronousAction.__init__(self, [L(S([AsynchronousAction_Stoping_spec], action))], t, 10, "UC", False, #no blocking...
         # AsynchronousAction.__init__(self, [L(S(["cancel"], action))], float(t), 10, "UC", False,
                                     Text("fnished 20200331164105"))
         #                             None)
         self.show = True
 
-# class check(ActionBase):
+
+# region__ for simulate: trigger's condition me
+my_value = 0
+# endregion }__ for simulate: trigger's condition me
 class checkFowWindowExist(ActionBase):
     def __init__(self, *words, **kwargs):
         ActionBase.__init__(self)
@@ -227,7 +234,29 @@ class checkFowWindowExist(ActionBase):
         #                       % ", ".join(list(kwargs.keys())))
 
     def _execute(self, data=None):
-        print_params_to_console("checking for window xx |20200401081906")
+        # print_params_to_console("checking for window xx |20200401081906") #to remove: not usefull.
+
+        # print "\n|-- (End of _excecute())",   "--| 20200401112219 |"
+
+        # region__ for simulate: trigger's condition me
+        global my_value, triggerMet_StartQueuingSequences
+        my_value = my_value + 5
+        print(my_value)
+        if my_value == 15:
+            my_value = 0
+            # return True
+            been_CheckingforWindowExist = False
+
+            #__ So, Queuing trigger condition met:
+            #__ stop the stop loping of checking if condition met, by stoping Asychronos ...
+            print "\n|-- Indicate that Queuing trigger condition met.",   "--| 20200401113904 |"
+            triggerMet_StartQueuingSequences = True
+            Mimic(AsynchronousAction_Stoping_spec).execute()
+            # makeDragonHeard([AsynchronousAction_Stoping_spec])
+
+
+        # return False
+        # endregion }__ for simulate: trigger's condition me
         # return True
 
         # global _TEMP
@@ -236,23 +265,23 @@ class checkFowWindowExist(ActionBase):
         # _TEMP = text.replace("\n", "") if self.remove_cr else text
         # return True
 
-class storeSpoken_DragonflyAction(ActionBase):
-    def __init__(self, *words, **kwargs):
-        print "\n|-- words,kwargs:", words, kwargs,  "--| 20200401083256 |{ In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno), "}|"
-        ActionBase.__init__(self)
-        self._words = tuple(words)
-        if "extra" in kwargs:
-            self._extra = kwargs.pop("extra")
-        else:
-            self._extra = None
-
-        # Set pretty printing string used by __str__ and __unicode__.
-        self._str = u", ".join(repr(w) for w in self._words)
-
-
-    def _execute(self, data=None):
-        print_params_to_console("checking for window xx |20200401081906")
-        # return True
+# class storeSpoken_DragonflyAction(ActionBase):
+#     def __init__(self, *words, **kwargs):
+#         print "\n|-- words,kwargs:", words, kwargs,  "--| 20200401083256 |{ In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno), "}|"
+#         ActionBase.__init__(self)
+#         self._words = tuple(words)
+#         if "extra" in kwargs:
+#             self._extra = kwargs.pop("extra")
+#         else:
+#             self._extra = None
+#
+#         # Set pretty printing string used by __str__ and __unicode__.
+#         self._str = u", ".join(repr(w) for w in self._words)
+#
+#
+#     def _execute(self, data=None):
+#         print_params_to_console("checking for window xx |20200401081906")
+#         # return True
 
 ''' template:
    "vis": R( #
