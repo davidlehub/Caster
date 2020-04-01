@@ -132,28 +132,40 @@ class UntilCancelled3(ActionBase):
 spoken_queue = []
 been_CheckingforWindowExist = False
 triggerMet_StartQueuingSequences = False
-def queuing_spoken(params=None):
+# def queuing_spoken(params=None):
+def queuing_spoken(params):
     global  been_CheckingforWindowExist
+
     global spoken_queue, triggerMet_StartQueuingSequences
-    spoken_queue.append(params)
+    spoken_queue.append(list(params))
+    # params = None #bcz it keeps the value
     print "\n|-- spoken_queue:", spoken_queue,  "--| 20200331061848 |"
     # return True
 
     # an if : inside call only one: if triguer is not met ...
     if not been_CheckingforWindowExist:
-        UntilCancelled( checkFowWindowExist(*filter(lambda s: s != "then", params)), 1 ).execute()
+        # UntilCancelled( checkFowWindowExist(*filter(lambda s: s != "then", params)), 1 ).execute()
+        UntilCancelled( checkFowWindowExist(None, None ), 1).execute()
         been_CheckingforWindowExist = True
     else:
         print "\n|-- (skip calling Asynchornous (that check if window exit).",   "--| 20200401082031 |"
 
     #__ to keep catching spoken
     if not triggerMet_StartQueuingSequences:
-        makeDragonHeard(["then"])
+        # makeDragonHeard(["then"])
+        Mimic("then").execute()
     else:
         print "\n|-- stop getting spoken, bcz: triggerMet_StartQueuingSequences:", triggerMet_StartQueuingSequences,  "--| 20200401114138 |"
         # print "\n|-- stop getting spoken, bcz: triggerMet_StartQueuingSequences.",   "--| 20200401114138 |"
         Mimic(AsynchronousAction_Stoping_spec).execute()
         # makeDragonHeard([AsynchronousAction_Stoping_spec])
+
+        been_CheckingforWindowExist = False
+        triggerMet_StartQueuingSequences = False
+        spoken_queue = []
+
+        my_value = 0
+
 
     # region__{
     # # checkFowWindowExist()
@@ -242,7 +254,7 @@ class checkFowWindowExist(ActionBase):
         global my_value, triggerMet_StartQueuingSequences
         my_value = my_value + 5
         print(my_value)
-        if my_value == 15:
+        if my_value == 45:
             my_value = 0
             # return True
             been_CheckingforWindowExist = False
@@ -321,7 +333,8 @@ class queuingTrigger(MergeRule):
 
         # region__  ok, catching spoken |20200401110749
         "then": ContextSeeker(forward=[L(  # works
-            S(["no time"], queuing_spoken, use_spoken=True),
+            # S(["no time"], queuing_spoken, use_spoken=True),
+            S(["!!!"], queuing_spoken, use_spoken=True),
         )
         ]
         ),

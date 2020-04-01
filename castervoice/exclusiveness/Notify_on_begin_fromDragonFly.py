@@ -69,7 +69,7 @@ def Notify_on_begin_fromDragonFly():
 
 	#__ ...
 
-	print "\n", "20200329120736| Gonna try to DISABLE Dragon vocab, if is not already disabled", " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+	# print "\n", "20200329120736| Gonna try to DISABLE Dragon vocab, if is not already disabled", " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 	data.currWindHndl =  Window.get_foreground().handle
 	# data.currWindHndl =  aWindHndl
