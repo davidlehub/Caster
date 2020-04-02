@@ -1,3 +1,4 @@
+# TODO: to delete: no need cz: using History function already there in Caster
 #region--- (Import)
 from inspect import getframeinfo, stack, getframeinfo, currentframe
 from typing import Callable, Iterator, Union, Optional, List, Dict
@@ -24,7 +25,8 @@ class on_recognition_DataShare(): #Static for sharing data
     Queue = None  # type: Queue_cls
 
 def on_recognition_fromDragonfly(words):
-    print "\n|-- on_recognition_fromDragonfly()| words:", words,  "--| 20200401055206 |"
+    print "\n|-- (Don't use this any more)|" ,  "--| 20200401055206 |"
+    # print "\n|-- on_recognition_fromDragonfly()| words:", words,  "--| 20200401055206 |"
 
     if on_recognition_DataShare.enable_recording_spoken:
         # Queue = Queue_cls()

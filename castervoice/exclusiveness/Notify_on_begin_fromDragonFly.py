@@ -1,3 +1,4 @@
+# TODO: to delete: no need any more
 from inspect import getframeinfo, stack, getframeinfo, currentframe
 # from castervoice.exclusiveness.ExclusivMode_class import ExclusivMode
 from castervoice.exclusiveness.globalVariable.Data_Manager import data

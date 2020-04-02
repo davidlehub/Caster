@@ -48,28 +48,27 @@ class UntilCancelled(AsynchronousAction):
 
 my_value = 0
 spoken_queue = []
-been_CheckingforWindowExist = False
 triggerMet_StartQueuingSequences = False
 def storeSpoken_inQueue(params):
     #__ ToRemeber: it is not depend on App. in otw, event is the app change, it keep storing spokens. (but it relate to the app that start the queue storing ??)
 
     #__ Create new Queue in to Queues list
     #__ by telling on_recognition_fromDragonfly() to do it
-    on_recognition_DataShare.Queue = Queue_cls()
-    on_recognition_DataShare.enable_recording_spoken = True
+    # on_recognition_DataShare.Queue = Queue_cls()
+    # on_recognition_DataShare.enable_recording_spoken = True
 
 
-    global  been_CheckingforWindowExist
+    # global  been_CheckingforWindowExist
 
     global spoken_queue, triggerMet_StartQueuingSequences
     spoken_queue.append(params)
     print "\n|-- spoken_queue:", spoken_queue,  "--| 20200331061848 |"
 
     # an if : inside call only one: if triguer is not met ...
-    if not been_CheckingforWindowExist:
+    if not checkFowWindowExist.been_CheckingforWindowExist:
         # UntilCancelled( checkFowWindowExist(*filter(lambda s: s != "then", params)), 1 ).execute()
         UntilCancelled( checkFowWindowExist(None, None ), 1).execute()
-        been_CheckingforWindowExist = True
+        checkFowWindowExist.been_CheckingforWindowExist = True
     else:
         print "\n|-- (skip calling Asynchornous (that check if window exit).",   "--| 20200401082031 |"
 
@@ -84,7 +83,7 @@ def storeSpoken_inQueue(params):
         # makeDragonHeard([AsynchronousAction_Stoping_spec])
 
         #__ reset vars
-        been_CheckingforWindowExist = False
+        checkFowWindowExist.been_CheckingforWindowExist = False
         triggerMet_StartQueuingSequences = False
         spoken_queue = []
 
@@ -111,8 +110,13 @@ AsynchronousAction_Stoping_spec = "cancel"
 # region__ for simulate: trigger's condition me
 my_value = 0
 # endregion }__ for simulate: trigger's condition me
-_history = get_and_register_history(10)
+# _history = get_and_register_history(10)
+# been_CheckingforWindowExist = False
+
 class checkFowWindowExist(ActionBase):
+    been_CheckingforWindowExist = False
+    _history = None
+
     def __init__(self, *words, **kwargs):
         ActionBase.__init__(self)
         self._words = tuple(words)
@@ -130,18 +134,21 @@ class checkFowWindowExist(ActionBase):
         #                       % ", ".join(list(kwargs.keys())))
 
     def _execute(self, data=None):
+
         # print_params_to_console("checking for window xx |20200401081906") #to remove: not usefull.
 
         # print "\n|-- (End of _excecute())",   "--| 20200401112219 |"
 
         # print "\n|-- get_and_register_history():", get_and_register_history(),  "--| 20200402083809 |"
-        print "\n|-- _history:", _history,  "--| 20200402084547 |"
+        print "\n|-- _history:", checkFowWindowExist._history,  "--| 20200402084547 |"
 
         # region__ run only once
         # global been_CheckingforWindowExist
-        # if not been_CheckingforWindowExist:
-        if not on_recognition_DataShare.enable_recording_spoken:
+        # if not on_recognition_DataShare.enable_recording_spoken:
+        if not checkFowWindowExist.been_CheckingforWindowExist:
             print "\n|-- enable_recording_spoken",   "--| 20200401104625 |"
+            checkFowWindowExist._history = get_and_register_history(10)
+
             # __ Create new Queue in to Queues list
             # __ by telling on_recognition_fromDragonfly() to do it
             on_recognition_DataShare.Queue = Queue_cls()
@@ -151,7 +158,7 @@ class checkFowWindowExist(ActionBase):
             # UntilCancelled( checkFowWindowExist(*filter(lambda s: s != "then", params)), 1 ).execute()
             # UntilCancelled(checkFowWindowExist(None, None), 1).execute()
 
-            been_CheckingforWindowExist = True #?? still need?
+            checkFowWindowExist.been_CheckingforWindowExist = True
         else:
             pass
             # print "\n|-- (skip calling Asynchornous (that check if window exit).", "--| 20200401224108 |"
@@ -170,12 +177,12 @@ class checkFowWindowExist(ActionBase):
 
             #__ Add to list of queues before reinitialise to NOne
             queues.append(on_recognition_DataShare.Queue)
-            print "\n|-- [i for i in queues]:", [i for i in queues],  "--| 20200401110510 |"
+            print "\n|-- [i.utterances for i in queues]:", [i.utterances for i in queues],  "--| 20200401110510 |"
             on_recognition_DataShare.Queue = None
 
             my_value = 0
             # return True
-            been_CheckingforWindowExist = False
+            checkFowWindowExist.been_CheckingforWindowExist = False
 
             #__ So, Queuing trigger condition met:
             #__ stop the stop loping of checking if condition met, by stoping Asychronos ...
