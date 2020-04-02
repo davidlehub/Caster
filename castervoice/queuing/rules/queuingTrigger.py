@@ -38,13 +38,44 @@ F = Function
 def triggerQueuing():
     pass
 
-class UntilCancelled(AsynchronousAction):
-    def __init__(self, action, t=3):
-        # AsynchronousAction.__init__(self, [L(S(["cancel"], action))], t, 100, "UC", False,
-        AsynchronousAction.__init__(self, [L(S(["cancel"], action))], t, 100, "UC", True,
-                                    None)
-        self.show = True
 
+
+class StoreCommands_ToExcute_OnConditionMet(AsynchronousAction):
+    Queue = None  # type: Queue_cls
+
+    def __init__(self, conditionToCheckRepeatly, t=1):
+
+        # prepareStorage_forCommandsHistory(StoreCommands_ToExcute_OnConditionMet.Queue)
+        StoreCommands_ToExcute_OnConditionMet.Queue = StoreCommands_ToExcute_OnConditionMet.prepareStorage_forQueuingCommandsHistory()  # type: Queue_cls
+        # AsynchronousAction.__init__(self, [L(S(["cancel"], conditionToCheckRepeatly))], t, 100, "UC", False,
+        AsynchronousAction.__init__(self,
+            [L(S(["cancel"], conditionToCheckRepeatly))],
+            t,
+            100,
+            "some description |20200402140843",
+            True,
+            StoreCommands_ToExcute_OnConditionMet.on_QueuingConditionMet(StoreCommands_ToExcute_OnConditionMet.Queue)
+            ) #End AsynchronousAction.__init__()
+        self.show = True #??
+
+    # def prepareStorage_forCommandsHistory(self, Queue):
+    @staticmethod
+    def prepareStorage_forQueuingCommandsHistory():
+        # type: () -> Queue_cls
+        Queue = Queue_cls()
+        Queue.get_and_register_history()
+
+        return Queue
+
+    @staticmethod
+    def  on_QueuingConditionMet(Queue):
+        # type: (Queue_cls) -> None
+        """
+
+        :type Queue:Queue_cls
+        :rtype: None
+        """
+        print "\n|-- in 'on_QueuingConditionMet()':", Queue,  "--| 20200402021207 |"
 
 my_value = 0
 spoken_queue = []
@@ -66,8 +97,8 @@ def storeSpoken_inQueue(params):
 
     # an if : inside call only one: if triguer is not met ...
     if not checkFowWindowExist.been_CheckingforWindowExist:
-        # UntilCancelled( checkFowWindowExist(*filter(lambda s: s != "then", params)), 1 ).execute()
-        UntilCancelled( checkFowWindowExist(None, None ), 1).execute()
+        # StoreCommands_ToExcute_OnConditionMet( checkFowWindowExist(*filter(lambda s: s != "then", params)), 1 ).execute()
+        StoreCommands_ToExcute_OnConditionMet(checkFowWindowExist(None, None), 1).execute() #old, may not compatible...
         checkFowWindowExist.been_CheckingforWindowExist = True
     else:
         print "\n|-- (skip calling Asynchornous (that check if window exit).",   "--| 20200401082031 |"
@@ -91,25 +122,8 @@ def storeSpoken_inQueue(params):
 
 
 AsynchronousAction_Stoping_spec = "cancel"
-# class UntilCancelled(AsynchronousAction):
-#     # def __init__(self, action, t=3):
-#     # def __init__(self, action, t=0.1):
-#     # def __init__(self, action, t=float("0.1")):
-#     def __init__(self, action, t=1):
-#         print "\n|-- action,t:", action, t, "--| 20200331103436 |"
-#         # AsynchronousAction.__init__(self, [L(S(["cancel"], action))], t, 10, "UC", True, # blocking ...
-#         # AsynchronousAction.__init__(self, [L(S(["cancel"], action))], t, 10, "UC", False, #no blocking...
-#         # # AsynchronousAction.__init__(self, [L(S(["cancel"], action))], float(t), 10, "UC", False,
-#         AsynchronousAction.__init__(self, [L(S([AsynchronousAction_Stoping_spec], action))], t, 10, "UC", False, #no blocking...
-#         # AsynchronousAction.__init__(self, [L(S(["cancel"], action))], float(t), 10, "UC", False,
-#                                     Text("fnished 20200331164105"))
-#         #                             None)
-#         self.show = True
 
 
-# region__ for simulate: trigger's condition me
-my_value = 0
-# endregion }__ for simulate: trigger's condition me
 # _history = get_and_register_history(10)
 # been_CheckingforWindowExist = False
 
@@ -147,6 +161,7 @@ class checkFowWindowExist(ActionBase):
         # if not on_recognition_DataShare.enable_recording_spoken:
         if not checkFowWindowExist.been_CheckingforWindowExist:
             print "\n|-- enable_recording_spoken",   "--| 20200401104625 |"
+
             checkFowWindowExist._history = get_and_register_history(10)
 
             # __ Create new Queue in to Queues list
@@ -155,8 +170,8 @@ class checkFowWindowExist(ActionBase):
             on_recognition_DataShare.enable_recording_spoken = True
 
             #__
-            # UntilCancelled( checkFowWindowExist(*filter(lambda s: s != "then", params)), 1 ).execute()
-            # UntilCancelled(checkFowWindowExist(None, None), 1).execute()
+            # StoreCommands_ToExcute_OnConditionMet( checkFowWindowExist(*filter(lambda s: s != "then", params)), 1 ).execute()
+            # StoreCommands_ToExcute_OnConditionMet(checkFowWindowExist(None, None), 1).execute()
 
             checkFowWindowExist.been_CheckingforWindowExist = True
         else:
@@ -215,7 +230,7 @@ class queuingTrigger(MergeRule):
                     # S(["cancel"], lambda: None),
                     S([AsynchronousAction_Stoping_spec], lambda: None),
                     S(["*"],
-                      lambda fnparams: UntilCancelled(
+                      lambda fnparams: StoreCommands_ToExcute_OnConditionMet(
                           # Mimic(*filter(lambda s: s != "periodic", fnparams)), 1).execute(
                           checkFowWindowExist(*filter(lambda s: s != "then", fnparams)), 1).execute(
                       ),
@@ -241,7 +256,7 @@ class queuingTrigger(MergeRule):
         #
         #             S(["cancel"], lambda: None),
         #             S(["*"],
-        #               # lambda fnparams: UntilCancelled(
+        #               # lambda fnparams: StoreCommands_ToExcute_OnConditionMet(
         #               # lambda fnparams: UntilCancelled2( #modify this UntilCancelled2 to: catch spoken and store them in array.
         #               lambda fnparams: UntilCancelled3( #modify this UntilCancelled2 to: catch spoken and store them in array.
         #                   # Mimic(*filter(lambda s: s != "periodic", fnparams)), 1).execute(
@@ -261,7 +276,7 @@ class queuingTrigger(MergeRule):
         #         L(
         #             S(["cancel"], lambda: None),
         #             S(["*"],
-        #               lambda fnparams: UntilCancelled(
+        #               lambda fnparams: StoreCommands_ToExcute_OnConditionMet(
         #                   # Mimic(*filter(lambda s: s != "then", fnparams)), 1).execute(
         #                   checkFowWindowExist(*filter(lambda s: s != "then", fnparams)), 1).execute(
         #                   # print_params_to_console(*filter(lambda s: s != "then", fnparams)), 1).execute(

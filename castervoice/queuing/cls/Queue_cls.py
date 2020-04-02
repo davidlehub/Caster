@@ -1,6 +1,7 @@
 #region--- (Import)
 from inspect import getframeinfo, stack, getframeinfo, currentframe
 from typing import Callable, Iterator, Union, Optional, List, Dict
+from castervoice.lib.util.recognition_history import get_and_register_history
 
 #endregion (Import)
 
@@ -24,6 +25,10 @@ class Queue_cls():
         # self.spokens = {}
         # self.words = None
         self.utterances = []
+        self.history = None
+
+    def get_and_register_history(self, lookBack=1000):
+        self.history = get_and_register_history(lookBack)
 
 def Add_Queue_forApp(Queue, appData):
     # type: (Queue_cls, AppData_cls) -> None
