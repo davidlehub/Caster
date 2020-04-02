@@ -15,6 +15,7 @@ from dragonfly.actions.action_mimic import Mimic
 from castervoice.queuing.cls.Queue_cls import Queue_cls
 from castervoice.queuing.globalVariables.queues import queues
 from castervoice.queuing.on_recognition_fromDragonfly import on_recognition_fromDragonfly, on_recognition_DataShare
+from castervoice.lib.util.recognition_history import get_and_register_history
 
 #endregion (Import)
 
@@ -110,6 +111,7 @@ AsynchronousAction_Stoping_spec = "cancel"
 # region__ for simulate: trigger's condition me
 my_value = 0
 # endregion }__ for simulate: trigger's condition me
+_history = get_and_register_history(10)
 class checkFowWindowExist(ActionBase):
     def __init__(self, *words, **kwargs):
         ActionBase.__init__(self)
@@ -132,6 +134,8 @@ class checkFowWindowExist(ActionBase):
 
         # print "\n|-- (End of _excecute())",   "--| 20200401112219 |"
 
+        # print "\n|-- get_and_register_history():", get_and_register_history(),  "--| 20200402083809 |"
+        print "\n|-- _history:", _history,  "--| 20200402084547 |"
 
         # region__ run only once
         # global been_CheckingforWindowExist
