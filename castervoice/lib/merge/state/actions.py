@@ -67,7 +67,6 @@ class AsynchronousAction(ContextSeeker):
     def __init__(self,
                  forward,
                  time_in_seconds=1,
-                 # time_in_seconds=0.1,
                  repetitions=0,
                  rdescript="unnamed command (A)",
                  blocking=True,

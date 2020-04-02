@@ -24,7 +24,7 @@ class Queue_cls():
     def __init__(self):
         # self.spokens = {}
         # self.words = None
-        self.utterances = []
+        # self.utterances = []
         self.history = None
 
     def get_and_register_history(self, lookBack=1000):

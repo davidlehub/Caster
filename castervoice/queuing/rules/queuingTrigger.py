@@ -59,13 +59,13 @@ class StoreCommands_ToExcute_OnConditionMet(AsynchronousAction):
         self.show = True #??
 
     # def prepareStorage_forCommandsHistory(self, Queue):
-    @staticmethod
-    def prepareStorage_forQueuingCommandsHistory():
-        # type: () -> Queue_cls
-        Queue = Queue_cls()
-        Queue.get_and_register_history()
-
-        return Queue
+    # @staticmethod
+    # def prepareStorage_forQueuingCommandsHistory():
+    #     # type: () -> Queue_cls
+    #     Queue = Queue_cls()
+    #     Queue.get_and_register_history()
+    #
+    #     return Queue
 
     @staticmethod
     def  on_QueuingConditionMet(Queue):
@@ -219,6 +219,41 @@ class checkFowWindowExist(ActionBase):
        ) #end 'R('
        ,
 '''
+#__ ____________________________________________
+
+
+
+Queue = None  # type:Queue_cls
+def prepareStorage_forQueuingCommandsHistory():
+    # type: () -> Queue_cls
+    global Queue
+    Queue = Queue_cls()
+    Queue.get_and_register_history()
+
+    # return Queue
+
+
+# region__ (Simulate waiting for window to exist)
+my_value = 0
+def RepeatlyCheck_ifWindowExist():
+    global my_value
+    my_value = my_value + 5
+    print(my_value)
+    if my_value == 40:
+        my_value = 0
+        return True #When return True: it stop the Asyncho. reapeter.
+    return False
+# endregion }__ (Simulate waiting for window to exist)
+
+# def  on_QueuingConditionMet(Queue = None):
+# def  on_QueuingConditionMet(Queue):
+def  on_QueuingConditionMet():
+    """
+    :rtype: None
+    """
+    print "\n|-- in 'on_QueuingConditionMet()':", Queue.history,  "--| 20200402021207 |"
+
+
 class queuingTrigger(MergeRule):
     mapping = {
 
@@ -230,11 +265,24 @@ class queuingTrigger(MergeRule):
                     # S(["cancel"], lambda: None),
                     S([AsynchronousAction_Stoping_spec], lambda: None),
                     S(["*"],
-                      lambda fnparams: StoreCommands_ToExcute_OnConditionMet(
-                          # Mimic(*filter(lambda s: s != "periodic", fnparams)), 1).execute(
-                          checkFowWindowExist(*filter(lambda s: s != "then", fnparams)), 1).execute(
-                      ),
-                      use_spoken=True))
+                      # lambda fnparams: StoreCommands_ToExcute_OnConditionMet(
+                      #     checkFowWindowExist(*filter(lambda s: s != "then", fnparams)), 1).execute(),
+                      # R(K("t") + F(repeat_me), rdescript=""), #ok
+                      # R(K("t") + AsynchronousAction([L(S(["!"], repeat_me))]), rdescript=""), #ok
+                      R(  F(prepareStorage_forQueuingCommandsHistory)
+                        + AsynchronousAction([L(S(["!"], RepeatlyCheck_ifWindowExist))],
+                                             time_in_seconds=1,
+                                             # repetitions=0,
+                                             repetitions=1000,
+                                             # rdescript="wait fo window to exist",
+                                             rdescript="",
+                                             blocking=True,
+                                             finisher=F(on_QueuingConditionMet)
+                                            ) #End AsynchronousAction()
+                        , rdescript=""), #End R()
+                      # use_spoken=True
+                     ) #End S()
+                 ) #End L()
             ]),
 
         # region__  ok, catching spoken |20200401110749
