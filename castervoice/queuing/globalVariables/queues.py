@@ -1,6 +1,7 @@
 #region--- (Import)
 from inspect import getframeinfo, stack, getframeinfo, currentframe
-from typing import Callable, Iterator, Union, Optional, List, Dict
+from typing import Callable, Iterator, Union, Optional, List, Dict, Any
+from castervoice.queuing.cls.Queue_cls import Queue_cls
 
 #endregion (Import)
 
@@ -17,15 +18,4 @@ from typing import Callable, Iterator, Union, Optional, List, Dict
 # x = f  # type: Callable[[int, float], float]
 #endregion (This is how you annotate a function definitio)
 
-# from castervoice.queuing.cls.Queue_cls import Queue_cls
-
-class Queue_cls():
-    def __init__(self):
-        # self.spokens = {}
-        # self.words = None
-        self.utterances = []
-
-def Add_Queue_forApp(Queue, appData):
-    # type: (Queue_cls, AppData_cls) -> None
-    pass
-    
+queues = []  # type: List[Queue_cls]

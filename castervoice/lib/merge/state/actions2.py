@@ -152,5 +152,6 @@ class NullAction(RegisteredAction):
 class UntilCancelled(AsynchronousAction):
     def __init__(self, action, t=3):
         AsynchronousAction.__init__(self, [L(S(["cancel"], action))], t, 100, "UC", False,
+        # AsynchronousAction.__init__(self, [L(S(["cancel"], action))], t, 100, "UC", True,
                                     None)
         self.show = True

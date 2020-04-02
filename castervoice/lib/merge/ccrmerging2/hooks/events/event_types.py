@@ -10,4 +10,5 @@ class EventType(object):
     APPCONTEXT_Matched_EXCL = "App Context Matched EXCL"
     REGISTER_Rule_EXCL = 'Register Rule EXCL'
     REMERGE_CCR_RULES_EXCL = 'REMERGE CCR RULES EXCL'
-    #endregion 
+    SPOKEN_RECOGNIZED = 'SPOKEN RECOGNIZED'
+    #endregion
