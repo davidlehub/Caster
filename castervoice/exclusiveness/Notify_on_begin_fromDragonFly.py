@@ -93,7 +93,8 @@ def Notify_on_begin_fromDragonFly():
 
 		ForegroundAppProcessName = (os.path.splitext(os.path.basename(activeWinPath))[0]).lower()
 		CurrWindowData = CurrWindow_data(ForegroundAppProcessName)
-		print "\n\n|>--20181110212119| ** Forground app changed, process name: ", ForegroundAppProcessName , " |=> In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+		# print "\n\n|>--20181110212119| ** Forground app changed, process name: ", ForegroundAppProcessName , " |=> In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+		print "\n|-- ** Forground app changed, process name:", ForegroundAppProcessName,  "--| 20200403063222 |"
 
 
 
