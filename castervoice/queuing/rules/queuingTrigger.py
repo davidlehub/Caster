@@ -1,9 +1,11 @@
 #region--- (Import)
 import time
 from inspect import getframeinfo, stack, getframeinfo, currentframe
+
+from dragonfly.windows.base_window import BaseWindow
 from typing import Callable, Iterator, Union, Optional, List, Dict
 from castervoice.lib.merge.mergerule import MergeRule
-from dragonfly import MappingRule
+from dragonfly import MappingRule, FocusWindow
 from castervoice.lib.ctrl.mgr.rule_details import RuleDetails
 from castervoice.lib.merge.state.short import R
 from dragonfly import (Grammar, Playback, Key, Dictation, Function, Text, ActionBase)
@@ -12,10 +14,13 @@ from castervoice.lib.merge.state.actions import AsynchronousAction, ContextSeeke
 from castervoice.lib.merge.state.actions2 import NullAction
 from castervoice.lib.merge.state.short import R, S, L
 from dragonfly.actions.action_mimic import Mimic
+
+from castervoice.lib.utilities import window_exists
 from castervoice.queuing.cls.Queue_cls import Queue_cls
 from castervoice.queuing.globalVariables.queues import queues
 from castervoice.queuing.on_recognition_fromDragonfly import on_recognition_fromDragonfly, on_recognition_DataShare
 from castervoice.lib.util.recognition_history import get_and_register_history
+from dragonfly import Window
 
 #endregion (Import)
 
@@ -234,19 +239,55 @@ def prepareStorage_forQueuingCommandsHistory():
 
 
 # region__ (Simulate waiting for window to exist)
-my_value = 0
-def RepeatlyCheck_ifWindowExist():
-    global my_value
-    my_value = my_value + 5
-    print(my_value)
-    if my_value == 40:
-        my_value = 0
-        return True #When return True: it stop the Asyncho. reapeter.
-    return False
+# my_value = 0
+# def RepeatlyCheck_ifWindowExist():
+#     global my_value
+#     my_value = my_value + 5
+#     print(my_value)
+#     if my_value == 40:
+#         my_value = 0
+#         return True #When return True: it stop the Asyncho. reapeter.
+#     return False
 # endregion }__ (Simulate waiting for window to exist)
 
 # def  on_QueuingConditionMet(Queue = None):
 # def  on_QueuingConditionMet(Queue):
+
+# def RepeatlyCheck_ifWindowExist(winTitle, winClass):
+# def RepeatlyCheck_ifWindowExist(windowname=None, executable=None):
+
+def RepeatlyCheck_ifWindowExist(p):
+    # Window.get_foreground().handle
+
+    # targetWind = BaseWindow
+    # targetWind.executable = p[0]
+    # targetWind.title = p[1]
+
+    # targetWind.get_matching_windows()
+    # Save As ahk_class #32770
+    # if window_exists(windowname=None, executable=None):
+    windowname = p[0]
+    executable = p[1]
+    # print "\n|--p:", p,  "--| 20200402081642 |"
+    print "\n|--windowname,executable :", windowname,executable,  "--| 20200402081642 |"
+    if window_exists(windowname=windowname, executable=executable):
+        #__ focus on that window
+        FocusWindow(title=windowname, executable=executable)
+        time.sleep(0.3) # give a chance to window appear.
+        # Window.set_focus()
+        # targetWind.set_focus()
+        # set_focus()
+
+        return   True
+    else:
+        return  False
+
+
+
+#__ get window title.
+    #__ get window class.
+
+
 def  on_QueuingConditionMet():
     """
     :rtype: None
@@ -270,12 +311,13 @@ class queuingTrigger(MergeRule):
                       # R(K("t") + F(repeat_me), rdescript=""), #ok
                       # R(K("t") + AsynchronousAction([L(S(["!"], repeat_me))]), rdescript=""), #ok
                       R(  F(prepareStorage_forQueuingCommandsHistory)
-                        + AsynchronousAction([L(S(["!"], RepeatlyCheck_ifWindowExist))],
+                        + AsynchronousAction([L(S(["!"], RepeatlyCheck_ifWindowExist, parameters=['Save As', 'notepad']))],
+                        # + AsynchronousAction([L(S(["!"], RepeatlyCheck_ifWindowExist,windowname="Save As", executable="notepad"))],
                                              time_in_seconds=1,
                                              # repetitions=0,
                                              repetitions=1000,
-                                             # rdescript="wait fo window to exist",
-                                             rdescript="",
+                                             rdescript="wait for window to exist: windowname='Save As', executable='notepad'",
+                                             # rdescript="",
                                              blocking=True,
                                              finisher=F(on_QueuingConditionMet)
                                             ) #End AsynchronousAction()
