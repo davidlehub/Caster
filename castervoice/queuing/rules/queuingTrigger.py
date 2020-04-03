@@ -229,8 +229,15 @@ class checkFowWindowExist(ActionBase):
 
 
 Queue = None  # type:Queue_cls
-def prepareStorage_forQueuingCommandsHistory():
+# def prepareStorage_forQueuingCommandsHistory():
+# def prepareStorage_forQueuingCommandsHistory(params):
+# def prepareStorage_forQueuingCommandsHistory(text):
+def prepareStorage_forQueuingCommandsHistory(params=None):
     # type: () -> Queue_cls
+    
+    print "\n|-- in 'prepareStorage_forQueuingCommandsHistory()'|params:",params,   "--| 20200402105707 |"
+    # print "\n|-- in 'prepareStorage_forQueuingCommandsHistory()'|text:",text,   "--| 20200402105707 |"
+
     global Queue
     Queue = Queue_cls()
     Queue.get_and_register_history()
@@ -292,40 +299,231 @@ def  on_QueuingConditionMet():
     """
     :rtype: None
     """
-    print "\n|-- in 'on_QueuingConditionMet()':", Queue.history,  "--| 20200402021207 |"
+    print "\n|-- in 'on_QueuingConditionMet()'| Queue.history:", Queue.history,  "--| 20200402021207 |"
 
 
-class queuingTrigger(MergeRule):
+# class queuingTrigger(MergeRule):
+class queuingTrigger(MappingRule):
     mapping = {
+        # "<modifier>": R(F(modifier_handle, extra={"modifier"}),
+        #                 rspec="modifier_rspec") + ContextSeeker(forward=[L(  # works
+        #     # S(["no time"], makeDragonHeard_contextSeek, parameters=[["big"], 0.0]),
+        #     # - vid20191229154126
+        #     # S(["!!!"], makeDragonHeard_contextSeek, parameters=[[gl.modofierPressedDown[0]], 0.0]), #error: list index out of range
+        #     S(["!!!"], makeDragonHeard_existingModifier),
+        #     S(["cancel"], TamFc.releaseModifierKey),
+        #     # S(["letter_rspec"], sendKey_Letter, use_rspec=True), #the parameters (a) is = 'letter_rspec'
+        #     # S(["letter_rspec"], sendKey_Letter, parameters=["%(letter)s"]), #the parameters (a) is = ["%(letter)s"]
+        #     S(["modifier_rspec"], NullAction(), consume=False),  # ok
+        #     # --- (i dont puted 'Delete_rspec', bcz is dangerous...)
+        #     # S(["letter_rspec","enterKey_rspec","backspace_rspec","escape_rspec","direction_rspec_notCCR"
+        #     # 	,"leftCLick_rspec_notCCR","middleCLick_rspec_notCCR","rightCLick_rspec_notCCR","wheelScroll_rspec_notCCR"
+        #     # 	, "pontuation_rspec"
+        #     # S(["letter_rspec","pontuation_rspec"
+        #     S(["allKeyboard_ccrSpec", "allFunctionKey_NonCcrSpec"
+        #        ], TamFc.releaseModifierKey, consume=False
+        #       ),  # ok
+        #     # S(["letter_rspec"], print_params_to_console, use_spoken=True),
+        #     # R(Function(alphanumeric.letters2, extra={"letter"}),
+        #
+        #     # S(["evening"], print_params_to_console, use_spoken=True),
+        #     # S(["noon"], print_params_to_console, parameters=["some parameters"]),
+        #     # S(["noon"], print_params_to_console, parameters=["some parameters"]),
+        #     # S(["midnight"], print_params_to_console, use_rspec=True),
+        # )
+        # ]
+        # ),
 
-        #__
-        # "periodic":
         "then":
-            ContextSeeker(forward=[
-                L(
-                    # S(["cancel"], lambda: None),
-                    S([AsynchronousAction_Stoping_spec], lambda: None),
-                    S(["*"],
-                      # lambda fnparams: StoreCommands_ToExcute_OnConditionMet(
-                      #     checkFowWindowExist(*filter(lambda s: s != "then", fnparams)), 1).execute(),
-                      # R(K("t") + F(repeat_me), rdescript=""), #ok
-                      # R(K("t") + AsynchronousAction([L(S(["!"], repeat_me))]), rdescript=""), #ok
-                      R(  F(prepareStorage_forQueuingCommandsHistory)
-                        + AsynchronousAction([L(S(["!"], RepeatlyCheck_ifWindowExist, parameters=['Save As', 'notepad']))],
-                        # + AsynchronousAction([L(S(["!"], RepeatlyCheck_ifWindowExist,windowname="Save As", executable="notepad"))],
-                                             time_in_seconds=1,
-                                             # repetitions=0,
-                                             repetitions=1000,
-                                             rdescript="wait for window to exist: windowname='Save As', executable='notepad'",
-                                             # rdescript="",
-                                             blocking=True,
-                                             finisher=F(on_QueuingConditionMet)
-                                            ) #End AsynchronousAction()
-                        , rdescript=""), #End R()
-                      # use_spoken=True
-                     ) #End S()
-                 ) #End L()
-            ]),
+        # R(F(prepareStorage_forQueuingCommandsHistory, extra={"modifier"}),rspec="then_rspec")
+        # R(F(prepareStorage_forQueuingCommandsHistory, params="%(text)s")
+            R(F(prepareStorage_forQueuingCommandsHistory)
+              + AsynchronousAction(
+                  [L(S(["!"], RepeatlyCheck_ifWindowExist, parameters=['Save As', 'notepad']))],
+                  # + AsynchronousAction([L(S(["!"], RepeatlyCheck_ifWindowExist,windowname="Save As", executable="notepad"))],
+                  time_in_seconds=1,
+                  # repetitions=0,
+                  repetitions=1000,
+                  rdescript="wait for window to exist: windowname='Save As', executable='notepad'",
+                  # rdescript="",
+                  blocking=True,
+                  finisher=F(on_QueuingConditionMet)
+                )  # End AsynchronousAction()
+              , rspec="then_rspec"
+              )  # End R()
+        
+              #   + ContextSeeker(forward=[
+            #     L(
+            #         # S(["cancel"], lambda: None),
+            #         S([AsynchronousAction_Stoping_spec], lambda: None),  # we need this??
+            #         S(["*"],
+            #           # lambda fnparams: StoreCommands_ToExcute_OnConditionMet(
+            #           #     checkFowWindowExist(*filter(lambda s: s != "then", fnparams)), 1).execute(),
+            #           # R(K("t") + F(repeat_me), rdescript=""), #ok
+            #           # R(K("t") + AsynchronousAction([L(S(["!"], repeat_me))]), rdescript=""), #ok
+            #           # R(F(prepareStorage_forQueuingCommandsHistory, params="%(text)s")
+            #           # R(F(prepareStorage_forQueuingCommandsHistory)
+            #           R(
+            #               # + AsynchronousAction(
+            #               AsynchronousAction(
+            #                   [L(S(["!"], RepeatlyCheck_ifWindowExist, parameters=['Save As', 'notepad']))],
+            #                   # + AsynchronousAction([L(S(["!"], RepeatlyCheck_ifWindowExist,windowname="Save As", executable="notepad"))],
+            #                   time_in_seconds=1,
+            #                   # repetitions=0,
+            #                   repetitions=1000,
+            #                   rdescript="wait for window to exist: windowname='Save As', executable='notepad'",
+            #                   # rdescript="",
+            #                   blocking=True,
+            #                   finisher=F(on_QueuingConditionMet)
+            #               )  # End AsynchronousAction()
+            #               , rdescript=""),  # End R()
+            #           use_spoken=True,
+            #           consume=True
+            #           )  # End S()
+            #     )  # End L()
+            #     # ]),
+            # ])  # End ContextSeeker()
+            #   , rspec="then_rspec"
+            #   )  # End R()
+
+        # region__ (almost)
+        # "then [<text>]":
+        # "then":
+        # # R(F(prepareStorage_forQueuingCommandsHistory, extra={"modifier"}),rspec="then_rspec")
+        # # R(F(prepareStorage_forQueuingCommandsHistory, params="%(text)s")
+        #     R(F(prepareStorage_forQueuingCommandsHistory)
+        #       + ContextSeeker(forward=[
+        #         L(
+        #             # S(["cancel"], lambda: None),
+        #             S([AsynchronousAction_Stoping_spec], lambda: None),  # we need this??
+        #             S(["*"],
+        #               # lambda fnparams: StoreCommands_ToExcute_OnConditionMet(
+        #               #     checkFowWindowExist(*filter(lambda s: s != "then", fnparams)), 1).execute(),
+        #               # R(K("t") + F(repeat_me), rdescript=""), #ok
+        #               # R(K("t") + AsynchronousAction([L(S(["!"], repeat_me))]), rdescript=""), #ok
+        #               # R(F(prepareStorage_forQueuingCommandsHistory, params="%(text)s")
+        #               # R(F(prepareStorage_forQueuingCommandsHistory)
+        #               R(
+        #                 # + AsynchronousAction(
+        #                 AsynchronousAction(
+        #                   [L(S(["!"], RepeatlyCheck_ifWindowExist, parameters=['Save As', 'notepad']))],
+        #                   # + AsynchronousAction([L(S(["!"], RepeatlyCheck_ifWindowExist,windowname="Save As", executable="notepad"))],
+        #                   time_in_seconds=1,
+        #                   # repetitions=0,
+        #                   repetitions=1000,
+        #                   rdescript="wait for window to exist: windowname='Save As', executable='notepad'",
+        #                   # rdescript="",
+        #                   blocking=True,
+        #                   finisher=F(on_QueuingConditionMet)
+        #                   )  # End AsynchronousAction()
+        #                 , rdescript=""),  # End R()
+        #               use_spoken=True,
+        #               consume=True
+        #               )  # End S()
+        #         )  # End L()
+        #         # ]),
+        #         ])  # End ContextSeeker()
+        #       , rspec="then_rspec"
+        #       )  # End R()
+        # endregion }__ (almost)
+
+        # region__ (not working)
+        # "then [<text>]":
+        #     # R(F(prepareStorage_forQueuingCommandsHistory, extra={"modifier"}),rspec="then_rspec")
+        #     # R(F(prepareStorage_forQueuingCommandsHistory, params="%(text)s")
+        #     R(F(prepareStorage_forQueuingCommandsHistory)
+        #         + ContextSeeker(forward=[
+        #           L(
+        #             # S(["cancel"], lambda: None),
+        #             S([AsynchronousAction_Stoping_spec], lambda: None), #we need this??
+        #             S(["*"],
+        #                   # lambda fnparams: StoreCommands_ToExcute_OnConditionMet(
+        #                   #     checkFowWindowExist(*filter(lambda s: s != "then", fnparams)), 1).execute(),
+        #                   # R(K("t") + F(repeat_me), rdescript=""), #ok
+        #                   # R(K("t") + AsynchronousAction([L(S(["!"], repeat_me))]), rdescript=""), #ok
+        #                   # R(F(prepareStorage_forQueuingCommandsHistory, params="%(text)s")
+        #                   R(F(prepareStorage_forQueuingCommandsHistory)
+        #                     + AsynchronousAction(
+        #                       [L(S(["!"], RepeatlyCheck_ifWindowExist, parameters=['Save As', 'notepad']))],
+        #                       # + AsynchronousAction([L(S(["!"], RepeatlyCheck_ifWindowExist,windowname="Save As", executable="notepad"))],
+        #                       time_in_seconds=1,
+        #                       # repetitions=0,
+        #                       repetitions=1000,
+        #                       rdescript="wait for window to exist: windowname='Save As', executable='notepad'",
+        #                       # rdescript="",
+        #                       blocking=True,
+        #                       finisher=F(on_QueuingConditionMet)
+        #                   )  # End AsynchronousAction()
+        #                   , rdescript=""),  # End R()
+        #                   # use_spoken=True
+        #                   )  # End S()
+        #           )  # End L()
+        #         # ]),
+        #         ]) #End ContextSeeker()
+        #     , rspec = "then_rspec"
+        #     ) #End R()
+        # endregion }__ (not working)
+
+        # region__  go err: TypeError: dragonfly_data <{'textnv': '', 'nnavi50': 1, 'big': False, '_grammar': Grammar(ccr-1), 'spacing': 0, 'mtn_dir': 'right', 'nnavi10': 1, 'npunc': 1, 'extreme': None, 'modifier': '', 'nnavi3': 1, 'capitalization': 0, 'npunc100': 1, '_rule': PreparedRule(PreparedRule), '_node': Node: Alternative(...), [u'then'], 'long': '', 'mtn_mode': None, 's': '', 'n': 1, 'app': None, 'nnavi500': 1, 'splatdir': 'backspace'}>
+        # "then":
+        #     # R(F(prepareStorage_forQueuingCommandsHistory, extra={"modifier"}),rspec="then_rspec")
+        #     R(F(prepareStorage_forQueuingCommandsHistory),rspec="then_rspec")
+        #     + ContextSeeker(forward=[
+        #         L(
+        #             # S(["cancel"], lambda: None),
+        #             S([AsynchronousAction_Stoping_spec], lambda: None),
+        #             S(["*"],
+        #               # lambda fnparams: StoreCommands_ToExcute_OnConditionMet(
+        #               #     checkFowWindowExist(*filter(lambda s: s != "then", fnparams)), 1).execute(),
+        #               # R(K("t") + F(repeat_me), rdescript=""), #ok
+        #               # R(K("t") + AsynchronousAction([L(S(["!"], repeat_me))]), rdescript=""), #ok
+        #               R(F(prepareStorage_forQueuingCommandsHistory)
+        #                 + AsynchronousAction(
+        #                   [L(S(["!"], RepeatlyCheck_ifWindowExist, parameters=['Save As', 'notepad']))],
+        #                   # + AsynchronousAction([L(S(["!"], RepeatlyCheck_ifWindowExist,windowname="Save As", executable="notepad"))],
+        #                   time_in_seconds=1,
+        #                   # repetitions=0,
+        #                   repetitions=1000,
+        #                   rdescript="wait for window to exist: windowname='Save As', executable='notepad'",
+        #                   # rdescript="",
+        #                   blocking=True,
+        #                   finisher=F(on_QueuingConditionMet)
+        #                   )  # End AsynchronousAction()
+        #                 , rdescript=""),  # End R()
+        #               # use_spoken=True
+        #               )  # End S()
+        #         )  # End L()
+        #     ]),
+        # endregion }__  go err:
+
+        # region__ Version with 'then' only not working
+        # "then":
+        #     ContextSeeker(forward=[
+        #         L(
+        #             # S(["cancel"], lambda: None),
+        #             S([AsynchronousAction_Stoping_spec], lambda: None),
+        #             S(["*"],
+        #               # lambda fnparams: StoreCommands_ToExcute_OnConditionMet(
+        #               #     checkFowWindowExist(*filter(lambda s: s != "then", fnparams)), 1).execute(),
+        #               # R(K("t") + F(repeat_me), rdescript=""), #ok
+        #               # R(K("t") + AsynchronousAction([L(S(["!"], repeat_me))]), rdescript=""), #ok
+        #               R(  F(prepareStorage_forQueuingCommandsHistory)
+        #                 + AsynchronousAction([L(S(["!"], RepeatlyCheck_ifWindowExist, parameters=['Save As', 'notepad']))],
+        #                 # + AsynchronousAction([L(S(["!"], RepeatlyCheck_ifWindowExist,windowname="Save As", executable="notepad"))],
+        #                                      time_in_seconds=1,
+        #                                      # repetitions=0,
+        #                                      repetitions=1000,
+        #                                      rdescript="wait for window to exist: windowname='Save As', executable='notepad'",
+        #                                      # rdescript="",
+        #                                      blocking=True,
+        #                                      finisher=F(on_QueuingConditionMet)
+        #                                     ) #End AsynchronousAction()
+        #                 , rdescript=""), #End R()
+        #               # use_spoken=True
+        #              ) #End S()
+        #          ) #End L()
+        #     ]),
+        # endregion }__ Version with 'then' only not working
 
         # region__  ok, catching spoken |20200401110749
         # "then": ContextSeeker(forward=[L(  # works
@@ -382,6 +580,12 @@ class queuingTrigger(MergeRule):
     }
 
 
+    extras = [
+        # --
+        Dictation("text"),
+
+    ]
+    defaults = {"text":""}
 def get_rule():
     # print "\n", "20200324004713| Callers::",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
     # for i in range(1, 16):
@@ -390,4 +594,7 @@ def get_rule():
     # 	except:
     # 		print ""
     # 		break
-    return queuingTrigger, RuleDetails(ccrtype=CCRType.GLOBAL)
+    # return queuingTrigger, RuleDetails(ccrtype=CCRType.GLOBAL)
+
+    details = RuleDetails(name="queuing Trigger")
+    return queuingTrigger, details
