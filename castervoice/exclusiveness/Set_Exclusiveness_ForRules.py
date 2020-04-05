@@ -37,7 +37,7 @@ def Set_Exclusiveness_ForRules(RulestoBeExclusive_className):
     enableR(RulestoBeExclusive_className)
     #--- Remember
     data.store_enablebRules_associatedWithApp(data.currWindHndl) #TODO: not sure if is correct.
-
+    data.store_speechEngineState_associatedWithApp(data.currWindHndl)
     # print "\n", "20200319194948| gl.all_loadedRule_mappingRule:", [i.get_rule_class_name() for i in gl.all_loadedRule_mappingRule], " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
     # print "", "20200319194949| gl.all_Merge_result.all_rule_class_names:", gl.all_Merge_result.all_rule_class_names, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 

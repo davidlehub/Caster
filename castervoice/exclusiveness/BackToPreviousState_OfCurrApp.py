@@ -1,4 +1,5 @@
 from inspect import getframeinfo, stack, getframeinfo, currentframe
+from castervoice.exclusiveness.cls.DragonVocabulary_cls import enable_dragonVocabulary,disable_dragonVocabulary,dragonVocabulary_is_Disabled, dragonVocabulary_is_Enabled,enable_temporary_dragonVocabulary, disable_temporary_dragonVocabulary, dragonVocabulary_wasTemporary_disable, dragonVocabulary_wasTemporary_enabled,indicate_DragonVocabulary_is_Disabled
 from castervoice.exclusiveness.globalVariable.Data_Manager import data
 from castervoice.exclusiveness.reStore_AllEnabledRule_ofApp import reStore_AllEnabledRule_ofApp
 from castervoice.exclusiveness.get_currUniqModeLayer_ofApp import get_currUniqModeLayer_ofApp
@@ -56,9 +57,16 @@ def BackToPreviousState_OfCurrApp():
 		# print "\n", "dbg20200322135904| back to previoustate | restoredRules_className:",restoredRules_className,  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
 		Set_Exclusiveness_ForRules(restoredRules_className)
-		
 
-	#endregion 
+		#__ also restore the state of the speech engine
+		restoredState_ofSpeechEngine = data.store_speechEngineState_associatedWithApp(data.currWindHndl)
+		if restoredState_ofSpeechEngine == ct.enabled_state:
+			enable_dragonVocabulary()
+		else:
+			disable_dragonVocabulary()
+
+
+#endregion
 
 	# #--- Case: Current App doesn't have any data previously stored 
 	# else:
@@ -150,7 +158,7 @@ def BackToPreviousState_OfCurrApp():
 	# 	#- (before vers  20200109170619)
 	# 	reStore_AllEnabledRule_ofApp(ct.default)
 	# 	#- (vers 20200109170619)
-  	# 	# try:
+	# 	# try:
 	# 	# 	reStore_AllEnabledRule_ofApp(ct.default)
 	# 	# except:
 	# 	# 	data.appGramAndRules[ct.default] = GramAndRules()			

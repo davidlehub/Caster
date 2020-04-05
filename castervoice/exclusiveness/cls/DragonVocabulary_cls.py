@@ -5,6 +5,7 @@ from typing import Callable, Iterator, Union, Optional, List, Dict
 from castervoice.exclusiveness.globalVariable import GlobalV as gl
 from dragonfly.engines import (_default_engine)
 # from castervoice.exclusiveness.makeDragonHeard import makeDragonHeard
+from castervoice.exclusiveness import Constant as ct
 
 #endregion (Import)
 
@@ -179,3 +180,11 @@ def indicate_DragonVocabulary_is_Disabled():
 
 def indicate_DragonVocabulary_is_Enabled():
     _DragonVocabulary.enabled = True
+
+def get_state_ofDragonVocabulary():
+    if _DragonVocabulary.enabled:
+        return ct.enabled_state
+    else:
+        return ct.disabled_state
+# def set_state_ofDragonVocabulary(state):
+#     _DragonVocabulary.enabled = state

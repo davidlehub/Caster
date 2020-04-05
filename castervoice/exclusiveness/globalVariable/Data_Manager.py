@@ -1,14 +1,12 @@
-from castervoice.lib.ctrl.mgr.rules_config import RulesConfig
-
-
-# from operator import attrgetter
 from inspect import getframeinfo, stack, getframeinfo, currentframe
+from castervoice.exclusiveness.cls.DragonVocabulary_cls import enable_dragonVocabulary,disable_dragonVocabulary,dragonVocabulary_is_Disabled, dragonVocabulary_is_Enabled,enable_temporary_dragonVocabulary, disable_temporary_dragonVocabulary, dragonVocabulary_wasTemporary_disable, dragonVocabulary_wasTemporary_enabled,indicate_DragonVocabulary_is_Disabled, get_state_ofDragonVocabulary
+from castervoice.lib.ctrl.mgr.rules_config import RulesConfig
+# from operator import attrgetter
 from dragonfly.engines import get_engine
 # from dragonfly.grammar.grammar_base import Grammar
 from castervoice.lib.control import _NEXUS
 # from rules.lib import TamFunction as TamFc
 from dragonfly.engines import (_default_engine)
-
 from castervoice.exclusiveness.globalVariable import GlobalV as gl
 from castervoice.exclusiveness.get_AllActiveRules import get_AllActiveRules
 
@@ -342,22 +340,29 @@ class data_manager(object):
 
 	#region--- (new caster
 	def store_enablebRules_associatedWithApp(self,aWindHndl):
-		# if not self.appExclusiveness.has_key(self.currWindHndl):
 		if not self.appExclusiveness.has_key(aWindHndl):
 			self.appExclusiveness[aWindHndl] = Exclusiveness()
-		# 	self.appExclusiveness[aWindHndl].enablebRules_associatedWithApp = list(_NEXUS._grammar_manager._config._config[RulesConfig._ENABLED_ORDERED])
-	
-		# else:
-		#--- TODO: not sure about 'list(_NEXUS._grammar_manager._config._config[RulesConfig._ENABLED_ORDERED])'
-		# self.appExclusiveness[aWindHndl].enablebRules_associatedWithApp = list(_NEXUS._grammar_manager._config._config[RulesConfig._ENABLED_ORDERED])
-		self.appExclusiveness[aWindHndl].enablebRules_associatedWithApp = list(gl.RbeenActive)
 
+		self.appExclusiveness[aWindHndl].enablebRules_associatedWithApp = list(gl.RbeenActive)
 	def restore_enablebRules_associatedWithApp(self,aWindHndl):
 		if self.appExclusiveness.has_key(aWindHndl):
 			# return self.appExclusiveness[aWindHndl].enablebRules_associatedWithApp
 			return list(self.appExclusiveness[aWindHndl].enablebRules_associatedWithApp)
 		else:
 			return []
+
+	def store_speechEngineState_associatedWithApp(self,aWindHndl):
+		if not self.appExclusiveness.has_key(aWindHndl):
+			self.appExclusiveness[aWindHndl] = Exclusiveness()
+
+		self.appExclusiveness[aWindHndl].state_ofSpeechEngineVocab = get_state_ofDragonVocabulary()
+	def restore_speechEngineState_associatedWithApp(self,aWindHndl):
+		if self.appExclusiveness.has_key(aWindHndl):
+			return self.appExclusiveness[aWindHndl].state_ofSpeechEngineVocab
+		else:
+			return None
+
+
 	#endregion (new caster)
 
 	def getAll_normalGram_BeenExclusiv_ofApp(self,aWindHndl):
@@ -537,6 +542,7 @@ class Exclusiveness():
 	def __init__(self, aGram=None):
 		#--- (New Caster)
 		self.enablebRules_associatedWithApp = []
+		self.state_ofSpeechEngineVocab = None
   
 		#--- (old caster)
 		self.normalGram = set()

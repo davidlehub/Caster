@@ -58,7 +58,7 @@ def Notify_on_begin_fromDragonFly():
 	# endregion__} Detect microphone state changed
 
 
-	#__ if user don't wat to use_ExclusiveFeature, we skep.
+	#__ if user don't wat to use_ExclusiveFeature, we skip.
 	# if not ExclusivMode.enabled: #skip
 	# if not DragonVocabulary.enabled: #skip
 	# if DragonVocabulary.enabled: #skip
@@ -68,16 +68,12 @@ def Notify_on_begin_fromDragonFly():
 		return
 	else:pass
 
-	#__ ...
-
 	# print "\n", "20200329120736| Gonna try to DISABLE Dragon vocab, if is not already disabled", " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
+	#__
 	data.currWindHndl =  Window.get_foreground().handle
-	# data.currWindHndl =  aWindHndl
 
 	#--== detect foreground window changed. id20200318103821
-	# if not data.currWindHndl == data.prevWindHndl:
-	# if not data.currWindHndl == gl.prevWindHndl_onlyUseToDectectNewApp:
 	# print "\n|~ici 20191215152147| data.currWindHndl,gl.prevWindHndl_onlyUseToDectectNewApp:", data.currWindHndl,gl.prevWindHndl_onlyUseToDectectNewApp, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 	if data.currWindHndl != gl.prevWindHndl_onlyUseToDectectNewApp: #active window has changed #
 		gl.prevWindHndl_onlyUseToDectectNewApp = data.currWindHndl
@@ -106,12 +102,6 @@ def Notify_on_begin_fromDragonFly():
 		# processExclusivForNewApp(RulesRelatedToCurrWindow_className,CurrWindowData)
 		processExclusivForNewApp(CurrWindowData)
 
-		# try:
-		# except:
-		# 	print "\n|~!!!20191216153327| error:", sys.exc_info()[0], " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-		# 	pass
-		# 	# data.prevWindHndl = data.currWindHndl
-
 		#endregion set exclusiveness For Rule(S) related to the matched App context
 
 		data.prevWindHndl = data.currWindHndl
@@ -119,63 +109,7 @@ def Notify_on_begin_fromDragonFly():
 
 
 		
-	# print "\n|~ici 20191202215108f| in _process_begin:",aExecutable, aTitle, aWindHndl , " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)				
-	# # if handle == _PrevAppHwnd:
-	# if aWindHndl == data.prevWindHndl:
-	# 	return
 
-	# #--*** Foreground window switching detected.
-	# print "\n|~ici 20191208120044| new app dected:",aExecutable, aTitle, aWindHndl , " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)				
-	# #-- update
-	# data.currWindHndl = aWindHndl
-	# # print "\n|~ici 20191208120052| new app dected:",self,executable, title, handle , " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)				
-	# # TamFc.Notify__process_begin_GramBase(self,executable, title, handle)
-	# # TamFc.Notify__process_begin_GramBase(executable, title, handle)
-	
-	# #region-- Cleanup
-	# if data.prevWindHndl:
-		
-	# 	#---- delete data.appExclusiveness if thre is no any UML layer... ANd when detec app (the handle) is no more exist
-	# 	if not data.count_UML_ofApp(data.prevWindHndl):
-	# 		del data.appExclusiveness[data.prevWindHndl]
-			
-	# 	#---- Also delete data.appExclusiveness if that app doesn't exist anymore.
-	# 	try:
-	# 		x = win32gui.GetClassName(data.prevWindHndl)
-	# 	except:
-	# 		#-- (app doesn't exist anymore)
-	# 		#---- delete data.appExclusiveness
-	# 		# print "\t|~ici 20191206203011| previous app is closed.", " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)					
-	# 		del data.appExclusiveness[data.prevWindHndl]
-
-	# 	#---- flush/purge exclusiveness
-	# 	# unSetAll_GramzBeenExclusi([], "20191206190343")	
-	# 	unsetExclusivenessForGram(data.appExclusiveness[data.prevWindHndl].getAllGram())
-	# 	# _NEXUS.merger.wipe() #20191128211839
-	# #endregion
-		
-	# #--- ..
-	# ActivateExclusivenessForCurrApp()
-
-	# # #--== Make sure the list of grammars we want to be alway exlusive, are exclusive.
-	# # if not isInUniqModeForCurrApp():
-	# # 	# TamFc.SetThingzToBeExclusive(gl.gramName_AlwayExclusi,[], [],"DetectChangesIn_DfaultEngineGramz. Making sure grammars we want alway exclusiv are in exclusive. |20191129105607")
-	# # 	enableR(data.getGramObjFrmGramStr(gl.gramName_AlwayExclusi))		
-
-		
-	# #--- update
-	# data.prevWindHndl = aWindHndl
-
-	# # return
-	# # print "\n|~ici 20191205183747c| in def Notify__process_begin_GramBase| aExecutable, aTitle, aWindHndl:", aExecutable, aTitle, aWindHndl , " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)		
-
-	# # # gl.isFrgddWind_chnged = True
-	# # gl.CurrExecutable = aExecutable
-	# # gl.CurrTitle = aTitle
-	# # data.currWindHndl = aWindHndl
-
-
- 
 	# # #--== RainBow
 
 	# # #--== Normal

@@ -8,6 +8,7 @@ from castervoice.exclusiveness.BackToPreviousState_OfCurrApp import BackToPrevio
 from castervoice.exclusiveness.createAndSetExclusiv_forCurrApp import createAndSetExclusiv_forCurrApp
 from castervoice.lib.utilities import get_active_window_path,get_active_window_title, get_window_by_title
 from castervoice.exclusiveness.cls.DragonVocabulary_cls import enable_dragonVocabulary,disable_dragonVocabulary,dragonVocabulary_is_Disabled, dragonVocabulary_is_Enabled,enable_temporary_dragonVocabulary, disable_temporary_dragonVocabulary, dragonVocabulary_wasTemporary_disable, dragonVocabulary_wasTemporary_enabled
+from castervoice.exclusiveness.cls.windowManager import win
 
 
 
@@ -33,33 +34,34 @@ def processExclusivForNewApp(CurrWindowData):
 
 	# #-- 20191205214327
 	#--- Cleanup/purge exclusiveness for previous app, IF needed
- 
 	_cleanupPreviousApp()  #20191207210733
-		
+
+	# region__ Back to previous state of the foregound window, if have to
 	#--- Back to previous state of the foregound window, if have to.
 	#--- ex.: We was with a window A, then we switch to window B. Then switch back to A, witch is the current foregound one.
- 	#--- The current window A could have his exclusiveness 'state' previously saved (at id2020009170651), so we retore that saved 'state'.
+	#--- The current window A could have his exclusiveness 'state' previously saved (at id2020009170651), so we retore that saved 'state'.
 	#--- An other scenario: where the current foreground window is a new one, that just open/launched (so there is no state saved), ... 
-
 	# print "\n", "dbg20200322140745| data.currWindHndl:", data.currWindHndl, " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-
-	if data.appExclusiveness.has_key(data.currWindHndl): 
+	if data.appExclusiveness.has_key(data.currWindHndl):
 		BackToPreviousState_OfCurrApp()
+	# endregion }__ Back to previous state of the foregound window, if have to
 
-	# #region--- Case: 'dragon dictatation box' is the forgrounde window.
-	# #-- A. no exclusiveness, bcz we want normal dragon vovabulary.
-	# #-- B. Activate grammars we want to be with the dragon vocabulary, if any.		
-	# if win.currentIs_DragonDictBox(data.currWindHndl):
-	# 	print "\n", gl.dbgInd["childs"],"20181202211809| Dictation box is forgroud app detected" , " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
-	# 	#-- A.
-	# 	# gl.ForgrnWind_BforeCalng_DgnDictationBox = data.prevWindHndl # Remember the app before this app.
-	# 	gl.State_BforeCalng_DgnDictationBox = DragonModeOnly(True)
-	# 	# print "\n", gl.dbgInd["childs"],"20181202211810| gl.State_BforeCalng_DgnDictationBox: ",gl.State_BforeCalng_DgnDictationBox , " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+	#region--- Case: 'dragon dictatation box' is the forgrounde window.
+	if win.currentIs_DragonDictBox(data.currWindHndl):
+		print "\n|-- Dictation box is forgroud app detected.",   "--| 20200403062626 |"
 
-	# #endregion
+		#__ TODO: still needed?
+		gl.ForgrnWind_BforeCalng_DgnDictationBox = data.prevWindHndl # Remember the app before this app.
 
-	# #--== ** Ceate and set exclusiveness for current app.
+		# gl.State_BforeCalng_DgnDictationBox = DragonModeOnly(True)
+		# print "\n", gl.dbgInd["childs"],"20181202211810| gl.State_BforeCalng_DgnDictationBox: ",gl.State_BforeCalng_DgnDictationBox , " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+
+		gl.State_BforeCalng_DgnDictationBox = list(gl.RbeenActive)
+		enable_dragonVocabulary()
+	#endregion
+
+	#--== ** Ceate and set exclusiveness for current app.
 	# createAndSetExclusiv_forCurrApp(aGram, aContext) #(deprecated for new caster)
 	# createAndSetExclusiv_forCurrApp(RulesRelatedToCurrWindow_className,CurrWindowData)
 	else:
