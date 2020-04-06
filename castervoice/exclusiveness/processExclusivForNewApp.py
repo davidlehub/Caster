@@ -22,8 +22,9 @@ def processExclusivForNewApp(CurrWindowData):
 	# if not DragonVocabulary.enabled: #skip
 	# if not ExclusivMode.enabled: #skip
 	if  dragonVocabulary_is_Enabled():
-		print "\n|~20191207214310| Exclusive mode is off, so not gonna change exclusiveness state.",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-		return				
+		# print "\n|~20191207214310| Exclusive mode is off, so not gonna change exclusiveness state.",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+		# return
+		print "\n|-- (newly test: Before, when in this if: it skip to function 'processExclusivForNewApp'",   "--| 20200405081250 |"
 	else: pass
 
 	# gl.currAppContext = aContext #(deprecated for new caster)
