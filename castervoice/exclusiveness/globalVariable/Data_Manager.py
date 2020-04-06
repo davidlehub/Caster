@@ -344,6 +344,7 @@ class data_manager(object):
 			self.appExclusiveness[aWindHndl] = Exclusiveness()
 
 		self.appExclusiveness[aWindHndl].enablebRules_associatedWithApp = list(gl.RbeenActive)
+		print "\n|-- gl.RbeenActive:", gl.RbeenActive,  "--| 20200405082350 |"
 	def restore_enablebRules_associatedWithApp(self,aWindHndl):
 		if self.appExclusiveness.has_key(aWindHndl):
 			# return self.appExclusiveness[aWindHndl].enablebRules_associatedWithApp

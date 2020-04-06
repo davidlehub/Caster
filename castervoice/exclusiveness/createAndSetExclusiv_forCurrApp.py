@@ -26,7 +26,6 @@ def createAndSetExclusiv_forCurrApp(CurrWindowData):
 	#--== A: Set, and memorize, exclusiness of grammar related to current app.
 	#--== B: Make sure the list of grammars we want to be alway exlusive, are exclusive.
 
-	#region--- (TODO: uncomment after quick test)
 	if not data.currWindHndl: #it hapen that this vallue = 0. (eg. when an app is closed).
 		return
 
@@ -41,17 +40,16 @@ def createAndSetExclusiv_forCurrApp(CurrWindowData):
  	 """
  	#-- That class is use to remember  
 	# if not data.appExclusiveness.has_key(data.currWindHndl):
-	if not data.appExclusiveness.has_key(data.currWindHndl):
+	if not data.appExclusiveness.has_key(data.currWindHndl): #TODO: still good?
 	# if not data.get_appExclusiveness().has_key(data.currWindHndl):
 		# data.appExclusiveness[data.currWindHndl] = Exclusiveness()
 		# data.appExclusiveness[data.currWindHndl] = Exclusiveness()
 		data.set_appExclusiveness(data.currWindHndl)
 		# print "\n", "dbg20200322140747| data.get_appExclusiveness(data.currWindHndl):", data.get_appExclusiveness(data.currWindHndl), " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
 
-	if not data.appGramAndRules.has_key(data.currWindHndl):
+	if not data.appGramAndRules.has_key(data.currWindHndl): #TODO: still needed??
 		data.appGramAndRules[data.currWindHndl] = GramAndRules()
 	#endregion
-	#endregion (TODO: uncomment after quick test)
 
 	#region--- Case: 'dragon dictatation box' is the forgrounde window.
 	#-- A. no exclusiveness, bcz we want normal dragon vovabulary.

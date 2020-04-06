@@ -48,29 +48,31 @@ def processExclusivForNewApp(CurrWindowData):
 	# endregion }__ Back to previous state of the foregound window, if have to
 
 
-	#region--- Case: 'dragon dictatation box' is the forgrounde window.
-	if win.currentIs_DragonDictBox(data.currWindHndl):
-		print "\n|-- Dictation box is forgroud app detected.",   "--| 20200403062626 |"
-
-		#__ TODO: still needed?
-		gl.ForgrnWind_BforeCalng_DgnDictationBox = data.prevWindHndl # Remember the app before this app.
-
-		# gl.State_BforeCalng_DgnDictationBox = DragonModeOnly(True)
-		# print "\n", gl.dbgInd["childs"],"20181202211810| gl.State_BforeCalng_DgnDictationBox: ",gl.State_BforeCalng_DgnDictationBox , " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-
-		gl.State_BforeCalng_DgnDictationBox = list(gl.RbeenActive)
-		enable_dragonVocabulary()
-	#endregion
-
-	#--== ** Ceate and set exclusiveness for current app.
-	# createAndSetExclusiv_forCurrApp(aGram, aContext) #(deprecated for new caster)
-	# createAndSetExclusiv_forCurrApp(RulesRelatedToCurrWindow_className,CurrWindowData)
+	#__ The current app don't have 'previous state'. In other word, an app that the Caster see it for first time.
 	else:
-		createAndSetExclusiv_forCurrApp(CurrWindowData)
+		#region--- Case: 'dragon dictatation box' is the forgrounde window.
+		if win.currentIs_DragonDictBox(data.currWindHndl):
+			print "\n|-- Dictation box is forgroud app detected.",   "--| 20200403062626 |"
 
-	# else:
-	# 	# print "\n\t|~ici 20191208115702| Gonna create and ActivateExclusivenessForCurrApp()",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
-	# 	createAndSetExclusiv_forCurrApp(aGram, aContext)
+			#__ TODO: still needed?
+			gl.ForgrnWind_BforeCalng_DgnDictationBox = data.prevWindHndl # Remember the app before this app.
 
-	#---  (show info)
-	# ShoInf_thingzBnExclusiv()
+			# gl.State_BforeCalng_DgnDictationBox = DragonModeOnly(True)
+			# print "\n", gl.dbgInd["childs"],"20181202211810| gl.State_BforeCalng_DgnDictationBox: ",gl.State_BforeCalng_DgnDictationBox , " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+
+			gl.State_BforeCalng_DgnDictationBox = list(gl.RbeenActive)
+			enable_dragonVocabulary()
+		#endregion
+
+		#--== ** Ceate and set exclusiveness for current app.
+		# createAndSetExclusiv_forCurrApp(aGram, aContext) #(deprecated for new caster)
+		# createAndSetExclusiv_forCurrApp(RulesRelatedToCurrWindow_className,CurrWindowData)
+		else:
+			createAndSetExclusiv_forCurrApp(CurrWindowData)
+
+		# else:
+		# 	# print "\n\t|~ici 20191208115702| Gonna create and ActivateExclusivenessForCurrApp()",  " || In:",stack()[0][3],"%s|%d " % (getframeinfo(currentframe()).filename, getframeinfo(currentframe()).lineno),"| Caller:",stack()[1][3],"%s:%d" % (getframeinfo(stack()[1][0]).filename, getframeinfo(stack()[1][0]).lineno)
+		# 	createAndSetExclusiv_forCurrApp(aGram, aContext)
+
+		#---  (show info)
+		# ShoInf_thingzBnExclusiv()
